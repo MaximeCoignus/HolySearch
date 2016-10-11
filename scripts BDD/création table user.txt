@@ -1,0 +1,13 @@
+CREATE DATABASE holysearch ;
+USE holysearch ;
+CREATE TABLE IF NOT EXISTS users
+(
+	id int(11) NOT NULL AUTO_INCREMENT,
+    login varchar(50) NOT NULL UNIQUE,
+    password varchar(250) NOT NULL,
+	nom varchar(50) NOT NULL,
+	prenom varchar(50),
+	birthday date NOT NULL,
+	email varchar(150) NOT NULL UNIQUE,
+	PRIMARY KEY (id)
+  ) ;

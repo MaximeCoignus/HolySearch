@@ -1,0 +1,149 @@
+* { //
+	border: 1px solid blue;
+	-ms-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+	background-color: #999;
+}
+
+header {
+	height: auto;
+}
+
+#connexion-form-title {
+	font-size: 30px;
+}
+
+.form-frame {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.labels {
+	width: 40%;
+	padding: 10px 15px;
+	font-size: 18px;
+}
+
+.text-fields {
+	width: 60%;
+}
+
+#welcome {
+	color: #222;
+	padding: 5px;
+	background: linear-gradient(#8EA2C6, pink, white, white, white, white, white, white, white, white,  white, white, white, pink, #8EA2C6);
+}
+
+#footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0 ;
+	color: #222;
+	padding: 5px;
+	background: linear-gradient(green, yellow);
+	width:100%;
+}
+
+#welcome, h1 {
+	text-align: center;
+	margin: auto;
+}
+
+#footer{
+	text-align: center;
+	margin: auto;
+}
+
+#site-container {
+	background-color: white;
+	height: auto;
+}
+
+#site-content {
+	margin: 5px 0px;
+	padding: 15px 0px;
+	height: auto;
+}
+
+#logo {
+	background-color: white;
+	margin: 0px;
+	padding: 5px;
+	height: auto;
+}
+
+#logo img {
+	display: block;
+	margin: 0 auto;
+}
+
+#connexion {
+	padding: 30px;
+}
+
+#slideshow img {
+	width: 500px;
+	height: 380px;
+	max-width: 100%;
+}
+
+#slideshow {
+	height: 500px;
+	width: 510px;
+	float: left;
+	margin-top: 30px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#slideshow li {
+	list-style: none;
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 506px;
+	height: 380px;
+	visibility: hidden;
+}
+
+#slideshow ul.crossfade {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	position: relative;
+}
+
+#forgot-psw {
+	float: left;
+	margin: 15px 0px 15px 20px;
+	font-size: medium;
+}
+
+#sign-up {
+	text-align: center;
+	font-size: medium;
+	font-weight: 600;
+	margin-top: 20px;
+}
+
+#images{
+    text-align:center;
+    margin:50px auto; 
+}
+#images a{
+    margin:0px 20px;
+    display:inline-block;
+    text-decoration:none;
+    color:black;
+ }
+ 
+ .bg{background-color:#FEFEE2 !important;}

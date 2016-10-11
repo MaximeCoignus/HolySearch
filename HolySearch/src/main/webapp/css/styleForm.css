@@ -1,0 +1,44 @@
+/* Forms --------------------------------------------------------------------------------------
+*/
+fieldset
+{
+padding:
+10px;
+border:
+1px
+#8EA2C6
+solid;
+margin: 10px 0px;
+}
+legend {
+    font-weight: bold;
+    color: #8EA2C6;
+}
+form  label {
+    float: left;
+    width: 25%;
+    margin: 3px 0px 0px 0px;
+}
+form  input {
+    margin: 3px 3px 0px 0px;
+    border: 1px #999 solid;
+}
+form  input.sansLabel {
+    margin-left: 150px;
+}
+
+/* Styles et couleurs ----------------------------------------------
+---------------------------- */
+.requis {
+    color: #c00;
+}
+.erreur {
+    color: #900;
+}
+.succes {
+    color: #090;
+}
+.info {
+    font-style: italic;
+    color: #FF0000;
+}
