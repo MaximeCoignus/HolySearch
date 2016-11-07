@@ -59,6 +59,7 @@ public class MainController {
 
 		String redirect = "inscription";
 		pModel.addAttribute("headerValue", "Inscrivez-vous sur HolySearch");
+		log.trace(puserForm.getUserBirthday());
 		if (puserForm.getUserConfirmPassword().equals(puserForm.getUserPassword())
 				&& mUserService.createNewUser(mMapperUtils.mapUserFormToUserBeanTO(puserForm))) {
 			EnvoiMail vEnvoiMail = new EnvoiMail(puserForm.getUserEmail(), puserForm.getUserPassword(),

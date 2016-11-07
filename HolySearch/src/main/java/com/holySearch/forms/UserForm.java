@@ -24,7 +24,7 @@ public class UserForm {
 	@NotEmpty
 	private String userConfirmPassword;
 	
-	private Date userBirthday;
+	private String userBirthday;
 
 	/**
 	 * @return the userNom
@@ -99,14 +99,14 @@ public class UserForm {
 	/**
 	 * @return the userBirthday
 	 */
-	public Date getUserBirthday() {
+	public String getUserBirthday() {
 		return userBirthday;
 	}
 
 	/**
 	 * @param userBirthday the userBirthday to set
 	 */
-	public void setUserBirthday(Date userBirthday) {
+	public void setUserBirthday(String userBirthday) {
 		this.userBirthday = userBirthday;
 	}
 

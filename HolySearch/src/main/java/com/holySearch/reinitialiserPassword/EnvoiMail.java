@@ -21,13 +21,13 @@ public class EnvoiMail {
 
 
 	public void sendMailReinitialisation() {
-		SendMailSSL s = new SendMailSSL(email, "Réinitialisation du mot de passe de votre compte Word360", "Votre mot de passe sur Word360 a été réinitialiser"
+		SendMailSSL s = new SendMailSSL(email, "Réinitialisation du mot de passe de votre compte HolySearch", "Votre mot de passe sur HolySearch a été réinitialiser"
 				+ "\n Nouveau mot de passe : " + password);
 		s.sendMail();
 	}
 	
 	public void sendMailCreationCompte() {
-		SendMailSSL s = new SendMailSSL(email, "Creation de votre compte Word360", "Merci d'avoir créer un compte sur Word360"
+		SendMailSSL s = new SendMailSSL(email, "Creation de votre compte HolySearch", "Merci d'avoir créer un compte sur HolySearch"
 				+ "\n Identifiant : " + identifiant
 				+ "\n Mot de passe : " + password);
 		s.sendMail();
