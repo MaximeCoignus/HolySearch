@@ -47,6 +47,8 @@
 			</form:form>
 			<br /> <br />
 			ici on mettra le resultat
+			
+			<br>
 
 			<c:if test="${not empty resultatForm}">
 
