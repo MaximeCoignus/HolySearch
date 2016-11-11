@@ -48,6 +48,32 @@
 			<br /> <br />
 			ici on mettra le resultat
 
+			<label><spring:message
+							code="resultat.nomPlage" /></label>
+			<c:out value="${resultatForm.beachName}"/>
+			
+			<br><br>
+			
+			<label><spring:message
+							code="resultat.latitudePlage" /></label>
+			<c:out value="${resultatForm.latitude}"/>
+			
+			<br><br>
+			
+			<label><spring:message
+							code="resultat.longitudePlage" /></label>
+			<c:out value="${resultatForm.longitude}"/>
+			
+			<br><br>
+			
+			<label><spring:message
+							code="resultat.adressePlage" /></label>
+			<c:out value="${resultatForm.address}"/>
+			
+			<br><br>
+			
+			
+			
 		</div>
 	</div>
 </body>

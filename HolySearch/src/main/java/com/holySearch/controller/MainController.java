@@ -16,11 +16,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.holySearch.forms.ConnexionForm;
 import com.holySearch.forms.ReinitialiserPasswordForm;
+import com.holySearch.forms.ResultatForm;
 import com.holySearch.forms.SearchForm;
 import com.holySearch.forms.UserForm;
 import com.holySearch.mapper.MapperUtils;
 import com.holySearch.reinitialiserPassword.EnvoiMail;
+import com.holySearch.services.BeachService;
 import com.holySearch.services.UserService;
+import com.holySearch.transfert.object.BeachBeanTO;
 
 @Controller
 public class MainController {
@@ -29,6 +32,9 @@ public class MainController {
 
 	@Resource
 	UserService mUserService;
+	
+	@Resource
+	BeachService mBeachService;
 
 	@Autowired
 	private MapperUtils mMapperUtils;
@@ -121,6 +127,15 @@ public class MainController {
 			final ModelMap pModel) throws UnsupportedEncodingException {
 		// Traitement de la recherche
 		pModel.addAttribute("headerValue", "Resultat de votre recherche sur HolySearch");
+		
+		if(pSearchForm!= null && pSearchForm.getObjetSearch() != null && !pSearchForm.getObjetSearch().isEmpty()){
+			BeachBeanTO vBeachBeanTO = mBeachService.getBeachByNom(pSearchForm.getObjetSearch());
+			
+			ResultatForm vResultatForm = mMapperUtils.mapBeachBeanTOToResultatForm(vBeachBeanTO);
+			
+			pModel.addAttribute("resultatForm", vResultatForm);
+		}
+		
 		return "resultat";
 	}
 

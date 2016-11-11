@@ -28,7 +28,7 @@ public class UserBeanDAO {
 	@SuppressWarnings("unchecked") 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public User getUserBeanByNom(String nom) {
-		User user = (User) entityManager.createQuery("SELECT u FROM user u WHERE u.userNom = :name")
+		User user = (User) entityManager.createQuery("SELECT u FROM User u WHERE u.userNom = :name")
 				.setParameter("name", nom).getResultList().get(0);
 		entityManager.close();
 		return user;

@@ -5,7 +5,10 @@ import java.text.SimpleDateFormat;
 
 import org.springframework.stereotype.Component;
 
+import com.holySearch.bean.Beach;
+import com.holySearch.forms.ResultatForm;
 import com.holySearch.forms.UserForm;
+import com.holySearch.transfert.object.BeachBeanTO;
 import com.holySearch.transfert.object.UserBeanTO;
 
 @Component
@@ -31,5 +34,38 @@ public class MapperUtils {
 		}
 		return vUserBeanTO;
 	}
+	
+	public BeachBeanTO mapBeachToBeachBeanTO(Beach beach){
+		BeachBeanTO vBeachBeanTO = null;
+		
+		if(beach != null){
+			vBeachBeanTO = new BeachBeanTO();
+			
+			vBeachBeanTO.setBeachId(beach.getBeachId());
+			vBeachBeanTO.setBeachName(beach.getBeachName());
+			vBeachBeanTO.setLatitude(beach.getLatitude());
+			vBeachBeanTO.setLongitude(beach.getLongitude());
+			vBeachBeanTO.setAddress(beach.getAddress());
+			
+		}
+		
+		return vBeachBeanTO;
+	}
+	
+	public ResultatForm mapBeachBeanTOToResultatForm(BeachBeanTO pBeachBeanTO){
+		ResultatForm vResultatForm = null;
+		
+		if(pBeachBeanTO != null){
+			vResultatForm = new ResultatForm();
+			vResultatForm.setBeachName(pBeachBeanTO.getBeachName());
+			vResultatForm.setLatitude(pBeachBeanTO.getLatitude());
+			vResultatForm.setLongitude(pBeachBeanTO.getLongitude());
+			vResultatForm.setAddress(pBeachBeanTO.getAddress());
+			
+		}
+		
+		return vResultatForm;
+	}
+
 
 }

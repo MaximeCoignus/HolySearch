@@ -1,35 +1,15 @@
-package com.holySearch.bean;
+package com.holySearch.transfert.object;
 
-import java.util.Collection;
+public class BeachBeanTO {
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "beaches")
-public class Beach {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
 	private int beachId;
 	
-	@Column(name = "beach_name")
 	private String beachName;
 	
-	@Column(name = "latitude")
 	private float latitude;
 	
-	@Column(name = "longitude")
 	private float longitude;
 	
-	@Column(name = "address")
 	private String address;
 	
 	public int getBeachId() {
@@ -72,5 +52,4 @@ public class Beach {
 		this.address = address;
 	}
 
-	
 }
