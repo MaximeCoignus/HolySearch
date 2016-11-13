@@ -33,7 +33,7 @@
 						<div style="text-align: center;">
 							
 								<a href="/HolySearch/search"><img
-										src="images/logo1.jpg"
+										src="images/logo.gif"
 										style="text-align: center; margin-right: 5%;" /></a>
 								<input type="text" name="objetSearch"
 									placeholder="Search" style="width: 300px;"

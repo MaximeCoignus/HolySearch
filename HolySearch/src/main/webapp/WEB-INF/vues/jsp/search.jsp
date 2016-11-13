@@ -22,17 +22,15 @@
 					<input type="submit" value="Se déconnecter">
 				</form:form>
 			</c:if>
-			<br /> <br /> <br />
 			<form:form action="rechercher" method="get"
 				modelAttribute="searchForm">
 				<div style="text-align: center;">
-					<a href="/HolySearch/search"><img src="images/logo.jpg"
+					<a href="/HolySearch/search"><img src="images/logo1.gif"
 						style="text-align: center;" /></a>
 				</div>
 				<div>
 					<table style="margin-left: 30%;">
 						<div style="text-align: center;">
-							<br /> <br /> <br /> <br />
 							<tr>
 								<td></td>
 								<td><input type="text" name="objetSearch"
