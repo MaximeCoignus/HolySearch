@@ -41,13 +41,14 @@ public class MainController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String afficher(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel) {
-		pModel.addAttribute("headerValue", "Recherchez toutes vos destinations sur HolySearch");
+		pModel.addAttribute("headerValue", " ");
 		return "index";
 	}
+	
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String search(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel) {
-		pModel.addAttribute("headerValue", "Recherchez toutes vos destinations sur HolySearch");
+		pModel.addAttribute("headerValue", " ");
 		pModel.addAttribute("identifiant", "identifiant");
 		return "search";
 	}
@@ -55,7 +56,7 @@ public class MainController {
 	@RequestMapping(value = "/deconnexion", method = RequestMethod.GET)
 	public String deconnecter(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel) {
 		pModel.clear();
-		pModel.addAttribute("headerValue", "Recherchez toutes vos destinations sur HolySearch");
+		pModel.addAttribute("headerValue", " ");
 		return "index";
 	}
 
@@ -73,7 +74,7 @@ public class MainController {
 			vEnvoiMail.sendMailCreationCompte();
 			pModel.clear();
 			pModel.addAttribute("identifiant", puserForm.getUserLogin());
-			pModel.addAttribute("headerValue", "Recherchez toutes vos destinations sur HolySearch");
+			pModel.addAttribute("headerValue", " ");
 			redirect = "search";
 		}
 
@@ -86,7 +87,7 @@ public class MainController {
 			final BindingResult pBindingResult, final ModelMap pModel) throws UnsupportedEncodingException {
 
 		String redirect = "index";
-		pModel.addAttribute("headerValue", "Recherchez toutes vos destinations sur HolySearch");
+		pModel.addAttribute("headerValue", " ");
 		if (mUserService.userBeanExist(pConnexionForm.getLogin(), pConnexionForm.getPassword())) {
 			pModel.addAttribute("identifiant", pConnexionForm.getLogin());
 			redirect = "search";
@@ -108,7 +109,7 @@ public class MainController {
 					pReinitialiserPasswordForm.getPassword());
 			vEnvoiMail.sendMailReinitialisation();
 			pModel.clear();
-			pModel.addAttribute("headerValue", "Recherchez toutes vos destinations sur HolySearch");
+			pModel.addAttribute("headerValue", " ");
 			redirect = "index";
 		}
 		return redirect;

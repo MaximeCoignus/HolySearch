@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+@SuppressWarnings("unused")
 public class UserForm {
 		
 	@NotEmpty

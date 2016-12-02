@@ -25,11 +25,20 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>servlet-dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ConnexionServlet</servlet-name>
+		<servlet-class>com.holySearch.forms.ConnexionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ConnexionServlet</servlet-name>
+		<url-pattern>/connexionHoly</url-pattern>
+	</servlet-mapping>
+	
 
 	<!-- Configuration des pages JSP -->
 	<jsp-config>

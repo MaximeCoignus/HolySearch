@@ -19,7 +19,7 @@
 			<c:if test="${not empty identifiant}">
 				<form:form action="deconnexion" method="get"
 					style="text-align:right;">
-					<input type="submit" value="Se déconnecter">
+					<input type="submit" value="${identifiant}, Se déconnecter">
 				</form:form>
 			</c:if>
 			<form:form action="rechercher" method="get"
