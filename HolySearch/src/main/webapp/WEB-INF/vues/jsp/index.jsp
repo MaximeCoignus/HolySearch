@@ -17,6 +17,7 @@
 	type="text/css" />
 <script type="text/javascript" src="js/jquery.min.js"></script>
 </head>
+
 <body id="site-container"
 	style="background: #d3d3d3 url('images/background.gif') no-repeat center center fixed;">
 	<div class="container voffset5 background-white">
