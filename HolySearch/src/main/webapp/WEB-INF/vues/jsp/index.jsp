@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Bienvenue sur HolySearch</title>
+<title>HolySearch</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/styleForm.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
