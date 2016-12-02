@@ -41,7 +41,7 @@ public class MainController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String afficher(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel) {
-		pModel.addAttribute("headerValue", "Recherchez toutes vos destinations sur HolySearch");
+		pModel.addAttribute("headerValue", "Recherchez toutes vos destinations");
 		return "index";
 	}
 
