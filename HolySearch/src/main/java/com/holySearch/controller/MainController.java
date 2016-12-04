@@ -114,6 +114,14 @@ public class MainController {
 		}
 		return redirect;
 	}
+	
+	@RequestMapping(value = "/connexionHoly", method = RequestMethod.GET)
+	public String connexionHoly(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel)
+			throws UnsupportedEncodingException {
+		pModel.addAttribute("headerValue", "Connectez-vous sur HolySearch");
+		return "connexionHoly";
+
+	}
 
 	@RequestMapping(value = "/inscription", method = RequestMethod.GET)
 	public String inscription(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel)

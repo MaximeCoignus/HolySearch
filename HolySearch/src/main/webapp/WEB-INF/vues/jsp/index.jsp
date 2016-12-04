@@ -9,7 +9,7 @@
 
 <title>HolySearch</title>
 
-<link rel="icon" href="../../favicon.ico">
+<link rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
