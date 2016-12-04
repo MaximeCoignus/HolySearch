@@ -6,87 +6,92 @@
 <meta charset="UTF-8">
 <title>Inscription</title>
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/styleForm.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 <script src="js/bootstrap.min.js"></script>
 <link rel="stylesheet"
 	href="formoid_files/formoid1/formoid-solid-light-green.css"
 	type="text/css" />
 <script type="text/javascript" src="js/jquery.min.js"></script>
-<link rel="stylesheet" href="css/styleForm.css">
 </head>
 <body id="site-container">
-	<br />
-	<br />
-	<br />
-	<div class="container voffset5 background-white">
-		<div class="container">
-			<p><h4>Pour la création d'un nouveau compte, veuillez
-						renseigner les informations ci-dessous puis valider le formulaire
-						d'inscription :</h4>
-			</p>
-			<br />
-			<form:form action="createUserAccount" method="post"
-				modelAttribute="userForm">
-				<fieldset style="padding:0.05%;border:1px #8EA2C6 solid;margin: 2% 0%;">
-				<p style="padding:2%;margin: 0% 7%;">
-					<label><spring:message
-							code="createAccount.email" /> <span class="requis">*</span> </label> <input
-						class="large" type="email" name="userEmail" value=""
-						placeholder="Email" size="80"
-						maxlength="80"   /><span
-						class="icon-place"></span> <br /> <br /> 
-					
-					<label><spring:message
-							code="createAccount.nom" /> <span class="requis">*</span> </label> <input
-						class="large" type="text" name="userNom" value=""
-						placeholder="Nom" size="80"
-						maxlength="80"   /><span
-						class="icon-place"></span><br /> <br /> 
-						
-					<label><spring:message
-							code="createAccount.prenom" /></label>
-					<input class="large" type="text"
-						name="userPrenom" value="" placeholder="Prenom"
-						size="80"
-						maxlength="80"   /><span class="icon-place"></span><br /> <br />
-						
-					<label><spring:message
-							code="createAccount.birthday" /> </label>
-					<input class="large"
-						type="date" name="userBirthday" value=""
-						placeholder="Date de naissance" size="80"
-						maxlength="80"  /><span
-						class="icon-place"></span><br /> <br /> 
-					
-					<label><spring:message
-							code="createAccount.identifiant" /> <span class="requis">*</span> </label>						
-					<input class="large"
-						type="text" name="userLogin" value="" placeholder="Identifiant"
-						size="80"
-						maxlength="80"   /><span class="icon-place"></span><br /> <br />
-						
-					<label><spring:message
-							code="createAccount.password" /> <span class="requis">*</span> </label>
-					<input type="password"
-						name='userPassword' placeholder="Mot de passe"
-						size="80"
-						maxlength="80"   /><span class="icon-place"></span><br /> <br />
-						
-					<label><spring:message
-							code="createAccount.confirmPassword" /> <span class="requis">*</span> </label>
-					<input type="password"
-						name='userConfirmPassword' placeholder="Confirmer le mot de passe"
-						size="80"
-						maxlength="80"   /> <br /> <br />
-					<p style="margin:2% 37%;">
-						<input type="submit" value="Valider l'inscription" />
-						<input type="reset"
-						value="Remettre à zéro" /> <br />
-					</p>
-					</p>
-					
-				</fieldset>	
-			</form:form>
+	<div class="row centered-form">
+		<div
+			class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-3"
+			style="width: 51%;">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<form:form action="createUserAccount" method="post"
+						modelAttribute="userForm">
+						<h2>Création de votre compte</h2>
+						<hr class="colorgraph">
+						<div class="row">
+							<div class="col-xs-12 col-sm-6 col-md-6">
+								<div class="form-group">
+									<input type="text" name="userNom" id="userNom"
+										class="form-control input-lg" placeholder="Nom" tabindex="1"
+										required>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-6">
+								<div class="form-group">
+									<input type="text" name="userPrenom" id="userPrenom"
+										class="form-control input-lg" placeholder="Prénom"
+										tabindex="2">
+								</div>
+							</div>
+						</div>
+						<br />
+						<div class="form-group">
+							<input type="date" name="userBirthday" id="userBirthday"
+								class="form-control input-lg" placeholder="Date de naissance"
+								tabindex="3">
+						</div>
+						<br />
+						<div class="form-group">
+							<input type="text" name="userLogin" id="userLogin"
+								class="form-control input-lg" placeholder="Identifiant"
+								tabindex="4" required>
+						</div>
+						<br />
+						<div class="form-group">
+							<input type="email" name="userEmail" id="userEmail"
+								class="form-control input-lg" placeholder="Addresse Email"
+								tabindex="5" required>
+						</div>
+						<br />
+						<div class="row">
+							<div class="col-xs-12 col-sm-6 col-md-6">
+								<div class="form-group">
+									<input type="password" name="userPassword" id="userPassword"
+										class="form-control input-lg" placeholder="Mot de passe"
+										tabindex="6" required>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-6">
+								<div class="form-group">
+									<input type="password" name="userConfirmPassword"
+										id="userConfirmPassword" class="form-control input-lg"
+										placeholder="Confirmer le mot de passe" tabindex="7" required>
+								</div>
+							</div>
+						</div>
+						<hr class="colorgraph">
+						<br />
+						<div class="row">
+							<div class="col-xs-12 col-md-6">
+								<input type="submit" value="S'inscrire"
+									class="btn btn-primary btn-block btn-lg" tabindex="8">
+							</div>
+							<div class="col-xs-12 col-md-6">
+								<a href="connexionHoly" class="btn btn-success btn-block btn-lg">Se
+									connecter</a>
+							</div>
+						</div>
+					</form:form>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

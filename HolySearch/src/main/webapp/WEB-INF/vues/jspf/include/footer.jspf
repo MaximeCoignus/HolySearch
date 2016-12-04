@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Footer</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -13,8 +13,8 @@
 <link href="css/carousel.css" rel="stylesheet">
 </head>
 <body>
-<!-- FOOTER -->
 
+<!-- FOOTER -->
 <hr class="featurette-divider">
 <div class = "homefooter">
       <footer>

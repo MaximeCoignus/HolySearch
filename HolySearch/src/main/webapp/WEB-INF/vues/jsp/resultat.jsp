@@ -21,10 +21,6 @@
 <body id="site-container">
 	<div class="container voffset5 background-white">
 		<div class="container">
-			<form:form action="deconnexion" method="get"
-				style="text-align:right;">
-				<input type="submit" value="Se déconnecter">
-			</form:form>
 
 			<form:form action="rechercher" method="get"
 				modelAttribute="searchForm">

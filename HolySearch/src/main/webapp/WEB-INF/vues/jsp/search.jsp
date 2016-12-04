@@ -1,3 +1,4 @@
+<%@page import="org.apache.taglibs.standard.lang.jstl.test.PageContextImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -16,12 +17,6 @@
 <body id="site-container">
 	<div class="container voffset5 background-white">
 		<div class="container">
-			<c:if test="${not empty identifiant}">
-				<form:form action="deconnexion" method="get"
-					style="text-align:right;">
-					<input type="submit" value="${identifiant}, Se déconnecter">
-				</form:form>
-			</c:if>
 			<form:form action="rechercher" method="get"
 				modelAttribute="searchForm">
 				<div style="text-align: center;">

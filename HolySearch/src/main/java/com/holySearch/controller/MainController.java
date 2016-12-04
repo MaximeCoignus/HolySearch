@@ -41,14 +41,22 @@ public class MainController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String afficher(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel) {
-		pModel.addAttribute("headerValue", " ");
+		return "index";
+	}
+	
+	@RequestMapping(value = "/about", method = RequestMethod.GET)
+	public String afficherAbout(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel) {
+		return "about";
+	}
+	
+	@RequestMapping(value = "/accueil", method = RequestMethod.GET)
+	public String afficherAccueil(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel) {
 		return "index";
 	}
 	
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String search(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel) {
-		pModel.addAttribute("headerValue", " ");
 		pModel.addAttribute("identifiant", "identifiant");
 		return "search";
 	}
@@ -56,7 +64,6 @@ public class MainController {
 	@RequestMapping(value = "/deconnexion", method = RequestMethod.GET)
 	public String deconnecter(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel) {
 		pModel.clear();
-		pModel.addAttribute("headerValue", " ");
 		return "index";
 	}
 
@@ -65,7 +72,6 @@ public class MainController {
 			final BindingResult pBindingResult, final ModelMap pModel) throws UnsupportedEncodingException {
 
 		String redirect = "inscription";
-		pModel.addAttribute("headerValue", "Inscrivez-vous sur HolySearch");
 		log.trace(puserForm.getUserBirthday());
 		if (puserForm.getUserConfirmPassword().equals(puserForm.getUserPassword())
 				&& mUserService.createNewUser(mMapperUtils.mapUserFormToUserBeanTO(puserForm))) {
@@ -74,7 +80,6 @@ public class MainController {
 			vEnvoiMail.sendMailCreationCompte();
 			pModel.clear();
 			pModel.addAttribute("identifiant", puserForm.getUserLogin());
-			pModel.addAttribute("headerValue", " ");
 			redirect = "search";
 		}
 
@@ -87,7 +92,6 @@ public class MainController {
 			final BindingResult pBindingResult, final ModelMap pModel) throws UnsupportedEncodingException {
 
 		String redirect = "index";
-		pModel.addAttribute("headerValue", " ");
 		if (mUserService.userBeanExist(pConnexionForm.getLogin(), pConnexionForm.getPassword())) {
 			pModel.addAttribute("identifiant", pConnexionForm.getLogin());
 			redirect = "search";
@@ -102,14 +106,12 @@ public class MainController {
 			@ModelAttribute(value = "reinitialiserPasswordForm") final ReinitialiserPasswordForm pReinitialiserPasswordForm,
 			final BindingResult pBindingResult, final ModelMap pModel) throws UnsupportedEncodingException {
 		String redirect = "reinitialiserPassword";
-		pModel.addAttribute("headerValue", "Reinitialiser votre mot de passe");
 		if (mUserService.changeUserPassword(pReinitialiserPasswordForm.getEmail(),
 				pReinitialiserPasswordForm.getPassword(), pReinitialiserPasswordForm.getConfirmPassword())) {
 			EnvoiMail vEnvoiMail = new EnvoiMail(pReinitialiserPasswordForm.getEmail(),
 					pReinitialiserPasswordForm.getPassword());
 			vEnvoiMail.sendMailReinitialisation();
 			pModel.clear();
-			pModel.addAttribute("headerValue", " ");
 			redirect = "index";
 		}
 		return redirect;
@@ -118,7 +120,6 @@ public class MainController {
 	@RequestMapping(value = "/connexionHoly", method = RequestMethod.GET)
 	public String connexionHoly(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel)
 			throws UnsupportedEncodingException {
-		pModel.addAttribute("headerValue", "Connectez-vous sur HolySearch");
 		return "connexionHoly";
 
 	}
@@ -126,7 +127,6 @@ public class MainController {
 	@RequestMapping(value = "/inscription", method = RequestMethod.GET)
 	public String inscription(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel)
 			throws UnsupportedEncodingException {
-		pModel.addAttribute("headerValue", "Inscrivez-vous sur HolySearch");
 		return "inscription";
 
 	}
@@ -135,13 +135,11 @@ public class MainController {
 	public String afficher(@Valid @ModelAttribute(value = "searchForm") final SearchForm pSearchForm,
 			final ModelMap pModel) throws UnsupportedEncodingException {
 		// Traitement de la recherche
-		pModel.addAttribute("headerValue", "Resultat de votre recherche sur HolySearch");
-		
+		pModel.addAttribute("identifiant", "identifiant");
 		if(pSearchForm!= null && pSearchForm.getObjetSearch() != null && !pSearchForm.getObjetSearch().isEmpty()){
 			BeachBeanTO vBeachBeanTO = mBeachService.getBeachByNom(pSearchForm.getObjetSearch());
 			
 			ResultatForm vResultatForm = mMapperUtils.mapBeachBeanTOToResultatForm(vBeachBeanTO);
-			
 			pModel.addAttribute("resultatForm", vResultatForm);
 		}
 		
