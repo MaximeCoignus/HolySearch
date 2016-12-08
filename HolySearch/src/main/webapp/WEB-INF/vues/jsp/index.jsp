@@ -9,12 +9,12 @@
 
 <title>HolySearch</title>
 
-<link rel="shortcut icon" href="favicon.ico">
+
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 <script type="text/javascript" src="js/jquery.min.js"></script>
-
+<link rel="shortcut icon" href="images/favicon.ico">
 <link href="css/carousel.css" rel="stylesheet">
 </head>
 <body>
