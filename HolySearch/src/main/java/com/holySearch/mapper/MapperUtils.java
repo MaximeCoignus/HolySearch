@@ -45,7 +45,6 @@ public class MapperUtils {
 			vBeachBeanTO.setBeachName(beach.getBeachName());
 			vBeachBeanTO.setLatitude(beach.getLatitude());
 			vBeachBeanTO.setLongitude(beach.getLongitude());
-			vBeachBeanTO.setAddress(beach.getAddress());
 			
 		}
 		
@@ -60,7 +59,6 @@ public class MapperUtils {
 			vResultatForm.setBeachName(pBeachBeanTO.getBeachName());
 			vResultatForm.setLatitude(pBeachBeanTO.getLatitude());
 			vResultatForm.setLongitude(pBeachBeanTO.getLongitude());
-			vResultatForm.setAddress(pBeachBeanTO.getAddress());
 			
 		}
 		

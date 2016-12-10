@@ -53,7 +53,9 @@ public class BeachBeanDAO {
 			// Appel de la methode getBeaches avec en parametre
 			// l'url du webservice
 			beachesList = BeachParser.getBeaches(url);
-			entityManager.persist(beachesList);
+			for (Beach beach : beachesList) {
+				entityManager.persist(beach);
+			}
 			entityManager.close();
 		} catch (IOException e) {
 			log.trace(e);

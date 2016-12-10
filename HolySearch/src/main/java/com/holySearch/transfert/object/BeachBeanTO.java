@@ -10,8 +10,6 @@ public class BeachBeanTO {
 	
 	private float longitude;
 	
-	private String address;
-	
 	public int getBeachId() {
 		return beachId;
 	}
@@ -28,10 +26,6 @@ public class BeachBeanTO {
 		return longitude;
 	}
 	
-	public String getAddress() {
-		return address;
-	}
-	
 	public void setBeachId(int beachId) {
 		this.beachId = beachId;
 	}
@@ -46,10 +40,6 @@ public class BeachBeanTO {
 	
 	public void setLongitude(float longitude) {
 		this.longitude = longitude;
-	}
-	
-	public void setAddress(String address) {
-		this.address = address;
 	}
 
 }

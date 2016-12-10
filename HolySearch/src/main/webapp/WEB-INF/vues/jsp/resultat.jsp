@@ -65,11 +65,6 @@
 
 				<br>
 				<br>
-
-				<label><spring:message code="resultat.adressePlage" /></label>
-				<c:out value="${resultatForm.address}" />
-
-				<br>
 				<br>
 
 			</c:if>

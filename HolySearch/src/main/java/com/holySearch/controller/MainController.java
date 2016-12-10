@@ -157,12 +157,10 @@ public class MainController {
 
 	}
 	
-	@RequestMapping(value = "/insertBeachesForm", method = RequestMethod.POST)
-	public String insertBeaches(final ModelMap pModel)
+	@RequestMapping(value = "/insertBeachesForm", method = RequestMethod.GET)
+	public String insertBeachesForm(@ModelAttribute(value = "insertBeachesForm") final InsertBeachesForm insertBeachesForm, final ModelMap pModel)
 			throws UnsupportedEncodingException {
-		
 		return "insertBeaches";
-
 	}
 
 }
