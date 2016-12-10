@@ -1,6 +1,8 @@
 package com.holySearch.dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 
 import org.apache.log4j.Logger;
@@ -31,12 +33,14 @@ public class BeachBeanDAO {
 	public Beach getBeachBeanByNom(String nom) {
 		Beach vBeach = null;
 		try{
-		vBeach = (Beach) entityManager.createQuery("SELECT u FROM Beach u WHERE u.beachName = :name")
-				.setParameter("name", nom).getResultList().get(0);
-		entityManager.close();
-		}catch (Exception e) {
+		vBeach = (Beach) entityManager.createQuery("SELECT A FROM Beach A WHERE A.beachName = :name")
+				.setParameter("name", nom).getSingleResult();
+		}catch (NoResultException e) {
+			log.trace("erreur sql de recherche de la plage");
+		}catch (NonUniqueResultException e) {
 			log.trace("erreur sql de recherche de la plage");
 		}
+		entityManager.close();
 		return vBeach;
 	}
 	

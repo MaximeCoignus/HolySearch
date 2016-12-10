@@ -6,6 +6,7 @@
 	<persistence-unit name="holySearch">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>com.holySearch.bean.User</class>
+		<class>com.holySearch.bean.Beach</class>
 
 
 		<properties>
