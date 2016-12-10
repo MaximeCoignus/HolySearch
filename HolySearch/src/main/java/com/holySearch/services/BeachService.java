@@ -37,5 +37,10 @@ public class BeachService {
 		return vBeachBeanTO;
 	}
 	
-	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public void insertBeaches(String url) throws UnsupportedEncodingException {
+		if (!url.isEmpty()) {
+			mBeachBeanDAO.newBeachInDatabase(url);
+		}
+	}
 }

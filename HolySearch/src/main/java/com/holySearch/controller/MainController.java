@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.holySearch.forms.ConnexionForm;
+import com.holySearch.forms.InsertBeachesForm;
 import com.holySearch.forms.ReinitialiserPasswordForm;
 import com.holySearch.forms.ResultatForm;
 import com.holySearch.forms.SearchForm;
@@ -144,6 +145,24 @@ public class MainController {
 		}
 		
 		return "resultat";
+	}
+	
+	@RequestMapping(value = "/insertBeaches", method = RequestMethod.POST)
+	public String insertBeaches(@ModelAttribute(value = "insertBeachesForm") final InsertBeachesForm insertBeachesForm, final ModelMap pModel)
+			throws UnsupportedEncodingException {
+		if (insertBeachesForm != null && !insertBeachesForm.getUrl().isEmpty()) {
+			mBeachService.insertBeaches(insertBeachesForm.getUrl());
+		}
+		return "insertBeaches";
+
+	}
+	
+	@RequestMapping(value = "/insertBeachesForm", method = RequestMethod.POST)
+	public String insertBeaches(final ModelMap pModel)
+			throws UnsupportedEncodingException {
+		
+		return "insertBeaches";
+
 	}
 
 }
