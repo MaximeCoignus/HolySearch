@@ -1,6 +1,9 @@
 package com.holySearch.controller;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -20,6 +23,9 @@ import com.holySearch.forms.ReinitialiserPasswordForm;
 import com.holySearch.forms.ResultatForm;
 import com.holySearch.forms.SearchForm;
 import com.holySearch.forms.UserForm;
+import com.holySearch.lucene.BeachIndexItem;
+import com.holySearch.lucene.BeachIndexer;
+import com.holySearch.lucene.BeachSearcher;
 import com.holySearch.mapper.MapperUtils;
 import com.holySearch.reinitialiserPassword.EnvoiMail;
 import com.holySearch.services.BeachService;
@@ -33,28 +39,31 @@ public class MainController {
 
 	@Resource
 	UserService mUserService;
-	
+
 	@Resource
 	BeachService mBeachService;
 
 	@Autowired
 	private MapperUtils mMapperUtils;
 
+	private static final String INDEX_DIR = "src/main/resources/index";
+
+	private static final int DEFAULT_RESULT_SIZE = 100;
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String afficher(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel) {
 		return "index";
 	}
-	
+
 	@RequestMapping(value = "/about", method = RequestMethod.GET)
 	public String afficherAbout(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel) {
 		return "about";
 	}
-	
+
 	@RequestMapping(value = "/accueil", method = RequestMethod.GET)
 	public String afficherAccueil(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel) {
 		return "index";
 	}
-	
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String search(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel) {
@@ -90,15 +99,36 @@ public class MainController {
 
 	@RequestMapping(value = "/connexion", method = RequestMethod.POST)
 	public String checkExistence(@Valid @ModelAttribute(value = "connexionForm") final ConnexionForm pConnexionForm,
-			final BindingResult pBindingResult, final ModelMap pModel) throws UnsupportedEncodingException {
+			final BindingResult pBindingResult, final ModelMap pModel) throws IOException {
 
 		String redirect = "index";
 		if (mUserService.userBeanExist(pConnexionForm.getLogin(), pConnexionForm.getPassword())) {
 			pModel.addAttribute("identifiant", pConnexionForm.getLogin());
+			insertIndex();
 			redirect = "search";
 		}
 
 		return redirect;
+
+	}
+
+	private void insertIndex() throws IOException {
+		// the items to be indexed
+		List<BeachBeanTO> vListeBeach = mBeachService.getAllBeaches();
+		List<BeachIndexItem> vListeBeachIndexItem = null;
+		if (vListeBeach != null) {
+			vListeBeachIndexItem = new ArrayList<BeachIndexItem>();
+			for (BeachBeanTO vBeachBeanTO : vListeBeach) {
+				vListeBeachIndexItem.add(new BeachIndexItem(vBeachBeanTO.getBeachId(), vBeachBeanTO.getBeachName()));
+			}
+		}
+
+		BeachIndexer indexer = new BeachIndexer(INDEX_DIR);
+		for (BeachIndexItem indexItem : vListeBeachIndexItem) {
+			indexer.index(indexItem);
+		}
+
+		indexer.close();
 
 	}
 
@@ -117,7 +147,7 @@ public class MainController {
 		}
 		return redirect;
 	}
-	
+
 	@RequestMapping(value = "/connexionHoly", method = RequestMethod.GET)
 	public String connexionHoly(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel)
 			throws UnsupportedEncodingException {
@@ -134,32 +164,45 @@ public class MainController {
 
 	@RequestMapping(value = "/rechercher", method = RequestMethod.GET)
 	public String afficher(@Valid @ModelAttribute(value = "searchForm") final SearchForm pSearchForm,
-			final ModelMap pModel) throws UnsupportedEncodingException {
+			final ModelMap pModel) throws Exception {
 		// Traitement de la recherche
 		pModel.addAttribute("identifiant", "identifiant");
-		if(pSearchForm!= null && pSearchForm.getObjetSearch() != null && !pSearchForm.getObjetSearch().isEmpty()){
-			BeachBeanTO vBeachBeanTO = mBeachService.getBeachByNom(pSearchForm.getObjetSearch());
-			
-			ResultatForm vResultatForm = mMapperUtils.mapBeachBeanTOToResultatForm(vBeachBeanTO);
-			pModel.addAttribute("resultatForm", vResultatForm);
-		}
 		
+		// Traitement avec Lucene
+		if (pSearchForm != null && pSearchForm.getObjetSearch() != null && !pSearchForm.getObjetSearch().isEmpty()) {
+			BeachSearcher searcher = new BeachSearcher(INDEX_DIR);
+			List<BeachIndexItem> result = searcher.findByBeachName(pSearchForm.getObjetSearch(), DEFAULT_RESULT_SIZE);
+			
+			List<ResultatForm> vListeResultatForm = null;
+			if(result != null){
+				vListeResultatForm = new ArrayList<ResultatForm>();
+				for(BeachIndexItem vBeachIndexItem : result){
+					BeachBeanTO vBeachBeanTO = mBeachService.getBeachByNom(vBeachIndexItem.getBeachName());
+					if(vBeachBeanTO!=null){
+						vListeResultatForm.add(mMapperUtils.mapBeachBeanTOToResultatForm(vBeachBeanTO));
+					}
+				}
+			}
+			pModel.addAttribute("listeResultatForm", vListeResultatForm);
+		}
+
 		return "resultat";
 	}
-	
+
 	@RequestMapping(value = "/insertBeaches", method = RequestMethod.POST)
-	public String insertBeaches(@ModelAttribute(value = "insertBeachesForm") final InsertBeachesForm insertBeachesForm, final ModelMap pModel)
-			throws UnsupportedEncodingException {
+	public String insertBeaches(@ModelAttribute(value = "insertBeachesForm") final InsertBeachesForm insertBeachesForm,
+			final ModelMap pModel) throws UnsupportedEncodingException {
 		if (insertBeachesForm != null && !insertBeachesForm.getUrl().isEmpty()) {
 			mBeachService.insertBeaches(insertBeachesForm.getUrl());
 		}
 		return "insertBeaches";
 
 	}
-	
+
 	@RequestMapping(value = "/insertBeachesForm", method = RequestMethod.GET)
-	public String insertBeachesForm(@ModelAttribute(value = "insertBeachesForm") final InsertBeachesForm insertBeachesForm, final ModelMap pModel)
-			throws UnsupportedEncodingException {
+	public String insertBeachesForm(
+			@ModelAttribute(value = "insertBeachesForm") final InsertBeachesForm insertBeachesForm,
+			final ModelMap pModel) throws UnsupportedEncodingException {
 		return "insertBeaches";
 	}
 

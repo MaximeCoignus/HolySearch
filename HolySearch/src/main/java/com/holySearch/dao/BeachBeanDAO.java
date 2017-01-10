@@ -2,6 +2,7 @@ package com.holySearch.dao;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -60,5 +61,17 @@ public class BeachBeanDAO {
 		} catch (IOException e) {
 			log.trace(e);
 		}
+	}
+	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public List<Beach> getAllBeaches() {
+		List<Beach> vBeach = null;
+		try{
+		vBeach = (List<Beach>) entityManager.createQuery("SELECT A FROM Beach A").getResultList();
+		}catch (NoResultException e) {
+			log.trace("erreur sql de recherche de la plage");
+		}
+		entityManager.close();
+		return vBeach;
 	}
 }
