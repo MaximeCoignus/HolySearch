@@ -1,8 +1,8 @@
 ISO_3DIGIT;Annual_temp;qualif_temperature
-SJM;-9,14;Très froid
-CAN;-7,14;Très froid
-RUS;-6,32;Très froid
-MNG;-0,5;Très froid
+SJM;-9,14;tres froid
+CAN;-7,14;tres froid
+RUS;-6,32;tres froid
+MNG;-0,5;tres froid
 NOR;0,75;froid
 KGZ;1,09;froid
 FIN;1,35;froid
@@ -20,49 +20,49 @@ LTU;6,24;froid
 BLR;6,29;froid
 CHN;6,33;froid
 ARM;6,37;froid
-USA;6,75;Tempéré
-SVK;7,27;Tempéré
-GEO;7,36;Tempéré
-CZE;7,67;Tempéré
-DNK;7,82;Tempéré
-POL;7,87;Tempéré
-MNE;7,91;Tempéré
-SVN;8,04;Tempéré
-UKR;8,21;Tempéré
-GBR;8,31;Tempéré
-CHL;8,37;Tempéré
-KSV;8,42;Tempéré
-DEU;8,5;Tempéré
-BTN;8,58;Tempéré
-ROU;8,81;Tempéré
-LUX;8,88;Tempéré
-BIH;9,02;Tempéré
-IRL;9,11;Tempéré
-NLD;9,2;Tempéré
-BEL;9,51;Tempéré
-MDA;9,67;Tempéré
-MKD;9,85;Tempéré
-NZL;9,98;Tempéré
-HUN;10,06;Tempéré
-SRB;10,18;Tempéré
-JPN;10,36;Tempéré
-BGR;10,4;Tempéré
-HRV;10,47;Tempéré
-FRA;10,54;Tempéré
-KOR;10,66;Tempéré
-TUR;10,93;Tempéré
-ALB;11,27;Tempéré
-ITA;11,5;Tempéré
-LSO;11,97;Tempéré
-AZE;12,22;Tempéré
-UZB;12,52;Tempéré
-NPL;12,74;Tempéré
-AFG;12,92;Tempéré
-ESP;13,03;Tempéré
-GRC;13,66;Tempéré
-ARG;14,22;Tempéré
-PRT;14,97;Tempéré
-TKM;15,22;Tempéré
+USA;6,75;tempere
+SVK;7,27;tempere
+GEO;7,36;tempere
+CZE;7,67;tempere
+DNK;7,82;tempere
+POL;7,87;tempere
+MNE;7,91;tempere
+SVN;8,04;tempere
+UKR;8,21;tempere
+GBR;8,31;tempere
+CHL;8,37;tempere
+KSV;8,42;tempere
+DEU;8,5;tempere
+BTN;8,58;tempere
+ROU;8,81;tempere
+LUX;8,88;tempere
+BIH;9,02;tempere
+IRL;9,11;tempere
+NLD;9,2;tempere
+BEL;9,51;tempere
+MDA;9,67;tempere
+MKD;9,85;tempere
+NZL;9,98;tempere
+HUN;10,06;tempere
+SRB;10,18;tempere
+JPN;10,36;tempere
+BGR;10,4;tempere
+HRV;10,47;tempere
+FRA;10,54;tempere
+KOR;10,66;tempere
+TUR;10,93;tempere
+ALB;11,27;tempere
+ITA;11,5;tempere
+LSO;11,97;tempere
+AZE;12,22;tempere
+UZB;12,52;tempere
+NPL;12,74;tempere
+AFG;12,92;tempere
+ESP;13,03;tempere
+GRC;13,66;tempere
+ARG;14,22;tempere
+PRT;14,97;tempere
+TKM;15,22;tempere
 LBN;15,61;Chaud
 IRN;16,93;Chaud
 MAR;17,23;Chaud
@@ -130,50 +130,50 @@ SLV;24,77;Chaud
 CAF;24,84;Chaud
 BRA;24,92;Chaud
 TLS;24,97;Chaud
-GAB;25;Très chaud
-GLP;25,02;Très chaud
-PNG;25,05;Très chaud
-BHS;25,06;Très chaud
-BLZ;25,06;Très chaud
-CUB;25,13;Très chaud
-MYS;25,14;Très chaud
-KWT;25,15;Très chaud
-LBR;25,25;Très chaud
-VEN;25,32;Très chaud
-PHL;25,33;Très chaud
-OMN;25,45;Très chaud
-BGD;25,47;Très chaud
-GIN;25,55;Très chaud
-GUF;25,62;Très chaud
-SLB;25,68;Très chaud
-IDN;25,72;Très chaud
-VIR;25,74;Très chaud
-SUR;25,77;Très chaud
-GUY;25,8;Très chaud
-TTO;25,86;Très chaud
-BRN;25,93;Très chaud
-SLE;26,04;Très chaud
-ERI;26,07;Très chaud
-THA;26,25;Très chaud
-CIV;26,3;Très chaud
-GNB;26,61;Très chaud
-TCD;26,65;Très chaud
-LKA;26,76;Très chaud
-GMB;26,77;Très chaud
-SOM;26,77;Très chaud
-NGA;26,78;Très chaud
-TGO;26,8;Très chaud
-SDN;26,82;Très chaud
-VCT;26,82;Très chaud
-ARE;26,83;Très chaud
-QAT;26,92;Très chaud
-SSD;26,93;Très chaud
-KHM;26,94;Très chaud
-NER;27,24;Très chaud
-GHA;27,25;Très chaud
-BEN;27,46;Très chaud
-DJI;27,64;Très chaud
-MRT;27,69;Très chaud
-SEN;27,87;Très chaud
-BFA;28,18;Très chaud
-MLI;28,3;Très chaud
+GAB;25;tres chaud
+GLP;25,02;tres chaud
+PNG;25,05;tres chaud
+BHS;25,06;tres chaud
+BLZ;25,06;tres chaud
+CUB;25,13;tres chaud
+MYS;25,14;tres chaud
+KWT;25,15;tres chaud
+LBR;25,25;tres chaud
+VEN;25,32;tres chaud
+PHL;25,33;tres chaud
+OMN;25,45;tres chaud
+BGD;25,47;tres chaud
+GIN;25,55;tres chaud
+GUF;25,62;tres chaud
+SLB;25,68;tres chaud
+IDN;25,72;tres chaud
+VIR;25,74;tres chaud
+SUR;25,77;tres chaud
+GUY;25,8;tres chaud
+TTO;25,86;tres chaud
+BRN;25,93;tres chaud
+SLE;26,04;tres chaud
+ERI;26,07;tres chaud
+THA;26,25;tres chaud
+CIV;26,3;tres chaud
+GNB;26,61;tres chaud
+TCD;26,65;tres chaud
+LKA;26,76;tres chaud
+GMB;26,77;tres chaud
+SOM;26,77;tres chaud
+NGA;26,78;tres chaud
+TGO;26,8;tres chaud
+SDN;26,82;tres chaud
+VCT;26,82;tres chaud
+ARE;26,83;tres chaud
+QAT;26,92;tres chaud
+SSD;26,93;tres chaud
+KHM;26,94;tres chaud
+NER;27,24;tres chaud
+GHA;27,25;tres chaud
+BEN;27,46;tres chaud
+DJI;27,64;tres chaud
+MRT;27,69;tres chaud
+SEN;27,87;tres chaud
+BFA;28,18;tres chaud
+MLI;28,3;tres chaud
