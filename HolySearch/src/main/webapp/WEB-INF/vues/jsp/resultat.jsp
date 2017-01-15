@@ -25,52 +25,46 @@
 			<form:form action="rechercher" method="get"
 				modelAttribute="searchForm">
 				<div>
-					
-						<div style="text-align: center;">
-							
-								<a href="/HolySearch/search"><img
-										src="images/logo.gif"
-										style="text-align: center; margin-right: 5%;" /></a>
-								<input type="text" name="objetSearch"
-									placeholder="Search" style="width: 300px;"
-									value="${searchForm.objetSearch}" />
-								<input type="submit" value="Effectuer la recherche"
-									style="margin-left: 5%;" />
-							
-						</div>
-					
+
+					<div style="text-align: center;">
+
+						<a href="/HolySearch/search"><img src="images/logo.gif"
+							style="text-align: center; margin-right: 5%;" /></a> <input
+							type="text" name="objetSearch" placeholder="Search"
+							style="width: 300px;" value="${searchForm.objetSearch}" /> <input
+							type="submit" value="Effectuer la recherche"
+							style="margin-left: 5%;" />
+
+					</div>
+
 				</div>
 			</form:form>
+			<br /> <br /> Résultat de la recherche effectuée avec l'API Lucene
 			<br /> <br />
-			ici on mettra le resultat
-			
-			<br>
 
-			<c:if test="${not empty resultatForm}">
 
-				<label><spring:message code="resultat.nomPlage" /></label>
-				<c:out value="${resultatForm.beachName}" />
 
-				<br>
-				<br>
-
-				<label><spring:message code="resultat.latitudePlage" /></label>
-				<c:out value="${resultatForm.latitude}" />
-
-				<br>
-				<br>
-
-				<label><spring:message code="resultat.longitudePlage" /></label>
-				<c:out value="${resultatForm.longitude}" />
-
-				<br>
-				<br>
-				<br>
+			<c:if test="${fn:length(listeResultatForm) > 0}">
+				<table>
+					<c:forEach var="resultat" items="${listeResultatForm}">
+						<tr>
+							<td><label><spring:message code="resultat.nomPlage" />:</label>
+								<c:out value="${resultat.beachName}" /></td>
+							<td><label><spring:message
+										code="resultat.latitudePlage" />:</label> <c:out
+									value="${resultat.latitude}" /></td>
+							<td><label><spring:message
+										code="resultat.longitudePlage" />:</label> <c:out
+									value="${resultat.longitude}" /></td>
+						</tr>
+					</c:forEach>
+				</table>
 
 			</c:if>
-			
-			<c:if test="${empty resultatForm}"> 
-				Aucun résultat pour la recherche de : <c:out value="${searchForm.objetSearch}"/>
+
+			<c:if test="${fn:length(listeResultatForm) == 0}"> 
+				Aucun résultat pour la recherche de : <c:out
+					value="${searchForm.objetSearch}" />
 			</c:if>
 
 
