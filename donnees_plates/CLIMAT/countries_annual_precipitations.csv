@@ -1,0 +1,179 @@
+ISO_3DIGIT;Annual_precip;Qualificatif
+EGY;32,91;tres sec
+ESH;35,83;tres sec
+LBY;45,98;tres sec
+QAT;65,22;tres sec
+ARE;67,81;tres sec
+SAU;73,4;tres sec
+DZA;81,97;tres sec
+OMN;88,21;tres sec
+MRT;90;tres sec
+JOR;102,31;tres sec
+KWT;108,59;tres sec
+TKM;156,75;sec
+NER;160,8;sec
+YEM;166,54;sec
+UZB;191,82;sec
+DJI;196,19;sec
+IRQ;196,34;sec
+MNG;227,23;sec
+IRN;227,36;sec
+SDN;234,04;sec
+ISR;248,69;sec
+KAZ;252,26;sec
+ERI;257,7;sec
+SOM;265,35;sec
+TUN;267,09;sec
+NAM;273,83;sec
+SYR;296,37;sec
+PAK;301,02;sec
+MLI;303,01;sec
+AFG;311,32;sec
+MAR;322,27;sec
+TCD;330,51;sec
+KGZ;390,72;sec
+BWA;394,48;sec
+AZE;433,88;sec
+RUS;434,8;sec
+CYP;436,25;sec
+CAN;457,47;normal
+AUS;473,09;normal
+ZAF;474,78;normal
+TJK;492,02;normal
+ARM;502,28;normal
+FIN;524,7;normal
+MDA;538,89;normal
+SJM;543,01;normal
+ARG;559,05;normal
+UKR;561,79;normal
+FLK;568,95;normal
+HUN;571,75;normal
+TUR;573,28;normal
+CHN;574,77;normal
+POL;600,66;normal
+BGR;602,84;normal
+BLR;610,07;normal
+SWE;621,15;normal
+ESP;622,99;normal
+EST;629,79;normal
+CHL;631,17;normal
+MKD;632,5;normal
+LVA;638,87;normal
+ROU;642,21;normal
+LTU;651,72;normal
+USA;654,54;normal
+CZE;667;normal
+GRC;668,22;normal
+ZWE;668,97;normal
+KEN;678,11;normal
+DNK;698,65;normal
+SEN;701,1;normal
+DEU;713,5;normal
+LBN;721,11;normal
+SRB;726,46;normal
+MEX;738,14;normal
+NLD;766,07;normal
+SVK;767,52;normal
+BFA;774,29;normal
+LSO;775,67;normal
+SWZ;798,37;normal
+ETH;830,51;normal
+PRT;835,35;normal
+FRA;838,93;normal
+LUX;848,81;normal
+KSV;862,64;normal
+BEL;874,3;normal
+ITA;930,19;normal
+SSD;956,58;normal
+GEO;959,44;normal
+GMB;990,48;normal
+AGO;991,31;normal
+ZMB;1004,75;normal
+MOZ;1007,81;normal
+BEN;1034,27;normal
+HRV;1037,35;normal
+ISL;1039,82;normal
+NOR;1051,84;normal
+TZA;1052,38;normal
+ALB;1053,24;normal
+BIH;1071,76;normal
+IND;1072,22;normal
+PRY;1093,89;normal
+BOL;1095,56;normal
+PRK;1110,43;normal
+IRL;1110,63;normal
+MWI;1112,29;normal
+NGA;1138,53;normal
+GBR;1154,3;normal
+AUT;1161,18;normal
+RWA;1162,8;normal
+GHA;1184,94;normal
+TGO;1189,11;normal
+UGA;1207,9;normal
+MNE;1227,18;normal
+TLS;1239,77;normal
+URY;1250,48;normal
+BDI;1262,81;normal
+BHS;1280,08;normal
+CUB;1329,49;pluvieux
+KOR;1344,73;pluvieux
+CAF;1354,67;pluvieux
+CIV;1356,08;pluvieux
+SVN;1361,81;pluvieux
+NPL;1406,41;pluvieux
+DOM;1417,07;pluvieux
+NCL;1456,21;pluvieux
+MDG;1475,68;pluvieux
+HTI;1480,2;pluvieux
+PER;1513,24;pluvieux
+THA;1532,48;pluvieux
+COD;1535,04;pluvieux
+VCT;1585,97;pluvieux
+JPN;1603,76;pluvieux
+CMR;1613,07;pluvieux
+COG;1635,05;pluvieux
+CHE;1646,41;pluvieux
+GNB;1646,95;pluvieux
+SLV;1672,81;pluvieux
+GIN;1693,56;pluvieux
+LKA;1699,41;pluvieux
+LAO;1758,35;pluvieux
+BRA;1762,97;pluvieux
+BTN;1780,46;pluvieux
+NZL;1790,95;pluvieux
+GAB;1819,44;pluvieux
+TTO;1831,41;pluvieux
+VNM;1835,16;pluvieux
+COM;1846,39;pluvieux
+KHM;1918,68;pluvieux
+ECU;1945,27;pluvieux
+HND;1945,76;pluvieux
+MUS;1953,02;pluvieux
+VEN;1957,65;pluvieux
+REU;1987,51;pluvieux
+MMR;2007,7;pluvieux
+BLZ;2089,26;pluvieux
+JAM;2114,18;pluvieux
+PRI;2126,02;pluvieux
+VIR;2131,47;pluvieux
+GNQ;2213,31;pluvieux
+BGD;2266,52;pluvieux
+SUR;2316,81;pluvieux
+PHL;2317,59;pluvieux
+GUY;2364,69;pluvieux
+NIC;2406,97;pluvieux
+LBR;2460,08;pluvieux
+SLE;2471,72;pluvieux
+PAN;2487,03;pluvieux
+GTM;2606,33;tres pluvieux
+COL;2618,59;tres pluvieux
+VUT;2662,11;tres pluvieux
+IDN;2801,54;tres pluvieux
+GUF;2841,63;tres pluvieux
+FJI;2905,11;tres pluvieux
+MYS;2992,79;tres pluvieux
+GLP;3042,52;tres pluvieux
+PNG;3106,06;tres pluvieux
+SLB;3157,37;tres pluvieux
+BRN;3160,78;tres pluvieux
+CRI;3268,27;tres pluvieux
