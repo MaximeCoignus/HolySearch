@@ -2,6 +2,8 @@ package com.holySearch.mapper;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -34,38 +36,48 @@ public class MapperUtils {
 		}
 		return vUserBeanTO;
 	}
-	
-	public BeachBeanTO mapBeachToBeachBeanTO(Beach beach){
+
+	public BeachBeanTO mapBeachToBeachBeanTO(Beach beach) {
 		BeachBeanTO vBeachBeanTO = null;
-		
-		if(beach != null){
+
+		if (beach != null) {
 			vBeachBeanTO = new BeachBeanTO();
-			
+
 			vBeachBeanTO.setBeachId(beach.getBeachId());
 			vBeachBeanTO.setBeachName(beach.getBeachName());
 			vBeachBeanTO.setLatitude(beach.getLatitude());
 			vBeachBeanTO.setLongitude(beach.getLongitude());
-			vBeachBeanTO.setAddress(beach.getAddress());
-			
+
 		}
-		
+
 		return vBeachBeanTO;
 	}
-	
-	public ResultatForm mapBeachBeanTOToResultatForm(BeachBeanTO pBeachBeanTO){
+
+	public List<BeachBeanTO> mapListBeachToListBeachBeanTO(List<Beach> beach) {
+		List<BeachBeanTO> vBeachBeanTO = null;
+
+		if (beach != null) {
+			vBeachBeanTO = new ArrayList<BeachBeanTO>();
+			for (Beach vBeach : beach) {
+				vBeachBeanTO.add(mapBeachToBeachBeanTO(vBeach));
+			}
+		}
+
+		return vBeachBeanTO;
+	}
+
+	public ResultatForm mapBeachBeanTOToResultatForm(BeachBeanTO pBeachBeanTO) {
 		ResultatForm vResultatForm = null;
-		
-		if(pBeachBeanTO != null){
+
+		if (pBeachBeanTO != null) {
 			vResultatForm = new ResultatForm();
 			vResultatForm.setBeachName(pBeachBeanTO.getBeachName());
 			vResultatForm.setLatitude(pBeachBeanTO.getLatitude());
 			vResultatForm.setLongitude(pBeachBeanTO.getLongitude());
-			vResultatForm.setAddress(pBeachBeanTO.getAddress());
-			
+
 		}
-		
+
 		return vResultatForm;
 	}
-
 
 }

@@ -1,5 +1,9 @@
 package com.holySearch.dao;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
@@ -11,8 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.holySearch.bean.Beach;
-import com.holySearch.bean.User;
-import com.holySearch.controller.MainController;
+import com.holySearch.parser.BeachParser;
 
 
 
@@ -44,6 +47,31 @@ public class BeachBeanDAO {
 		return vBeach;
 	}
 	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public void newBeachInDatabase (String url) {
+		ArrayList<Beach> beachesList = null;
+		try {
+			// Appel de la methode getBeaches avec en parametre
+			// l'url du webservice
+			beachesList = BeachParser.getBeaches(url);
+			for (Beach beach : beachesList) {
+				entityManager.persist(beach);
+			}
+			entityManager.close();
+		} catch (IOException e) {
+			log.trace(e);
+		}
+	}
 	
-	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public List<Beach> getAllBeaches() {
+		List<Beach> vBeach = null;
+		try{
+		vBeach = (List<Beach>) entityManager.createQuery("SELECT A FROM Beach A").getResultList();
+		}catch (NoResultException e) {
+			log.trace("erreur sql de recherche de la plage");
+		}
+		entityManager.close();
+		return vBeach;
+	}
 }

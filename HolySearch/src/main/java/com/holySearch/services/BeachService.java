@@ -1,6 +1,7 @@
 package com.holySearch.services;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,25 +18,45 @@ public class BeachService {
 
 	@Autowired
 	BeachBeanDAO mBeachBeanDAO;
-	
+
 	@Autowired
 	private MapperUtils mMapperUtils;
-	
+
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public BeachBeanTO getBeachByNom(String nom) throws UnsupportedEncodingException {
-		
+
 		BeachBeanTO vBeachBeanTO = null;
-		
-		if(nom != null){
+
+		if (nom != null) {
 			Beach vBeach = mBeachBeanDAO.getBeachBeanByNom(nom);
-			
-			if(vBeach != null){
-				//Mapping de Beach vers BeanBeanTO
+
+			if (vBeach != null) {
+				// Mapping de Beach vers BeanBeanTO
 				vBeachBeanTO = mMapperUtils.mapBeachToBeachBeanTO(vBeach);
 			}
 		}
 		return vBeachBeanTO;
 	}
-	
-	
+
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public void insertBeaches(String url) throws UnsupportedEncodingException {
+		if (!url.isEmpty()) {
+			mBeachBeanDAO.newBeachInDatabase(url);
+		}
+	}
+
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public List<BeachBeanTO> getAllBeaches() throws UnsupportedEncodingException {
+
+		List<BeachBeanTO> vBeachBeanTO = null;
+
+		List<Beach> vBeach = mBeachBeanDAO.getAllBeaches();
+
+		if (vBeach != null) {
+			// Mapping de la liste de Beach vers une liste de BeanBeanTO
+			vBeachBeanTO = mMapperUtils.mapListBeachToListBeachBeanTO(vBeach);
+		}
+
+		return vBeachBeanTO;
+	}
 }

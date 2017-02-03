@@ -29,9 +29,6 @@ public class Beach {
 	@Column(name = "longitude")
 	private float longitude;
 	
-	@Column(name = "address")
-	private String address;
-	
 	public int getBeachId() {
 		return beachId;
 	}
@@ -46,10 +43,6 @@ public class Beach {
 	
 	public float getLongitude() {
 		return longitude;
-	}
-	
-	public String getAddress() {
-		return address;
 	}
 	
 	public void setBeachId(int beachId) {
@@ -67,10 +60,5 @@ public class Beach {
 	public void setLongitude(float longitude) {
 		this.longitude = longitude;
 	}
-	
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
 	
 }

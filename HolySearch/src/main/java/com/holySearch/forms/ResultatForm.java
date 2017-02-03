@@ -8,8 +8,6 @@ public class ResultatForm {
 	
 	private float longitude;
 	
-	private String address;
-	
 	public String getBeachName() {
 		return beachName;
 	}
@@ -22,10 +20,6 @@ public class ResultatForm {
 		return longitude;
 	}
 	
-	public String getAddress() {
-		return address;
-	}
-	
 	public void setBeachName(String beachName) {
 		this.beachName = beachName;
 	}
@@ -36,10 +30,6 @@ public class ResultatForm {
 	
 	public void setLongitude(float longitude) {
 		this.longitude = longitude;
-	}
-	
-	public void setAddress(String address) {
-		this.address = address;
 	}
 
 }

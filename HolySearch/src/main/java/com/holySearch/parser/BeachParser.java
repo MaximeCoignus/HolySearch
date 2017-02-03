@@ -79,7 +79,8 @@ public class BeachParser
 				{
 					beachName = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").get("name").toString();
 				}
-				else;
+				else
+					beachName = "Plage name null";
 				
 				//on alimente la latitude et la longitude
 				lat = Float.parseFloat(json.getJSONArray("elements").getJSONObject(i).get("lat").toString());
