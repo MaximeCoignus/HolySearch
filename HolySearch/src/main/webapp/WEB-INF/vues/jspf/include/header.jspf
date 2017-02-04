@@ -6,73 +6,115 @@
 
 <!DOCTYPE html>
 <html lang="fr" ng-app="immoApp">
+
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="css/style.css" rel="stylesheet">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>HolySearch: votre moteur de recherche de vacances </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="css/style2.css">
+	<link rel="icon" href="images/icoHoly.ico">
+
 </head>
 <body>
 
-
-	<div class="homelogo">
-		<img src="images/logo.gif">
-	</div>
-	<div class="navbar-wrapper">
-
-		<div class="container">
-
-			<nav class="navbar navbar-inverse navbar-static-top">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed"
-							data-toggle="collapse" data-target="#navbar"
-							aria-expanded="false" aria-controls="navbar">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href="#"> </a>
-					</div>
-					<div id="navbar" class="navbar-collapse collapse">
-						<ul class="nav navbar-nav">
-						
-							<li class="active"><c:if test="${empty identifiant}"><a href="accueil">Accueil</a></c:if></li>
-							<li><a href="about">A propos</a></li>
-							<li><a href="#contact">Contact</a></li>
-							<li class="dropdown"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown" role="button" aria-haspopup="true"
-								aria-expanded="false">Dropdown <span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href="#">Action</a></li>
-									<li><a href="#">Another action</a></li>
-									<li><a href="#">Something else here</a></li>
-									<li role="separator" class="divider"></li>
-									<li class="dropdown-header">Nav header</li>
-									<li><a href="#">Separated link</a></li>
-									<li><a href="#">One more separated link</a></li>
-								</ul></li>
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li><a href="#">Aide</a></li>
-							<li><c:if test="${empty identifiant}">
-									<a href="inscription">Inscription</a>
-								</c:if></li>
-							<li><c:if test="${empty identifiant}">
-									<a href="connexionHoly">Connexion</a>
-								</c:if></li>
-							<li><c:if test="${not empty identifiant}">
-									<a href="deconnexion">Se déconnecter  <i
-										class="glyphicon glyphicon-log-out"></i></a>
-								</c:if>
-							<li>
-						</ul>
-
-					</div>
+	<header class="c-header-main js-header-main js-shrink" data-app="shrink">
+		<div class="c-header-main_container">
+			<a  href="/">
+				<div>
+					<button class="c-logo-main_button" type="button">
+						<span class="c-logo-main_line"></span>
+						<span class="c-logo-main_line"></span>
+						<span class="c-logo-main_line"></span>
+					</button>	
 				</div>
+			</a>
+			
+			<nav class="c-nav-main js-nav-main" data-widget="navMain">
+				<ul class="c-nav-main_list">
+					<li class="c-nav-main_item -medium">
+						<a class="c-nav-main_link is-current" href="/">
+							<span class="c-nav-main_label">|</span>
+						</a>
+					</li>
+					<li class="c-nav-main_item">
+						<c:if test="${empty identifiant}">
+							<a class="c-nav-main_link js-nav-main_link -dropdown" href="accueil">
+								<span class="c-nav-main_label"> Accueil</span>
+							</a>
+						</c:if>						
+					</li>
+					<li class="c-nav-main_item">
+						<a class="c-nav-main_link" href="/a-propos/">
+							<span class="c-nav-main_label">À propos</span>
+						</a>
+						<div class="c-nav-main_dropdown js-nav-main_dropdown">
+							<div class="c-nav-main_dropdown_container -small">
+								<ul class="o-grid -list">
+						
+									<li class="o-third">
+										<a class="c-nav-main_dropdown_item" href="/voyages-ete/petits-groupes-guides/">
+											<div class="c-nav-main_dropdown_icon"><img src ="images/ico_about.jpg"/></div>
+												<p class="c-nav-main_dropdown_label">A propos d'HolySearch</p>
+										</a>
+									</li>
+									<li class="o-third">
+										<a class="c-nav-main_dropdown_item" href="/voyages-ete/hydravion-train-croisiere/">
+											<div class="c-nav-main_dropdown_icon"><img src ="images/ico_team.jpg"/></div>
+											<p class="c-nav-main_dropdown_label">Qui sommes nous?</p>
+										</a>
+									</li>
+			
+									
+								</ul>
+							</div>
+						</div>
+					</li>
+				
+					<li class="c-nav-main_item">
+					</li>
+									
+					<li class="c-nav-main_item">
+						<a class="c-nav-main_link" href="/regions">
+							<span class="c-nav-main_label">             </span>
+						</a>
+					</li>
+					<li class="c-nav-main_item">
+						<c:if test="${empty identifiant}">
+							<a class="c-nav-main_link" href="inscription">
+								<span class="c-nav-main_label">S'inscrire</span>
+							</a>
+						</c:if>
+					</li>
+				</ul>
 			</nav>
-
+			
+			<c:if test="${empty identifiant}">
+				<a class="c-nav-main_contact " href="connexionHoly"><span>Se connecter</span></a>
+			</c:if>
+			<c:if test="${not empty identifiant}">
+				<a class="c-nav-main_contact " href="deconnexion">Se déconnecter  <i class="glyphicon glyphicon-log-out"></i></a>
+			</c:if>
+			<span style="text-align:center; position:absolute;right:42%; margin: 0;"><img src ="images/logo2.gif" style="float:left;margin:0; height:90px;border-radius: 5%;"/></span>
+			
 		</div>
-	</div>
+	</header>
+	
+	
+<div class="o-overlay js-contact-close js-map-content-close js-panel-close"></div>
+
+
+<link rel="stylesheet" href="http://static.parcourscanada.com/assets/styles/dist/main.css">
+<link rel="stylesheet" href="http://static.parcourscanada.com/assets/styles/dist/custom.css">
+
+
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="bootstrap/dist/vendors.js"></script>
+<script src="bootstrap/dist/app.js"></script>
+<script src="bootstrap/dist/custom.js"></script>
 </body>
 </html>
