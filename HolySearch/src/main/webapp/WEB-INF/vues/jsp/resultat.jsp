@@ -22,22 +22,24 @@
 	<div class="container voffset5 background-white">
 		<div class="container">
 
+			<br /> <br />
+			<br /> <br />
 			<form:form action="rechercher" method="get"
 				modelAttribute="searchForm">
 				<div>
-
-					<div style="text-align: center;">
-
-						<a href="/HolySearch/search"><img src="images/logo.gif"
-							style="text-align: center; margin-right: 5%;" /></a> <input
-							type="text" name="objetSearch" placeholder="Search"
-							style="width: 300px;" value="${searchForm.objetSearch}" /> <input
-							type="submit" value="Effectuer la recherche"
-							style="margin-left: 5%;" />
-
-					</div>
-
+					<table style="margin-left: 28%;">
+						<div style="text-align: center;">
+							<tr>
+								<td></td>
+								<td><input type="search" placeholder="Search"
+									name="objetSearch" style="padding-top: 6%; padding-bottom:6%; padding-left:10%;"></td>
+								<td><input type="submit" class="o-button -large"
+									value="Effectuer la recherche" style="margin-left: 20%;" /></td>
+							</tr>
+						</div>
+					</table>
 				</div>
+
 			</form:form>
 			<br /> <br /> Résultat de la recherche effectuée avec l'API Lucene
 			<br /> <br />
@@ -71,5 +73,7 @@
 
 		</div>
 	</div>
+	<br /> <br />
+			<br /> <br />
 </body>
 </html>
