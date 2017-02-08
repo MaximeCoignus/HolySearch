@@ -46,7 +46,7 @@ public class EnvoiMail {
 	}
 	
 	public void sendMailContactezNous() {
-		SendMailSSL s1 = new SendMailSSL("samadchitou@gmail.com", "Message de HolySearch : Contactez-nous", "Nom : "+ this.nom + "\n\nPrénom : "+ this.prenom + "\n\nEmail : "+ this.email + "\n\nSujet : "+ this.objet + "\n\nMessage : \n"+ this.message);
+		SendMailSSL s1 = new SendMailSSL("holysearch.contact@gmail.com", "Message de HolySearch : Contactez-nous", "Nom : "+ this.nom + "\n\nPrénom : "+ this.prenom + "\n\nEmail : "+ this.email + "\n\nSujet : "+ this.objet + "\n\nMessage : \n"+ this.message);
 		s1.sendMail();
 		SendMailSSL s2 = new SendMailSSL(email, "Votre message a bien été reçu par HolySearch", "Bonjour, \nHolySearch accuse récepton de votre message qui sera bientôt traité. \nCordialement");
 		s2.sendMail();

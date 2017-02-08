@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
@@ -51,40 +52,41 @@ public class MainController {
 
 	private static final int DEFAULT_RESULT_SIZE = 100;
 
+	public static final String ATT_SESSION_USER = "sessionUtilisateur";
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String afficher(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel) {
-		return "index";
+	public String afficher(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel, HttpSession session) {
+		if (session.getAttribute(ATT_SESSION_USER) != null) {
+			return "search";
+		} else
+			return "index";
+	}
+	
+	@RequestMapping(value = "mentions-legales", method = RequestMethod.GET)
+	public String afficherMentionsLegales(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel, HttpSession session) {
+		
+			return "mentions-legales";
 	}
 
-	@RequestMapping(value = "/a-propos-connected", method = RequestMethod.GET)
+	@RequestMapping(value = "/a-propos", method = RequestMethod.GET)
 	public String afficherAProposConnected(@ModelAttribute(value = "userForm") final UserForm puserForm,
-			final ModelMap pModel) {
-		pModel.addAttribute("identifiant", "identifiant");
-		return "a-propos";
+			final ModelMap pModel, HttpSession session) {
+			return "a-propos";
 	}
 
-	@RequestMapping(value = "/qui-sommes-nous-connected", method = RequestMethod.GET)
+	@RequestMapping(value = "/qui-sommes-nous", method = RequestMethod.GET)
 	public String afficherQuiSommesNousConnected(@ModelAttribute(value = "userForm") final UserForm puserForm,
-			final ModelMap pModel) {
-		pModel.addAttribute("identifiant", "identifiant");
-		return "qui-sommes-nous";
-	}
-
-	@RequestMapping(value = "/a-propos-disconnected", method = RequestMethod.GET)
-	public String afficherAProposDisconnected(@ModelAttribute(value = "userForm") final UserForm puserForm,
-			final ModelMap pModel) {
-		return "a-propos";
-	}
-
-	@RequestMapping(value = "/qui-sommes-nous-disconnected", method = RequestMethod.GET)
-	public String afficherQuiSommesNousDisconnected(@ModelAttribute(value = "userForm") final UserForm puserForm,
-			final ModelMap pModel) {
-		return "qui-sommes-nous";
+			final ModelMap pModel, HttpSession session) {
+			return "qui-sommes-nous";
 	}
 
 	@RequestMapping(value = "/accueil", method = RequestMethod.GET)
-	public String afficherAccueil(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel) {
-		return "index";
+	public String afficherAccueil(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel,
+			HttpSession session) {
+		if (session.getAttribute(ATT_SESSION_USER) != null) {
+			return "search";
+		} else
+			return "index";
 	}
 
 	private void contactezNous(String nom, String prenom, String email, String objet, String message) {
@@ -92,47 +94,42 @@ public class MainController {
 		vEnvoiMail.sendMailContactezNous();
 	}
 
-	@RequestMapping(value = "/contactez-nous-connected", method = RequestMethod.POST)
+	@RequestMapping(value = "/contactez-nous", method = RequestMethod.POST)
 	public String contactezNousConnected(@Valid @ModelAttribute(value = "contactForm") final ContactForm pContactForm,
-			final BindingResult pBindingResult, final ModelMap pModel) throws UnsupportedEncodingException {
-		pModel.addAttribute("identifiant", "identifiant");
+			final BindingResult pBindingResult, final ModelMap pModel, HttpSession session)
+			throws UnsupportedEncodingException {
 		if (!pContactForm.getNom().isEmpty() && !pContactForm.getPrenom().isEmpty()
 				&& !pContactForm.getEmail().isEmpty() && !pContactForm.getObjet().isEmpty()
 				&& !pContactForm.getMessage().isEmpty()) {
 			contactezNous(pContactForm.getNom(), pContactForm.getPrenom(), pContactForm.getEmail(),
 					pContactForm.getObjet(), pContactForm.getMessage());
 		}
-		return "search";
-	}
-
-	@RequestMapping(value = "/contactez-nous-disconnected", method = RequestMethod.POST)
-	public String contactezNousDisconnected(
-			@Valid @ModelAttribute(value = "contactForm") final ContactForm pContactForm,
-			final BindingResult pBindingResult, final ModelMap pModel) throws UnsupportedEncodingException {
-		if (!pContactForm.getNom().isEmpty() && !pContactForm.getPrenom().isEmpty()
-				&& !pContactForm.getEmail().isEmpty() && !pContactForm.getObjet().isEmpty()
-				&& !pContactForm.getMessage().isEmpty()) {
-			contactezNous(pContactForm.getNom(), pContactForm.getPrenom(), pContactForm.getEmail(),
-					pContactForm.getObjet(), pContactForm.getMessage());
-		}
-		return "index";
+		if (session.getAttribute(ATT_SESSION_USER) != null) {
+			return "search";
+		} else
+			return "index";
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public String search(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel) {
-		pModel.addAttribute("identifiant", "identifiant");
-		return "search";
+	public String search(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel,
+			HttpSession session) {
+		if (session.getAttribute(ATT_SESSION_USER) != null) {
+			return "search";
+		} else
+			return "index";
 	}
 
 	@RequestMapping(value = "/deconnexion", method = RequestMethod.GET)
-	public String deconnecter(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel) {
-		pModel.clear();
+	public String deconnecter(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel,
+			HttpSession session) {
+		session.invalidate();
 		return "index";
 	}
 
 	@RequestMapping(value = "/createUserAccount", method = RequestMethod.POST)
 	public String createUserAccount(@Valid @ModelAttribute(value = "userForm") final UserForm puserForm,
-			final BindingResult pBindingResult, final ModelMap pModel) throws UnsupportedEncodingException {
+			final BindingResult pBindingResult, final ModelMap pModel, HttpSession session)
+			throws UnsupportedEncodingException {
 
 		String redirect = "inscription";
 		log.trace(puserForm.getUserBirthday());
@@ -142,7 +139,7 @@ public class MainController {
 					puserForm.getUserLogin());
 			vEnvoiMail.sendMailCreationCompte();
 			pModel.clear();
-			pModel.addAttribute("identifiant", puserForm.getUserLogin());
+			session.setAttribute(ATT_SESSION_USER, puserForm.getUserLogin());
 			redirect = "search";
 		}
 
@@ -152,11 +149,11 @@ public class MainController {
 
 	@RequestMapping(value = "/connexion", method = RequestMethod.POST)
 	public String checkExistence(@Valid @ModelAttribute(value = "connexionForm") final ConnexionForm pConnexionForm,
-			final BindingResult pBindingResult, final ModelMap pModel) throws IOException {
+			final BindingResult pBindingResult, final ModelMap pModel, HttpSession session) throws IOException {
 
 		String redirect = "index";
 		if (mUserService.userBeanExist(pConnexionForm.getLogin(), pConnexionForm.getPassword())) {
-			pModel.addAttribute("identifiant", pConnexionForm.getLogin());
+			session.setAttribute(ATT_SESSION_USER, pConnexionForm.getLogin());
 			insertIndex();
 			redirect = "search";
 		}
@@ -167,10 +164,11 @@ public class MainController {
 
 	@RequestMapping(value = "/connexion", method = RequestMethod.GET)
 	public String connexion(@Valid @ModelAttribute(value = "connexionForm") final ConnexionForm pConnexionForm,
-			final BindingResult pBindingResult, final ModelMap pModel) throws IOException {
-		pModel.addAttribute("identifiant", "identifiant");
-		String redirect = "search";
-		return redirect;
+			final BindingResult pBindingResult, final ModelMap pModel, HttpSession session) throws IOException {
+		if (session.getAttribute(ATT_SESSION_USER) != null) {
+			return "search";
+		} else
+			return "index";
 
 	}
 
@@ -226,29 +224,31 @@ public class MainController {
 
 	@RequestMapping(value = "/rechercher", method = RequestMethod.GET)
 	public String afficher(@Valid @ModelAttribute(value = "searchForm") final SearchForm pSearchForm,
-			final ModelMap pModel) throws Exception {
-		// Traitement de la recherche
-		pModel.addAttribute("identifiant", "identifiant");
+			final ModelMap pModel, HttpSession session) throws Exception {
+		if (session.getAttribute(ATT_SESSION_USER) != null) {
+			// Traitement avec Lucene
+			if (pSearchForm != null && pSearchForm.getObjetSearch() != null
+					&& !pSearchForm.getObjetSearch().isEmpty()) {
+				BeachSearcher searcher = new BeachSearcher(INDEX_DIR);
+				List<BeachIndexItem> result = searcher.findByBeachName(pSearchForm.getObjetSearch(),
+						DEFAULT_RESULT_SIZE);
 
-		// Traitement avec Lucene
-		if (pSearchForm != null && pSearchForm.getObjetSearch() != null && !pSearchForm.getObjetSearch().isEmpty()) {
-			BeachSearcher searcher = new BeachSearcher(INDEX_DIR);
-			List<BeachIndexItem> result = searcher.findByBeachName(pSearchForm.getObjetSearch(), DEFAULT_RESULT_SIZE);
-
-			List<ResultatForm> vListeResultatForm = null;
-			if (result != null) {
-				vListeResultatForm = new ArrayList<ResultatForm>();
-				for (BeachIndexItem vBeachIndexItem : result) {
-					BeachBeanTO vBeachBeanTO = mBeachService.getBeachByNom(vBeachIndexItem.getBeachName());
-					if (vBeachBeanTO != null) {
-						vListeResultatForm.add(mMapperUtils.mapBeachBeanTOToResultatForm(vBeachBeanTO));
+				List<ResultatForm> vListeResultatForm = null;
+				if (result != null) {
+					vListeResultatForm = new ArrayList<ResultatForm>();
+					for (BeachIndexItem vBeachIndexItem : result) {
+						BeachBeanTO vBeachBeanTO = mBeachService.getBeachByNom(vBeachIndexItem.getBeachName());
+						if (vBeachBeanTO != null) {
+							vListeResultatForm.add(mMapperUtils.mapBeachBeanTOToResultatForm(vBeachBeanTO));
+						}
 					}
 				}
+				pModel.addAttribute("listeResultatForm", vListeResultatForm);
 			}
-			pModel.addAttribute("listeResultatForm", vListeResultatForm);
-		}
 
-		return "resultat";
+			return "resultat";
+		} else
+			return "index";
 	}
 
 	@RequestMapping(value = "/insertBeaches", method = RequestMethod.POST)

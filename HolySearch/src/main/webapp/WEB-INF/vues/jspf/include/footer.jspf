@@ -30,7 +30,7 @@
 			</div>
 			<div class="text_logo">
 				<p style="color: #FFFFFF; font-size: 12px; text-align: center;">
-					<a href="#"> Politique de confidentialité</a>
+					<a href="mentions-legales"> Mentions légales</a>
 				</p>
 			</div>
 			<div class="text_logo">
@@ -49,7 +49,6 @@
 
 	</footer>
 
-	<c:if test="${empty identifiant}">
 		<div class="c-contact c-panel -contact" data-widget="contact">
 			<button class="c-panel_button js-contact-close" type="button">
 				<svg class="c-panel_button_icon" role="img">
@@ -57,7 +56,7 @@
 			</button>
 			<div class="c-contact_content js-contact-section"
 				id="js-contact-write">
-				<form class="js-form" data-widget="validate" action="contactez-nous-disconnected" method="post"
+				<form class="js-form" data-widget="validate" action="contactez-nous" method="post"
 				modelAttribute="contactForm">
 					<div class="c-contact_border">
 						<header class="c-contact_header">
@@ -123,83 +122,6 @@
 				</form>
 			</div>
 		</div>
-	</c:if>
-	
-	<c:if test="${not empty identifiant}">
-		<div class="c-contact c-panel -contact" data-widget="contact">
-			<button class="c-panel_button js-contact-close" type="button">
-				<svg class="c-panel_button_icon" role="img">
-				<use xlink:href="/assets/images/dist/svgs.svgz#close"></use></svg>
-			</button>
-			<div class="c-contact_content js-contact-section"
-				id="js-contact-write">
-				<form class="js-form" data-widget="validate" action="contactez-nous-connected" method="post"
-				modelAttribute="contactForm">
-					<div class="c-contact_border">
-						<header class="c-contact_header">
-						<p class="c-contact_title">Nous écrire</p>
-						</header>
-						<div class="c-contact_section -input c-contact_grid js-form-item">
-							<div class="c-contact_item -third">
-								<label class="o-label -nomargin" for="prenom">Prénom*</label>
-							</div>
-							<div class="c-contact_item -two-thirds">
-								<input class="o-input -full js-form-required" type="text"
-									id="prenom" name="prenom">
-							</div>
-						</div>
-
-						<div class="c-contact_section -input c-contact_grid js-form-item">
-							<div class="c-contact_item -third">
-								<label class="o-label -nomargin" for="nom">Nom*</label>
-							</div>
-							<div class="c-contact_item -two-thirds">
-								<input class="o-input -full js-form-required" type="text"
-									id="nom" name="nom">
-							</div>
-						</div>
-
-						<div class="c-contact_section -input c-contact_grid js-form-item">
-							<div class="c-contact_item -third">
-								<label class="o-label -nomargin" for="courriel">Courriel*</label>
-							</div>
-
-							<div class="c-contact_item -two-thirds">
-								<input class="o-input -full js-form-required" type="text"
-									id="courriel" name="email">
-							</div>
-						</div>
-						<div class="c-contact_section -input c-contact_grid js-form-item">
-							<div class="c-contact_item -third">
-								<label class="o-label -nomargin" for="objet">Objet*</label>
-							</div>
-							<div class="c-contact_item -two-thirds">
-								<input class="o-input -full js-form-required" type="text"
-									id="objet" name="objet">
-							</div>
-						</div>
-						<div class="c-contact_section -textarea -left c-contact_grid">
-							<div class="c-contact_section_content">
-								<textarea class="o-textarea -noresize" id="textarea"
-									placeholder="Écrivez votre message ici"  name="message"></textarea>
-							</div>
-						</div>
-					</div>
-					<div class="c-contact_footer">
-						<div class="o-grid -middle">
-							<div class="o-half">
-								<p class="contact_warning">*Ces champs sont requis</p>
-							</div>
-							<div class="o-half u-align-right">
-								<input type="submit" value="Envoyer" class="o-button -large"
-									style="margin-left: 20%; " />
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</c:if>
 
 
 	<div

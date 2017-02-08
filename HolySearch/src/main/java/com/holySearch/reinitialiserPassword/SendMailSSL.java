@@ -31,14 +31,14 @@ public class SendMailSSL {
 		Session session = Session.getDefaultInstance(props,
 			new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("samadchitou@gmail.com","connard-oiseau456");
+					return new PasswordAuthentication("holysearch.contact@gmail.com","Holy123456");
 				}
 			}); 
  
 		try {
  
 			Message msge = new MimeMessage(session);
-			msge.setFrom(new InternetAddress("samadchitou@gmail.com"));
+			msge.setFrom(new InternetAddress("holysearch.contact@gmail.com"));
 			msge.setRecipients(Message.RecipientType.TO, 
 					InternetAddress.parse(email));
 			msge.setSubject(sujet);

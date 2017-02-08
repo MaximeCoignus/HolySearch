@@ -38,15 +38,15 @@
 						class="c-nav-main_link is-current" href="/"> <span
 							class="c-nav-main_label">|</span>
 					</a></li>
-					<c:if test="${empty identifiant}">
+					<c:if test="${empty sessionScope.sessionUtilisateur}">
 						<li class="c-nav-main_item"><a
 							class="c-nav-main_link js-nav-main_link -dropdown" href="accueil">
 								<span class="c-nav-main_label"> Accueil</span>
 						</a></li>
 					</c:if>
-					<c:if test="${empty identifiant}">
+					
 						<li class="c-nav-main_item"><a class="c-nav-main_link"
-							href="a-propos-disconnected"> <span class="c-nav-main_label">À
+							href="a-propos"> <span class="c-nav-main_label">À
 									propos</span>
 						</a>
 							<div class="c-nav-main_dropdown js-nav-main_dropdown">
@@ -54,7 +54,7 @@
 									<ul class="o-grid -list">
 
 										<li class="o-third"><a class="c-nav-main_dropdown_item"
-											href="a-propos-disconnected">
+											href="a-propos">
 												<div class="c-nav-main_dropdown_icon">
 													<img src="images/ico_about.jpg" />
 												</div>
@@ -62,7 +62,7 @@
 													d'HolySearch</p>
 										</a></li>
 										<li class="o-third"><a class="c-nav-main_dropdown_item"
-											href="qui-sommes-nous-disconnected">
+											href="qui-sommes-nous">
 												<div class="c-nav-main_dropdown_icon">
 													<img src="images/ico_team.jpg" />
 												</div>
@@ -81,70 +81,32 @@
 									</ul>
 								</div>
 							</div></li>
-					</c:if>
-					<c:if test="${not empty identifiant}">
-						<li class="c-nav-main_item"><a class="c-nav-main_link"
-							href="a-propos-connected"> <span class="c-nav-main_label">À
-									propos</span>
-						</a>
-							<div class="c-nav-main_dropdown js-nav-main_dropdown">
-								<div class="c-nav-main_dropdown_container -small">
-									<ul class="o-grid -list">
-
-										<li class="o-third"><a class="c-nav-main_dropdown_item"
-											href="a-propos-connected">
-												<div class="c-nav-main_dropdown_icon">
-													<img src="images/ico_about.jpg" />
-												</div>
-												<p class="c-nav-main_dropdown_label">A propos
-													d'HolySearch</p>
-										</a></li>
-										<li class="o-third"><a class="c-nav-main_dropdown_item"
-											href="qui-sommes-nous-connected">
-												<div class="c-nav-main_dropdown_icon">
-													<img src="images/ico_team.jpg" />
-												</div>
-												<p class="c-nav-main_dropdown_label">Qui sommes nous?</p>
-										</a></li>
-
-										<li class="o-third"><a
-											class="c-nav-main_dropdown_item  js-contact-open"
-											href="#js-contact-write"><div
-													class="c-nav-main_dropdown_icon">
-													<img src="images/contactez-nous.jpg" />
-												</div>
-												<p class="c-nav-main_dropdown_label">Contactez-nous</p> </a></li>
-
-
-									</ul>
-								</div>
-							</div></li>
-					</c:if>
-					<c:if test="${not empty identifiant}">
+					
+					<c:if test="${not empty sessionScope.sessionUtilisateur}">
 					<li class="c-nav-main_item"><a class="c-nav-main_link"
-						href="#"> <span class="c-nav-main_label"
+						href="search"> <span class="c-nav-main_label"
 							style="text-align: center; position: absolute; right: 22%; padding-left: 30px"><img
 								src="images/logo2.gif" /></span>
 					</a></li>
 					</c:if>
-					<c:if test="${empty identifiant}">
+					<c:if test="${empty sessionScope.sessionUtilisateur}">
 					<li class="c-nav-main_item"><a class="c-nav-main_link"
 						href="accueil"> <span class="c-nav-main_label"
 							style="text-align: center; position: absolute; right: 22%; padding-left: 30px"><img
 								src="images/logo2.gif" /></span>
 					</a></li>
 					</c:if>
-					<c:if test="${empty identifiant}">
+					<c:if test="${empty sessionScope.sessionUtilisateur}">
 						<li class="c-nav-main_item"><a class="c-nav-main_link"
 							href="inscription"> <span class="c-nav-main_label">S'inscrire</span>
 						</a></li>
 					</c:if>
-					<li class="c-nav-main_item"><c:if test="${empty identifiant}">
+					<li class="c-nav-main_item"><c:if test="${empty sessionScope.sessionUtilisateur}">
 							<a class="c-nav-main_link js-nav-main_link -dropdown"
 								href="connexionHoly"> <span class="c-nav-main_label">
 									Se connecter</span>
 							</a>
-						</c:if> <c:if test="${not empty identifiant}">
+						</c:if> <c:if test="${not empty sessionScope.sessionUtilisateur}">
 							<a class="c-nav-main_link js-nav-main_link -dropdown"
 								href="deconnexion">Se déconnecter </a>
 						</c:if></li>
