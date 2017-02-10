@@ -25,18 +25,24 @@ public class UserBeanDAO {
 		// TODO Auto-generated constructor stub
 	}
 
-	@SuppressWarnings("unchecked") 
+	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public User getUserBeanByNom(String nom) {
-		User user = (User) entityManager.createQuery("SELECT u FROM User u WHERE u.userNom = :name")
-				.setParameter("name", nom).getResultList().get(0);
+		User vReturnUser = null;
+		Query vQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.userNom = :name");
+		vQuery.setParameter("name", nom);
+
+		try {
+			vReturnUser = (User) vQuery.getSingleResult();
+		} catch (NoResultException e) {
+		}
 		entityManager.close();
-		return user;
+		return vReturnUser;
 	}
-	
-	
+
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public void createNewUser(String nom, String prenom, String email, String login, String password, Date birthday) throws UnsupportedEncodingException {
+	public void createNewUser(String nom, String prenom, String email, String login, String password, Date birthday)
+			throws UnsupportedEncodingException {
 		// TODO Auto-generated method stub
 		User vUser = new User();
 		vUser.setUserNom(nom);
@@ -48,8 +54,7 @@ public class UserBeanDAO {
 		entityManager.persist(vUser);
 		entityManager.close();
 	}
-	
-	
+
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public User getUserBeanByNomAndPassword(String login, String password) throws UnsupportedEncodingException {
 
@@ -78,8 +83,7 @@ public class UserBeanDAO {
 	public User modifyUserPassword(String email, String password) throws UnsupportedEncodingException {
 		User user = null;
 		password = MySQLPassword(password);
-		Query vQuery = entityManager
-				.createQuery("SELECT A FROM User A WHERE A.userEmail= :email");
+		Query vQuery = entityManager.createQuery("SELECT A FROM User A WHERE A.userEmail= :email");
 		vQuery.setParameter("email", email);
 		try {
 			user = (User) vQuery.getSingleResult();

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,108 +11,134 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 </head>
 <body>
-<!-- FOOTER -->
-     <footer>
-       	<div class = "footer_container">
-	 	<div id = "footer_1">
-	 	<h2><a class="c-contact_link js-contact-open" href="#js-contact-write">Contactez-nous</a></h2>
-	 		<hr class="separator_court"/>
-	 	</div>
-	 	
-	 	<hr class="separator"/>
-	 	
-	 	<div id="footer_2">
-	 		<div class="text_logo">
-	 				<p  style="color: #FFFFFF;font-size: 12px; text-align:left;"><a href="accueil">&copy;2017 HolySearch, Inc </a></p>
-	 		</div>
-	 		<div class="text_logo">
-	 				<p style="color: #FFFFFF;font-size: 12px;text-align:center;"><a href="#"> Politique de confidentialité</a></p>
-	 		</div>
-	 		<div class="text_logo">
-	 			<p style="color: #FFFFFF;font-size: 12px; text-align:right;"> Suivez-nous sur: <a href="https://www.facebook.com/"><img src ="images/facebook1.JPG"></a></p>
-	 		</div>
+	<!-- FOOTER -->
+	<footer>
+	<div class="footer_container">
+		<div id="footer_1">
+			<hr class="separator" />
+		</div>
+
+		<hr class="separator" />
+
+		<div id="footer_2">
+			<div class="text_logo">
+				<p style="color: #FFFFFF; font-size: 12px; text-align: left;">
+					<a href="accueil">&copy;2017 HolySearch, Inc </a>
+				</p>
+			</div>
+			<div class="text_logo">
+				<p style="color: #FFFFFF; font-size: 12px; text-align: center;">
+					<a href="mentions-legales"> Mentions légales</a>
+				</p>
+			</div>
+			<div class="text_logo">
+				<p style="color: #FFFFFF; font-size: 12px; text-align: right;">
+					Suivez-nous sur : <a href="https://www.facebook.com/"><img
+						src="images/facebook1.JPG"></a>
+				</p>
+			</div>
 
 		</div>
-	 	<div id= "footer_logo">
-				<img src="images/logo_static.png" alt="logo">
+
+		<div id="footer_logo">
+			<img src="images/logo_static.png" alt="logo">
 		</div>
-	 </div>
-       
-    </footer>
-    
-    
-<div class="c-contact c-panel -contact" data-widget="contact">
-	<button class="c-panel_button js-contact-close" type="button">
-		<svg class="c-panel_button_icon" role="img"><use xlink:href="/assets/images/dist/svgs.svgz#close"></use></svg>
-	</button>
-		<div class="c-contact_content js-contact-section" id="js-contact-write">
-			<form class="js-form" data-widget="validate">
-				<div class="c-contact_border">
-					<header class="c-contact_header">
+	</div>
+
+	</footer>
+
+		<div class="c-contact c-panel -contact" data-widget="contact">
+			<button class="c-panel_button js-contact-close" type="button">
+				<svg class="c-panel_button_icon" role="img">
+				<use xlink:href="/assets/images/dist/svgs.svgz#close"></use></svg>
+			</button>
+			<div class="c-contact_content js-contact-section"
+				id="js-contact-write">
+				<form class="js-form" data-widget="validate" action="contactez-nous" method="post"
+				modelAttribute="contactForm">
+					<div class="c-contact_border">
+						<header class="c-contact_header">
 						<p class="c-contact_title">Nous écrire</p>
-					</header>
-					<div class="c-contact_section -input c-contact_grid js-form-item">
-						<div class="c-contact_item -third">
-							<label class="o-label -nomargin" for="prenom">Prénom*</label></div>
+						</header>
+						<div class="c-contact_section -input c-contact_grid js-form-item">
+							<div class="c-contact_item -third">
+								<label class="o-label -nomargin" for="prenom">Prénom*</label>
+							</div>
 							<div class="c-contact_item -two-thirds">
-								<input class="o-input -full js-form-required" type="text" id="prenom"></div>
+								<input class="o-input -full js-form-required" type="text"
+									id="prenom" name="prenom">
+							</div>
+						</div>
+
+						<div class="c-contact_section -input c-contact_grid js-form-item">
+							<div class="c-contact_item -third">
+								<label class="o-label -nomargin" for="nom">Nom*</label>
+							</div>
+							<div class="c-contact_item -two-thirds">
+								<input class="o-input -full js-form-required" type="text"
+									id="nom" name="nom">
+							</div>
+						</div>
+
+						<div class="c-contact_section -input c-contact_grid js-form-item">
+							<div class="c-contact_item -third">
+								<label class="o-label -nomargin" for="courriel">Courriel*</label>
+							</div>
+
+							<div class="c-contact_item -two-thirds">
+								<input class="o-input -full js-form-required" type="text"
+									id="courriel" name="email">
+							</div>
+						</div>
+						<div class="c-contact_section -input c-contact_grid js-form-item">
+							<div class="c-contact_item -third">
+								<label class="o-label -nomargin" for="objet">Objet*</label>
+							</div>
+							<div class="c-contact_item -two-thirds">
+								<input class="o-input -full js-form-required" type="text"
+									id="objet" name="objet">
+							</div>
+						</div>
+						<div class="c-contact_section -textarea -left c-contact_grid">
+							<div class="c-contact_section_content">
+								<textarea class="o-textarea -noresize" id="textarea"
+									placeholder="Écrivez votre message ici"  name="message"></textarea>
+							</div>
+						</div>
 					</div>
-					
-					<div class="c-contact_section -input c-contact_grid js-form-item">
-						<div class="c-contact_item -third">
-							<label class="o-label -nomargin" for="nom">Nom*</label>
-						</div>
-						<div class="c-contact_item -two-thirds"><input class="o-input -full js-form-required" type="text" id="nom"></div>
-					</div>
-					
-					<div class="c-contact_section -input c-contact_grid js-form-item">
-						<div class="c-contact_item -third">
-							<label class="o-label -nomargin" for="courriel">Courriel*</label>
-						</div>
-						
-						<div class="c-contact_item -two-thirds">
-							<input class="o-input -full js-form-required" type="text" id="courriel">
+					<div class="c-contact_footer">
+						<div class="o-grid -middle">
+							<div class="o-half">
+								<p class="contact_warning">*Ces champs sont requis</p>
+							</div>
+							<div class="o-half u-align-right">
+								<input type="submit" value="Envoyer" class="o-button -large"
+									style="margin-left: 20%; " />
+							</div>
 						</div>
 					</div>
-					<div class="c-contact_section -input c-contact_grid js-form-item">
-						<div class="c-contact_item -third">
-							<label class="o-label -nomargin" for="objet">Objet*</label>
-						</div>
-						<div class="c-contact_item -two-thirds">
-							<input class="o-input -full js-form-required" type="text" id="objet">
-						</div>
-					</div>
-					<div class="c-contact_section -textarea -left c-contact_grid">
-						<div class="c-contact_section_content">
-							<textarea class="o-textarea -noresize" id="textarea" placeholder="Écrivez votre message ici"></textarea>
-						</div>
-					</div>
-				</div>
-				<div class="c-contact_footer">
-					<div class="o-grid -middle">
-						<div class="o-half"><p class="contact_warning">*Ces champs sont requis</p></div>
-						<div class="o-half u-align-right"><a class="o-button -large" href="#" onclick="MessageSend();">Envoyer</a>
-															<a id="actualSendButton" class="o-button -large js-contact-submit" style="display:none;" href="#js-contact-feedback"></a>
-						</div>
-					</div>
-				</div>
-			</form>
+				</form>
+			</div>
 		</div>
-</div>
 
 
-<div class="o-overlay js-contact-close js-map-content-close js-panel-close"></div>
+	<div
+		class="o-overlay js-contact-close js-map-content-close js-panel-close"></div>
 
 
-<link rel="stylesheet" href="http://static.parcourscanada.com/assets/styles/dist/main.css">
-<link rel="stylesheet" href="http://static.parcourscanada.com/assets/styles/dist/custom.css">
+	<link rel="stylesheet"
+		href="http://static.parcourscanada.com/assets/styles/dist/main.css">
+	<link rel="stylesheet"
+		href="http://static.parcourscanada.com/assets/styles/dist/custom.css">
 
 
-<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+	<script type="text/javascript"
+		src="//www.googleadservices.com/pagead/conversion.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="bootstrap/dist/vendors.js"></script>
-<script src="bootstrap/dist/app.js"></script>
-<script src="bootstrap/dist/custom.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="bootstrap/dist/vendors.js"></script>
+	<script src="bootstrap/dist/app.js"></script>
+	<script src="bootstrap/dist/custom.js"></script>
 </body>
 </html>

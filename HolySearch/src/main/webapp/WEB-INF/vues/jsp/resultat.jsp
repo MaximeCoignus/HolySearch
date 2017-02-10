@@ -22,22 +22,26 @@
 	<div class="container voffset5 background-white">
 		<div class="container">
 
+			<br /> <br />
+			<br /> <br />
 			<form:form action="rechercher" method="get"
-				modelAttribute="searchForm">
-				<div>
-
-					<div style="text-align: center;">
-
-						<a href="/HolySearch/search"><img src="images/logo.gif"
-							style="text-align: center; margin-right: 5%;" /></a> <input
-							type="text" name="objetSearch" placeholder="Search"
-							style="width: 300px;" value="${searchForm.objetSearch}" /> <input
-							type="submit" value="Effectuer la recherche"
-							style="margin-left: 5%;" />
-
+				modelAttribute="searchForm" class="inline-form">
+				<div class="row" style="margin-left: 10%;">
+					<div class="col-xs-12 col-sm-12 col-md-6">
+						<div class="form-group">
+							<input type="search" class="input-sm form-control"
+								placeholder="Rechercher vos destinations de vacances"
+								name="objetSearch">
+						</div>
 					</div>
-
+					<div class="col-xs-12 col-sm-12 col-md-3" style="margin-left: 1%;">
+						<div class="form-group">
+							<input type="submit" class="btn btn-primary btn-sm"
+								value="Effectuer la recherche" style="height: 42px;" />
+						</div>
+					</div>
 				</div>
+
 			</form:form>
 			<br /> <br /> Résultat de la recherche effectuée avec l'API Lucene
 			<br /> <br />
@@ -71,5 +75,7 @@
 
 		</div>
 	</div>
+	<br /> <br />
+			<br /> <br />
 </body>
 </html>

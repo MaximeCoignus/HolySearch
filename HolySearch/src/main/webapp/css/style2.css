@@ -4,7 +4,7 @@
 /* jaune orangÃ© E8CE5A */
 
 footer {
-	height: 150px;
+	height: 70px;
 	background-color: #0A1C3D;
 	}
 
@@ -12,14 +12,10 @@ footer {
 	margin-left:5%;
 	margin-right:5%;
 	}
-#footer_1{
-	margin:0;
-	height: 100px;
-}
 
 #footer_2{
 		margin-bottom: 0;
-		height: 50px;
+		height: 70px;
 }
 
 
@@ -48,7 +44,7 @@ footer {
 
 	}
 .separator{
-	height:1px;
+	height:2px;
 	width:100%;
 	border: none;
 	box-shadow: none;
