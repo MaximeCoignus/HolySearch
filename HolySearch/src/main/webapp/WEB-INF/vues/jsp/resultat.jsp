@@ -25,19 +25,21 @@
 			<br /> <br />
 			<br /> <br />
 			<form:form action="rechercher" method="get"
-				modelAttribute="searchForm">
-				<div>
-					<table style="margin-left: 28%;">
-						<div style="text-align: center;">
-							<tr>
-								<td></td>
-								<td><input type="search" placeholder="Search"
-									name="objetSearch" style="padding-top: 6%; padding-bottom:6%; padding-left:10%;"></td>
-								<td><input type="submit" class="o-button -large"
-									value="Effectuer la recherche" style="margin-left: 20%;" /></td>
-							</tr>
+				modelAttribute="searchForm" class="inline-form">
+				<div class="row" style="margin-left: 10%;">
+					<div class="col-xs-12 col-sm-12 col-md-6">
+						<div class="form-group">
+							<input type="search" class="input-sm form-control"
+								placeholder="Rechercher vos destinations de vacances"
+								name="objetSearch">
 						</div>
-					</table>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-3" style="margin-left: 1%;">
+						<div class="form-group">
+							<input type="submit" class="btn btn-primary btn-sm"
+								value="Effectuer la recherche" style="height: 42px;" />
+						</div>
+					</div>
 				</div>
 
 			</form:form>

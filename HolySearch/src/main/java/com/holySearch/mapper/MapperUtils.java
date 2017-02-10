@@ -7,9 +7,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.holySearch.bean.Avatar;
 import com.holySearch.bean.Beach;
+import com.holySearch.bean.User;
 import com.holySearch.forms.ResultatForm;
 import com.holySearch.forms.UserForm;
+import com.holySearch.transfert.object.AvatarTO;
 import com.holySearch.transfert.object.BeachBeanTO;
 import com.holySearch.transfert.object.UserBeanTO;
 
@@ -35,6 +38,50 @@ public class MapperUtils {
 			vUserBeanTO.setUserPrenom(pUserForm.getUserPrenom());
 		}
 		return vUserBeanTO;
+	}
+
+	public UserForm mapUserBeanTOToUserForm(UserBeanTO pUserBeanTO) {
+
+		UserForm vUserForm = null;
+		if (pUserBeanTO != null) {
+			vUserForm = new UserForm();
+			vUserForm.setUserNom(pUserBeanTO.getUserNom());
+			vUserForm.setUserEmail(pUserBeanTO.getUserEmail());
+			vUserForm.setUserLogin(pUserBeanTO.getUserLogin());
+			vUserForm.setUserPassword(pUserBeanTO.getUserPassword());
+			SimpleDateFormat format = new SimpleDateFormat("DD-MM-YYYY");
+			if (pUserBeanTO.getUserBirthday() != null) {
+				vUserForm.setUserBirthday(format.format(pUserBeanTO.getUserBirthday()));
+			}
+			vUserForm.setUserPrenom(pUserBeanTO.getUserPrenom());
+		}
+		return vUserForm;
+	}
+
+	public UserBeanTO mapUserToUserBeanTO(User pUser) {
+
+		UserBeanTO vUserBeanTO = null;
+		if (pUser != null) {
+			vUserBeanTO = new UserBeanTO();
+			vUserBeanTO.setUserNom(pUser.getUserNom());
+			vUserBeanTO.setUserEmail(pUser.getUserEmail());
+			vUserBeanTO.setUserLogin(pUser.getUserLogin());
+			vUserBeanTO.setUserPassword(pUser.getUserPassword());
+			vUserBeanTO.setUserBirthday(pUser.getUserBirthday());
+			vUserBeanTO.setUserPrenom(pUser.getUserPrenom());
+		}
+		return vUserBeanTO;
+	}
+
+	public AvatarTO mapAvatarBeanToAvatarTO(Avatar pAvatar) {
+		AvatarTO vAvatarTO = null;
+		if (pAvatar != null) {
+			vAvatarTO = new AvatarTO();
+			vAvatarTO.setAvatarId(pAvatar.getAvatarId());
+			vAvatarTO.setAvatarName(pAvatar.getAvatarName());
+			vAvatarTO.setPicture(pAvatar.getPicture());
+		}
+		return vAvatarTO;
 	}
 
 	public BeachBeanTO mapBeachToBeachBeanTO(Beach beach) {

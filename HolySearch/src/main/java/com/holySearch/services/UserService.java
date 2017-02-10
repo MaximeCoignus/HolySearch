@@ -1,5 +1,6 @@
 package com.holySearch.services;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,18 @@ public class UserService {
 		}
 		return false;
 	}
+	
+	/*
+	 * Get User By nom
+	 */
+	public User getUserByNom(String nom) throws UnsupportedEncodingException {
+		if(nom != null){
+			return mUserBeanDAO.getUserBeanByNom(nom);
+		}
+		return null;
+	}
+	
+	
 	
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public boolean createNewUser(UserBeanTO pTestBeanTO) throws UnsupportedEncodingException {

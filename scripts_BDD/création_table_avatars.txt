@@ -1,0 +1,7 @@
+USE holysearch ;
+CREATE TABLE IF NOT EXISTS avatars (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  name varchar(200) NOT NULL UNIQUE,
+  image mediumblob,
+  PRIMARY KEY  (id)
+);

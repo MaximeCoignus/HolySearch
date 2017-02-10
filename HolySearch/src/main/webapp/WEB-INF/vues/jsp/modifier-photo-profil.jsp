@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Inscription</title>
+<title>Modification de votre photo de profil</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/styleForm.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -23,22 +23,31 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<form:form action="createUserAccount" method="post"
-						modelAttribute="userForm" enctype="multipart/form-data">
-						<h2>Création de votre compte</h2>
+					<form:form action="enregistrer-photo-profil" method="post"
+						modelAttribute="avatarForm" enctype="multipart/form-data">
+						<h2>
+							Modifier votre photo de profil
+							<c:out value="${sessionScope.sessionUtilisateur}" />
+						</h2>
 						<hr class="colorgraph">
 						<div class="row">
 							<div class="col-xs-12 col-sm-6 col-md-6">
 								<div class="form-group">
-									<br /> <img src="images/ico_profil.png" id="userAvatarImage"
-										style="margin-left: 23%; width: 190px; height: 205px;" />
+									<br /> <br />
+									<c:if test="${empty avatarUser}">
+										<img src="images/ico_profil.png" id="userAvatarImage"
+											style="margin-left: 23%; width: 190px; height: 205px;" />
+									</c:if>
+									<c:if test="${not empty avatarUser}">
+										<img src="data:image/jpg;base64, ${avatarUser}"
+											id="userAvatarImage"
+											style="margin-left: 23%; width: 190px; height: 205px;" />
+									</c:if>
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-6 col-md-6">
 								<div class="form-group">
-									<br /> <br />
-									<br />
-									<br /><br />
+									<br /> <br /> <br /> <br /> <br />
 
 									<div id="wrapper">
 										<div class="text-center">
@@ -82,67 +91,18 @@
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-xs-12 col-sm-6 col-md-6">
-								<div class="form-group">
-									<input type="text" name="userNom" id="userNom"
-										class="form-control input-lg" placeholder="Nom" tabindex="1"
-										required>
-								</div>
-							</div>
-							<div class="col-xs-12 col-sm-6 col-md-6">
-								<div class="form-group">
-									<input type="text" name="userPrenom" id="userPrenom"
-										class="form-control input-lg" placeholder="Prénom"
-										tabindex="2">
-								</div>
-							</div>
-						</div>
-						<br />
-						<div class="form-group">
-							<input type="date" name="userBirthday" id="userBirthday"
-								class="form-control input-lg" placeholder="Date de naissance"
-								tabindex="3">
-						</div>
-						<br />
-						<div class="form-group">
-							<input type="text" name="userLogin" id="userLogin"
-								class="form-control input-lg" placeholder="Identifiant"
-								tabindex="4" required>
-						</div>
-						<br />
-						<div class="form-group">
-							<input type="email" name="userEmail" id="userEmail"
-								class="form-control input-lg" placeholder="Addresse Email"
-								tabindex="5" required>
-						</div>
-						<br />
-						<div class="row">
-							<div class="col-xs-12 col-sm-6 col-md-6">
-								<div class="form-group">
-									<input type="password" name="userPassword" id="userPassword"
-										class="form-control input-lg" placeholder="Mot de passe"
-										tabindex="6" required>
-								</div>
-							</div>
-							<div class="col-xs-12 col-sm-6 col-md-6">
-								<div class="form-group">
-									<input type="password" name="userConfirmPassword"
-										id="userConfirmPassword" class="form-control input-lg"
-										placeholder="Confirmer le mot de passe" tabindex="7" required>
-								</div>
-							</div>
-						</div>
 						<hr class="colorgraph">
 						<br />
 						<div class="row">
 							<div class="col-xs-12 col-md-6">
-								<input type="submit" value="S'inscrire"
+								<input type="submit"
+									value="Enregistrer ma nouvelle photo de profil"
 									class="btn btn-primary btn-block btn-lg" tabindex="8">
 							</div>
 							<div class="col-xs-12 col-md-6">
-								<a href="connexionHoly" class="btn btn-success btn-block btn-lg">Se
-									connecter</a>
+								<a href=annuler-modification-photo-profil
+									class="btn btn-success btn-block btn-lg">Annuler la
+									modification</a>
 							</div>
 						</div>
 					</form:form>
