@@ -85,7 +85,7 @@
 																});
 											</script>
 											<c:if test="${not empty errors}">
-												<h2 style="color:red;">${errors}.</h2>
+												<p style="color:red;">${errors}.</p>
 											</c:if>
 										</div>
 									</div>
