@@ -3,9 +3,13 @@ package com.holySearch.controller;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -17,8 +21,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.holySearch.bean.Avatar;
 import com.holySearch.forms.AvatarForm;
 import com.holySearch.forms.ConnexionForm;
 import com.holySearch.forms.ContactForm;
@@ -38,7 +46,7 @@ import com.holySearch.services.UserService;
 import com.holySearch.transfert.object.BeachBeanTO;
 
 @Controller
-public class MainController {
+public class MainController  implements HandlerExceptionResolver {
 
 	private static final Logger log = Logger.getLogger(MainController.class);
 
@@ -117,6 +125,21 @@ public class MainController {
 			return redirect;
 		} else
 			return "index";
+	}
+	
+	public ModelAndView resolveException(HttpServletRequest request,
+			HttpServletResponse response, Object handler, Exception exception)
+	{
+		Map<String, Object> model = new HashMap<String, Object>();
+		if (exception instanceof MaxUploadSizeExceededException)
+		{
+			model.put("errors", "Fichier trop volumineux, veuillez sélectionner une autre image (< 500 ko)");
+		} else 
+		{
+			model.put("errors", "Unexpected error : " + exception.getMessage());
+		}
+		model.put("avatar", new Avatar());
+		return new ModelAndView("modifier-photo-profil", model);
 	}
 	
 	@RequestMapping(value = "enregistrer-photo-profil", method = RequestMethod.GET)

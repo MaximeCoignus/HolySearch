@@ -84,6 +84,9 @@
 																	}
 																});
 											</script>
+											<c:if test="${not empty errors}">
+												<p style="color:red;">${errors}.</p>
+											</c:if>
 										</div>
 									</div>
 
