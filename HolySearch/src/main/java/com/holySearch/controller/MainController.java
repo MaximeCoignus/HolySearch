@@ -133,7 +133,7 @@ public class MainController  implements HandlerExceptionResolver {
 		Map<String, Object> model = new HashMap<String, Object>();
 		if (exception instanceof MaxUploadSizeExceededException)
 		{
-			model.put("errors", "Fichier trop volumineux, veuillez sélectionner une autre image");
+			model.put("errors", "Fichier trop volumineux, veuillez sélectionner une autre image (< 500 ko)");
 		} else 
 		{
 			model.put("errors", "Unexpected error : " + exception.getMessage());
