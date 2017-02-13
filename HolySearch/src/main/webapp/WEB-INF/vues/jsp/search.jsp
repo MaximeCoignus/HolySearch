@@ -17,9 +17,11 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 </head>
 <body id="site-container">
-	<div class="container voffset5 background-white">
-		<div class="container">
-			<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+
+	<div style= "height:500px;">
+	
+	<div style= "height:100px; position: relative; top: 30%; width: 70%; margin-left: 17%;">
+
 			<form:form action="rechercher" method="get"
 				modelAttribute="searchForm" class="inline-form">
 				<div class="row" style="margin-left: 10%;">
@@ -39,10 +41,15 @@
 				</div>
 
 			</form:form>
-			<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-			<br /> <br /> <br /> <br />
-
+		
 		</div>
+
 	</div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="bootstrap/dist/vendors.js"></script>
+	<script src="bootstrap/dist/app.js"></script>
+	<script src="bootstrap/dist/custom.js"></script>
 </body>
 </html>

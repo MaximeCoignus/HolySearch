@@ -20,39 +20,45 @@
 </head>
 <body>
 
-	<header class="c-header-main js-header-main js-shrink"
-		data-app="shrink">
+	<header class="c-header-main js-header-main js-shrink" data-app="shrink">
 		<div class="c-header-main_container">
-			<a href="/">
-				<div>
-					<button class="c-logo-main_button" type="button">
-						<span class="c-logo-main_line"></span> <span
-							class="c-logo-main_line"></span> <span class="c-logo-main_line"></span>
+		
+		
+		<div style="height:80px; width: 70px; position: absolute; top:0; left:0; ">
+			<a class=" js-nav-button" href="/">
+				<div style="background-color: #e45f4d; position: fixed; top:0; left:0; height:55px; padding-top: 10px;">
+					<button class="c-logo-main_button"   type="button">
+						<span class="c-logo-main_line" style="background-color: black;"></span> 
+						<span class="c-logo-main_line" style="background-color: black;"></span> 
+						<span class="c-logo-main_line" style="background-color: black;"></span>
 					</button>
 				</div>
 			</a>
-
-			<nav class="c-nav-main js-nav-main" data-widget="navMain">
+			
+		</div>
+		
+			
+			<nav class="c-nav-main js-nav-main" data-widget="navMain"">
 				<ul class="c-nav-main_list">
 					<li class="c-nav-main_item -medium"><a
 						class="c-nav-main_link is-current" href="/"> <span
-							class="c-nav-main_label">|</span>
+							class="c-nav-main_label"></span>
 					</a></li>
 					<c:if test="${empty sessionScope.sessionUtilisateur}">
 						<li class="c-nav-main_item"><a
-							class="c-nav-main_link js-nav-main_link -dropdown" href="accueil">
+							class="c-nav-main_link" href="accueil">
 								<span class="c-nav-main_label"> Accueil</span>
 						</a></li>
 					</c:if>
 					<c:if test="${not empty sessionScope.sessionUtilisateur}">
 						<li class="c-nav-main_item"><a
-							class="c-nav-main_link js-nav-main_link -dropdown" href="search">
+							class="c-nav-main_link " href="search">
 								<span class="c-nav-main_label"> Rechercher mes
 									destinations de vacances</span>
 						</a></li>
 					</c:if>
 
-					<li class="c-nav-main_item"><a class="c-nav-main_link"
+					<li class="c-nav-main_item"><a class="c-nav-main_link js-nav-main_link -dropdown"
 						href="a-propos"> <span class="c-nav-main_label">À
 								propos</span>
 					</a>
@@ -90,48 +96,45 @@
 							</div>
 						</div></li>
 
-					<c:if test="${not empty sessionScope.sessionUtilisateur}">
-						<li class="c-nav-main_item"><a class="c-nav-main_link"
-							href="search"> <span class="c-nav-main_label"
-								style="text-align: center; position: absolute; right: 22%; padding-left: 30px"><img
-									src="images/logo2.gif" /></span>
-						</a></li>
-					</c:if>
-					<c:if test="${empty sessionScope.sessionUtilisateur}">
-						<li class="c-nav-main_item"><a class="c-nav-main_link"
-							href="accueil"> <span class="c-nav-main_label"
-								style="text-align: center; position: absolute; right: 22%; padding-left: 30px"><img
-									src="images/logo2.gif" /></span>
-						</a></li>
-					</c:if>
+						<li class="c-nav-main_item">
+							<a class="c-nav-main_link" href="search"> 
+						
+							</a>
+						</li>
+					
+				
 					<c:if test="${empty sessionScope.sessionUtilisateur}">
 						<li class="c-nav-main_item"><a class="c-nav-main_link"
 							href="inscription"> <span class="c-nav-main_label">S'inscrire</span>
 						</a></li>
 						<li class="c-nav-main_item"><a
-							class="c-nav-main_link js-nav-main_link -dropdown"
+							class="c-nav-main_link"
 							href="connexionHoly"> <span class="c-nav-main_label">
 									Se connecter</span>
 						</a></li>
 					</c:if>
 					<c:if test="${not empty sessionScope.sessionUtilisateur}">
 						<li class="c-nav-main_item"><a
-							class="c-nav-main_link js-nav-main_link -dropdown"
+							class="c-nav-main_link"
 							href="mon-profil"> <span class="c-nav-main_label"> Mon
 									profil</span>
 						</a></li>
 						<li class="c-nav-main_item"><a
-							class="c-nav-main_link js-nav-main_link -dropdown"
+							class="c-nav-main_link"
 							href="deconnexion"> <span class="c-nav-main_label"> Se
 									déconnecter</span>
 						</a></li>
 					</c:if>
 				</ul>
+	
 			</nav>
 
 
-
-
+		<a class="c-nav-main_link" href="search"> 		
+			<img style="text-align: center; position: absolute; left: 41%; top: 1px; right:0; 
+			margin-left: 3%; width: 100px; height: 50px;" src="images/logo2.gif" />
+		</a>
+		
 		</div>
 	</header>
 
