@@ -44,7 +44,6 @@ CREATE TABLE Country(
         criminality        Int ,
         criminalitylevel   Varchar (25) ,
         continentid        Int ,
-        capitalid          Int ,
         PRIMARY KEY (countryid )
 )ENGINE=InnoDB;
 
@@ -62,64 +61,31 @@ CREATE TABLE City(
         population      Int NOT NULL ,
         wikidescription Varchar (25) NOT NULL ,
         wikipicture     Varchar (25) NOT NULL ,
+        iscapital       Bool ,
         countryid       Int ,
-        capitalid       Int ,
         PRIMARY KEY (cityid )
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table: Beach
+# Table: Destination
 #------------------------------------------------------------
 
-CREATE TABLE Beach(
-        beachid         int (11) Auto_increment  NOT NULL ,
+CREATE TABLE Destination(
+        destinationid   int (11) Auto_increment  NOT NULL ,
         englishname     Varchar (25) NOT NULL ,
         frenchname      Varchar (25) NOT NULL ,
         longitude       Int NOT NULL ,
         latitude        Int ,
         wikidescription Varchar (25) NOT NULL ,
         wikipicture     Varchar (25) NOT NULL ,
+        type            Varchar (25) NOT NULL ,
         countryid       Int ,
         cityid          Int ,
-        PRIMARY KEY (beachid )
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
-# Table: Skistation
-#------------------------------------------------------------
-
-CREATE TABLE Skistation(
-        skistationid    int (11) Auto_increment  NOT NULL ,
-        englishname     Varchar (25) NOT NULL ,
-        frenchname      Varchar (25) NOT NULL ,
-        longitude       Int NOT NULL ,
-        latitude        Int NOT NULL ,
-        wikidescription Varchar (25) NOT NULL ,
-        wikipicture     Varchar (25) NOT NULL ,
-        countryid       Int ,
-        PRIMARY KEY (skistationid )
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
-# Table: Capital
-#------------------------------------------------------------
-
-CREATE TABLE Capital(
-        capitalid int (11) Auto_increment  NOT NULL ,
-        countryid Int ,
-        cityid    Int ,
-        PRIMARY KEY (capitalid )
+        PRIMARY KEY (destinationid )
 )ENGINE=InnoDB;
 
 ALTER TABLE Country ADD CONSTRAINT FK_Country_continentid FOREIGN KEY (continentid) REFERENCES Continent(continentid);
-ALTER TABLE Country ADD CONSTRAINT FK_Country_capitalid FOREIGN KEY (capitalid) REFERENCES Capital(capitalid);
 ALTER TABLE City ADD CONSTRAINT FK_City_countryid FOREIGN KEY (countryid) REFERENCES Country(countryid);
-ALTER TABLE City ADD CONSTRAINT FK_City_capitalid FOREIGN KEY (capitalid) REFERENCES Capital(capitalid);
-ALTER TABLE Beach ADD CONSTRAINT FK_Beach_countryid FOREIGN KEY (countryid) REFERENCES Country(countryid);
-ALTER TABLE Beach ADD CONSTRAINT FK_Beach_cityid FOREIGN KEY (cityid) REFERENCES City(cityid);
-ALTER TABLE Skistation ADD CONSTRAINT FK_Skistation_countryid FOREIGN KEY (countryid) REFERENCES Country(countryid);
-ALTER TABLE Capital ADD CONSTRAINT FK_Capital_countryid FOREIGN KEY (countryid) REFERENCES Country(countryid);
-ALTER TABLE Capital ADD CONSTRAINT FK_Capital_cityid FOREIGN KEY (cityid) REFERENCES City(cityid);
+ALTER TABLE Destination ADD CONSTRAINT FK_Destination_countryid FOREIGN KEY (countryid) REFERENCES Country(countryid);
+ALTER TABLE Destination ADD CONSTRAINT FK_Destination_cityid FOREIGN KEY (cityid) REFERENCES City(cityid);
