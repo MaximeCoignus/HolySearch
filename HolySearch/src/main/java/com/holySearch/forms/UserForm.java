@@ -1,31 +1,31 @@
 package com.holySearch.forms;
 
-import java.util.Date;
-
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 @SuppressWarnings("unused")
 public class UserForm {
-		
+
 	@NotEmpty
 	private String userNom;
-	
+
 	private String userPrenom;
-	
+
 	@NotEmpty
 	private String userEmail;
-	
 
 	@NotEmpty
 	private String userLogin;
-	
+
 	@NotEmpty
 	private String userPassword;
-	
+
 	@NotEmpty
 	private String userConfirmPassword;
-	
+
 	private String userBirthday;
+
+	private MultipartFile userAvatarFile;
 
 	/**
 	 * @return the userNom
@@ -35,7 +35,8 @@ public class UserForm {
 	}
 
 	/**
-	 * @param userNom the userNom to set
+	 * @param userNom
+	 *            the userNom to set
 	 */
 	public void setUserNom(String userNom) {
 		this.userNom = userNom;
@@ -49,7 +50,8 @@ public class UserForm {
 	}
 
 	/**
-	 * @param userPrenom the userPrenom to set
+	 * @param userPrenom
+	 *            the userPrenom to set
 	 */
 	public void setUserPrenom(String userPrenom) {
 		this.userPrenom = userPrenom;
@@ -63,7 +65,8 @@ public class UserForm {
 	}
 
 	/**
-	 * @param userEmail the userEmail to set
+	 * @param userEmail
+	 *            the userEmail to set
 	 */
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
@@ -77,7 +80,8 @@ public class UserForm {
 	}
 
 	/**
-	 * @param userLogin the userLogin to set
+	 * @param userLogin
+	 *            the userLogin to set
 	 */
 	public void setUserLogin(String userLogin) {
 		this.userLogin = userLogin;
@@ -91,7 +95,8 @@ public class UserForm {
 	}
 
 	/**
-	 * @param userPassword the userPassword to set
+	 * @param userPassword
+	 *            the userPassword to set
 	 */
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
@@ -105,7 +110,8 @@ public class UserForm {
 	}
 
 	/**
-	 * @param userBirthday the userBirthday to set
+	 * @param userBirthday
+	 *            the userBirthday to set
 	 */
 	public void setUserBirthday(String userBirthday) {
 		this.userBirthday = userBirthday;
@@ -119,11 +125,26 @@ public class UserForm {
 	}
 
 	/**
-	 * @param userConfirmPassword the userConfirmPassword to set
+	 * @param userConfirmPassword
+	 *            the userConfirmPassword to set
 	 */
 	public void setUserConfirmPassword(String userConfirmPassword) {
 		this.userConfirmPassword = userConfirmPassword;
 	}
-	
-	
+
+	/**
+	 * @return the userAvatarFile
+	 */
+	public MultipartFile getUserAvatarFile() {
+		return userAvatarFile;
+	}
+
+	/**
+	 * @param userAvatarFile
+	 *            the userAvatarFile to set
+	 */
+	public void setUserAvatarFile(MultipartFile userAvatarFile) {
+		this.userAvatarFile = userAvatarFile;
+	}
+
 }

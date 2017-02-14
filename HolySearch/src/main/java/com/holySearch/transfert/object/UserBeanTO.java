@@ -1,19 +1,20 @@
 package com.holySearch.transfert.object;
 
+import java.io.File;
 import java.util.Date;
 
 public class UserBeanTO {
-	
+
 	private String userNom;
-	
+
 	private String userPrenom;
-	
+
 	private String userEmail;
-	
+
 	private String userLogin;
-	
+
 	private String userPassword;
-	
+
 	private Date userBirthday;
 
 	/**
@@ -24,7 +25,8 @@ public class UserBeanTO {
 	}
 
 	/**
-	 * @param userNom the userNom to set
+	 * @param userNom
+	 *            the userNom to set
 	 */
 	public void setUserNom(String userNom) {
 		this.userNom = userNom;
@@ -38,7 +40,8 @@ public class UserBeanTO {
 	}
 
 	/**
-	 * @param userPrenom the userPrenom to set
+	 * @param userPrenom
+	 *            the userPrenom to set
 	 */
 	public void setUserPrenom(String userPrenom) {
 		this.userPrenom = userPrenom;
@@ -52,7 +55,8 @@ public class UserBeanTO {
 	}
 
 	/**
-	 * @param userEmail the userEmail to set
+	 * @param userEmail
+	 *            the userEmail to set
 	 */
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
@@ -66,7 +70,8 @@ public class UserBeanTO {
 	}
 
 	/**
-	 * @param userLogin the userLogin to set
+	 * @param userLogin
+	 *            the userLogin to set
 	 */
 	public void setUserLogin(String userLogin) {
 		this.userLogin = userLogin;
@@ -80,7 +85,8 @@ public class UserBeanTO {
 	}
 
 	/**
-	 * @param userPassword the userPassword to set
+	 * @param userPassword
+	 *            the userPassword to set
 	 */
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
@@ -94,10 +100,10 @@ public class UserBeanTO {
 	}
 
 	/**
-	 * @param userBirthday the userBirthday to set
+	 * @param userBirthday
+	 *            the userBirthday to set
 	 */
 	public void setUserBirthday(Date userBirthday) {
 		this.userBirthday = userBirthday;
 	}
-	
 }

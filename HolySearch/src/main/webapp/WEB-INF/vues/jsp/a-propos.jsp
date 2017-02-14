@@ -19,5 +19,12 @@
 </head>
 <body>
 
+
+<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="bootstrap/dist/vendors.js"></script>
+	<script src="bootstrap/dist/app.js"></script>
+	<script src="bootstrap/dist/custom.js"></script>
+	
 </body>
 </html>

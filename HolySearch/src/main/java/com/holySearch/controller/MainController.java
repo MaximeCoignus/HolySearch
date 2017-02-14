@@ -3,9 +3,13 @@ package com.holySearch.controller;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -17,7 +21,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.holySearch.bean.Avatar;
+import com.holySearch.forms.AvatarForm;
 import com.holySearch.forms.ConnexionForm;
 import com.holySearch.forms.ContactForm;
 import com.holySearch.forms.InsertBeachesForm;
@@ -30,12 +40,13 @@ import com.holySearch.lucene.BeachIndexer;
 import com.holySearch.lucene.BeachSearcher;
 import com.holySearch.mapper.MapperUtils;
 import com.holySearch.reinitialiserPassword.EnvoiMail;
+import com.holySearch.services.AvatarService;
 import com.holySearch.services.BeachService;
 import com.holySearch.services.UserService;
 import com.holySearch.transfert.object.BeachBeanTO;
 
 @Controller
-public class MainController {
+public class MainController  implements HandlerExceptionResolver {
 
 	private static final Logger log = Logger.getLogger(MainController.class);
 
@@ -44,6 +55,9 @@ public class MainController {
 
 	@Resource
 	BeachService mBeachService;
+
+	@Resource
+	AvatarService mAvatarService;
 
 	@Autowired
 	private MapperUtils mMapperUtils;
@@ -55,29 +69,151 @@ public class MainController {
 	public static final String ATT_SESSION_USER = "sessionUtilisateur";
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String afficher(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel, HttpSession session) {
+	public String afficher(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel,
+			HttpSession session) {
 		if (session.getAttribute(ATT_SESSION_USER) != null) {
 			return "search";
 		} else
 			return "index";
 	}
-	
+
 	@RequestMapping(value = "mentions-legales", method = RequestMethod.GET)
-	public String afficherMentionsLegales(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel, HttpSession session) {
-		
-			return "mentions-legales";
+	public String afficherMentionsLegales(@ModelAttribute(value = "userForm") final UserForm puserForm,
+			final ModelMap pModel, HttpSession session) {
+
+		return "mentions-legales";
+	}
+
+	@RequestMapping(value = "modifier-photo-profil", method = RequestMethod.GET)
+	public String afficherPageModificationParametres(@ModelAttribute(value = "userForm") final UserForm puserForm,
+			final ModelMap pModel, HttpSession session) throws UnsupportedEncodingException {
+		if (session.getAttribute(ATT_SESSION_USER) != null) {
+			// Récupérer l'avatar de l'utilisateur à partir de son nom (variable
+			// de session ATT_SESSION_USER)
+			byte[] avatar = mAvatarService.getImageAvatar(session.getAttribute(ATT_SESSION_USER).toString());
+			pModel.addAttribute("avatarUser", org.apache.commons.codec.binary.Base64.encodeBase64String(avatar));
+			return "modifier-photo-profil";
+		} else
+			return "index";
+	}
+
+	@RequestMapping(value = "enregistrer-photo-profil", method = RequestMethod.POST)
+	public String enregistrerPhotoProfil(@ModelAttribute(value = "avatarForm") final AvatarForm pAvatarForm,
+			final ModelMap pModel, HttpSession session) throws IOException {
+		if (session.getAttribute(ATT_SESSION_USER) != null) {
+			String redirect = "mon-profil";
+			if (pAvatarForm != null) {
+				MultipartFile file = pAvatarForm.getUserAvatarFile();
+				if (!file.isEmpty()) {
+					mAvatarService.updateAvatar(session.getAttribute(ATT_SESSION_USER).toString(),
+							pAvatarForm.getUserAvatarFile().getBytes());
+				}
+
+			}
+
+			// Récupérer les informations de l'utilisateur à partir de son nom
+			// (variable de session ATT_SESSION_USER)
+			UserForm vUserForm = mMapperUtils.mapUserBeanTOToUserForm(mMapperUtils
+					.mapUserToUserBeanTO(mUserService.getUserByNom(session.getAttribute(ATT_SESSION_USER).toString())));
+
+			// Récupérer l'avatar de l'utilisateur à partir de son nom (variable
+			// de session ATT_SESSION_USER)
+			byte[] avatar = mAvatarService.getImageAvatar(session.getAttribute(ATT_SESSION_USER).toString());
+			pModel.addAttribute("avatarUser", org.apache.commons.codec.binary.Base64.encodeBase64String(avatar));
+			pModel.addAttribute("infoUser", vUserForm);
+
+			return redirect;
+		} else
+			return "index";
+	}
+	
+	public ModelAndView resolveException(HttpServletRequest request,
+			HttpServletResponse response, Object handler, Exception exception)
+	{
+		Map<String, Object> model = new HashMap<String, Object>();
+		if (exception instanceof MaxUploadSizeExceededException)
+		{
+			model.put("errors", "Fichier trop volumineux, veuillez sélectionner une autre image (< 500 ko)");
+		} else 
+		{
+			model.put("errors", "Unexpected error : " + exception.getMessage());
+		}
+		model.put("avatar", new Avatar());
+		return new ModelAndView("modifier-photo-profil", model);
+	}
+	
+	@RequestMapping(value = "enregistrer-photo-profil", method = RequestMethod.GET)
+	public String enregistrerPhotoProfilGet(@ModelAttribute(value = "avatarForm") final AvatarForm pAvatarForm,
+			final ModelMap pModel, HttpSession session) throws IOException {
+		if (session.getAttribute(ATT_SESSION_USER) != null) {
+			String redirect = "mon-profil";
+			// Récupérer les informations de l'utilisateur à partir de son nom
+			// (variable de session ATT_SESSION_USER)
+			UserForm vUserForm = mMapperUtils.mapUserBeanTOToUserForm(mMapperUtils
+					.mapUserToUserBeanTO(mUserService.getUserByNom(session.getAttribute(ATT_SESSION_USER).toString())));
+
+			// Récupérer l'avatar de l'utilisateur à partir de son nom (variable
+			// de session ATT_SESSION_USER)
+			byte[] avatar = mAvatarService.getImageAvatar(session.getAttribute(ATT_SESSION_USER).toString());
+			pModel.addAttribute("avatarUser", org.apache.commons.codec.binary.Base64.encodeBase64String(avatar));
+			pModel.addAttribute("infoUser", vUserForm);
+
+			return redirect;
+		} else
+			return "index";
+	}
+	
+	@RequestMapping(value = "annuler-modification-photo-profil", method = RequestMethod.GET)
+	public String annulerModificationPhotoProfil(@ModelAttribute(value = "avatarForm") final AvatarForm pAvatarForm,
+			final ModelMap pModel, HttpSession session) throws IOException {
+		if (session.getAttribute(ATT_SESSION_USER) != null) {
+			String redirect = "mon-profil";
+			// Récupérer les informations de l'utilisateur à partir de son nom
+			// (variable de session ATT_SESSION_USER)
+			UserForm vUserForm = mMapperUtils.mapUserBeanTOToUserForm(mMapperUtils
+					.mapUserToUserBeanTO(mUserService.getUserByNom(session.getAttribute(ATT_SESSION_USER).toString())));
+
+			// Récupérer l'avatar de l'utilisateur à partir de son nom (variable
+			// de session ATT_SESSION_USER)
+			byte[] avatar = mAvatarService.getImageAvatar(session.getAttribute(ATT_SESSION_USER).toString());
+			pModel.addAttribute("avatarUser", org.apache.commons.codec.binary.Base64.encodeBase64String(avatar));
+			pModel.addAttribute("infoUser", vUserForm);
+
+			return redirect;
+		} else
+			return "index";
+	}
+
+	@RequestMapping(value = "mon-profil", method = RequestMethod.GET)
+	public String afficherPageProfil(@ModelAttribute(value = "userForm") final UserForm puserForm,
+			final ModelMap pModel, HttpSession session) throws UnsupportedEncodingException {
+		if (session.getAttribute(ATT_SESSION_USER) != null) {
+			// Récupérer les informations de l'utilisateur à partir de son nom
+			// (variable de session ATT_SESSION_USER)
+			UserForm vUserForm = mMapperUtils.mapUserBeanTOToUserForm(mMapperUtils
+					.mapUserToUserBeanTO(mUserService.getUserByNom(session.getAttribute(ATT_SESSION_USER).toString())));
+
+			// Récupérer l'avatar de l'utilisateur à partir de son nom (variable
+			// de session ATT_SESSION_USER)
+			byte[] avatar = mAvatarService.getImageAvatar(session.getAttribute(ATT_SESSION_USER).toString());
+			pModel.addAttribute("avatarUser", org.apache.commons.codec.binary.Base64.encodeBase64String(avatar));
+			pModel.addAttribute("infoUser", vUserForm);
+
+			return "mon-profil";
+		} else
+			return "index";
 	}
 
 	@RequestMapping(value = "/a-propos", method = RequestMethod.GET)
 	public String afficherAProposConnected(@ModelAttribute(value = "userForm") final UserForm puserForm,
 			final ModelMap pModel, HttpSession session) {
-			return "a-propos";
+		return "a-propos";
 	}
 
 	@RequestMapping(value = "/qui-sommes-nous", method = RequestMethod.GET)
 	public String afficherQuiSommesNousConnected(@ModelAttribute(value = "userForm") final UserForm puserForm,
 			final ModelMap pModel, HttpSession session) {
-			return "qui-sommes-nous";
+		return "qui-sommes-nous";
 	}
 
 	@RequestMapping(value = "/accueil", method = RequestMethod.GET)
@@ -128,19 +264,25 @@ public class MainController {
 
 	@RequestMapping(value = "/createUserAccount", method = RequestMethod.POST)
 	public String createUserAccount(@Valid @ModelAttribute(value = "userForm") final UserForm puserForm,
-			final BindingResult pBindingResult, final ModelMap pModel, HttpSession session)
-			throws UnsupportedEncodingException {
+			final BindingResult pBindingResult, final ModelMap pModel, HttpSession session) throws IOException {
 
 		String redirect = "inscription";
-		log.trace(puserForm.getUserBirthday());
-		if (puserForm.getUserConfirmPassword().equals(puserForm.getUserPassword())
-				&& mUserService.createNewUser(mMapperUtils.mapUserFormToUserBeanTO(puserForm))) {
-			EnvoiMail vEnvoiMail = new EnvoiMail(puserForm.getUserEmail(), puserForm.getUserPassword(),
-					puserForm.getUserLogin());
-			vEnvoiMail.sendMailCreationCompte();
-			pModel.clear();
-			session.setAttribute(ATT_SESSION_USER, puserForm.getUserLogin());
-			redirect = "search";
+		if (puserForm != null) {
+			log.trace(puserForm.getUserBirthday());
+			MultipartFile file = puserForm.getUserAvatarFile();
+			if (puserForm.getUserConfirmPassword().equals(puserForm.getUserPassword())) {
+				if (puserForm.getUserLogin() != null && !file.isEmpty()) {
+					mAvatarService.createNewAvatar(puserForm.getUserLogin(), puserForm.getUserAvatarFile().getBytes());
+				}
+				if (mUserService.createNewUser(mMapperUtils.mapUserFormToUserBeanTO(puserForm))) {
+					EnvoiMail vEnvoiMail = new EnvoiMail(puserForm.getUserEmail(), puserForm.getUserPassword(),
+							puserForm.getUserLogin());
+					vEnvoiMail.sendMailCreationCompte();
+					pModel.clear();
+					session.setAttribute(ATT_SESSION_USER, puserForm.getUserLogin());
+					redirect = "search";
+				}
+			}
 		}
 
 		return redirect;
@@ -216,10 +358,12 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/inscription", method = RequestMethod.GET)
-	public String inscription(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel)
-			throws UnsupportedEncodingException {
-		return "inscription";
-
+	public String inscription(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel,
+			HttpSession session) throws UnsupportedEncodingException {
+		if (session.getAttribute(ATT_SESSION_USER) == null) {
+			return "inscription";
+		} else
+			return "index";
 	}
 
 	@RequestMapping(value = "/rechercher", method = RequestMethod.GET)
