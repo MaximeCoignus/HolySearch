@@ -3,12 +3,15 @@ package com.holySearch.dao;
 import java.io.UnsupportedEncodingException;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.holySearch.bean.City;
 import com.holySearch.bean.City;
 
 @Repository
@@ -34,8 +37,39 @@ public class CityBeanDAO {
 		vCity.setCityWikiDescription(cityWikiDescription);
 		vCity.setCityWikiPicture(cityWikiPicture);
 		vCity.setCapital(isCapital);
+		// Ajouter le pays
 		entityManager.persist(vCity);
 		entityManager.close();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public City getCityBeanByFrenchName(String frenchName) {
+		City vReturnCity = null;
+		Query vQuery = entityManager.createQuery("SELECT u FROM City u WHERE u.cityFrenchName = :name");
+		vQuery.setParameter("name", frenchName);
+
+		try {
+			vReturnCity = (City) vQuery.getSingleResult();
+		} catch (NoResultException e) {
+		}
+		entityManager.close();
+		return vReturnCity;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public City getCityBeanByEnglishName(String englishName) {
+		City vReturnCity = null;
+		Query vQuery = entityManager.createQuery("SELECT u FROM City u WHERE u.cityEnglishName = :name");
+		vQuery.setParameter("name", englishName);
+
+		try {
+			vReturnCity = (City) vQuery.getSingleResult();
+		} catch (NoResultException e) {
+		}
+		entityManager.close();
+		return vReturnCity;
 	}
 
 }

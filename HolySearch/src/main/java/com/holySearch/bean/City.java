@@ -1,10 +1,13 @@
 package com.holySearch.bean;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -33,12 +36,16 @@ public class City {
 
 	@Column(name = "wikidescription")
 	private String cityWikiDescription;
-	
+
 	@Column(name = "wikipicture")
 	private String cityWikiPicture;
 
 	@Column(name = "isCapital")
 	private boolean isCapital;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "countryid", referencedColumnName = "countryid")
+	private Country country;
 
 	/**
 	 * @return the cityEnglishName
@@ -163,10 +170,25 @@ public class City {
 	/**
 	 * @param cityId
 	 *            the cityId to set
-	 * @return 
+	 * @return
 	 */
 	public int getCityId() {
 		return this.cityId;
+	}
+
+	/**
+	 * @return the country
+	 */
+	public Country getCountry() {
+		return country;
+	}
+
+	/**
+	 * @param country
+	 *            the country to set
+	 */
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 
 }

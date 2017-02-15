@@ -3,12 +3,15 @@ package com.holySearch.dao;
 import java.io.UnsupportedEncodingException;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.holySearch.bean.Continent;
 import com.holySearch.bean.Continent;
 
 @Repository
@@ -36,6 +39,36 @@ public class ContinentBeanDAO {
 		vContinent.setContinentWikiPicture(continentWikiPicture);
 		entityManager.persist(vContinent);
 		entityManager.close();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public Continent getContinentBeanByFrenchName(String frenchName) {
+		Continent vReturnContinent = null;
+		Query vQuery = entityManager.createQuery("SELECT u FROM Continent u WHERE u.continentFrenchName = :name");
+		vQuery.setParameter("name", frenchName);
+
+		try {
+			vReturnContinent = (Continent) vQuery.getSingleResult();
+		} catch (NoResultException e) {
+		}
+		entityManager.close();
+		return vReturnContinent;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public Continent getContinentBeanByEnglishName(String englishName) {
+		Continent vReturnContinent = null;
+		Query vQuery = entityManager.createQuery("SELECT u FROM Continent u WHERE u.continentEnglishName = :name");
+		vQuery.setParameter("name", englishName);
+
+		try {
+			vReturnContinent = (Continent) vQuery.getSingleResult();
+		} catch (NoResultException e) {
+		}
+		entityManager.close();
+		return vReturnContinent;
 	}
 
 }

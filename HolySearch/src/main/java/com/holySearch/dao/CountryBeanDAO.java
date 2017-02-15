@@ -3,24 +3,27 @@ package com.holySearch.dao;
 import java.io.UnsupportedEncodingException;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.holySearch.bean.Country;
+import com.holySearch.bean.User;
 
 @Repository
 public class CountryBeanDAO {
 
 	@PersistenceContext
 	transient EntityManager entityManager;
-	
+
 	public CountryBeanDAO() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public void createNewCountry(String countryEnglishName, String countryFrenchName, float countryLongitude,
 			float countryLatitude, float countryPopulation, String countryCurrency, String countryIsoA2,
@@ -44,5 +47,38 @@ public class CountryBeanDAO {
 		vCountry.setCountryPrecipitationLevel(countryPrecipitationLevel);
 		vCountry.setCountryCriminality(countryCriminality);
 		vCountry.setCountryCriminalityLevel(countryCriminalityLevel);
+		// Ajouter le continent
+		entityManager.persist(vCountry);
+		entityManager.close();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public Country getCountryBeanByFrenchName(String frenchName) {
+		Country vReturnCountry = null;
+		Query vQuery = entityManager.createQuery("SELECT u FROM Country u WHERE u.countryFrenchName = :name");
+		vQuery.setParameter("name", frenchName);
+
+		try {
+			vReturnCountry = (Country) vQuery.getSingleResult();
+		} catch (NoResultException e) {
+		}
+		entityManager.close();
+		return vReturnCountry;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public Country getCountryBeanByEnglishName(String englishName) {
+		Country vReturnCountry = null;
+		Query vQuery = entityManager.createQuery("SELECT u FROM Country u WHERE u.countryEnglishName = :name");
+		vQuery.setParameter("name", englishName);
+
+		try {
+			vReturnCountry = (Country) vQuery.getSingleResult();
+		} catch (NoResultException e) {
+		}
+		entityManager.close();
+		return vReturnCountry;
 	}
 }

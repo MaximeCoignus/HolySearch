@@ -1,10 +1,13 @@
 package com.holySearch.bean;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,54 +18,58 @@ public class Country {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "countryid")
 	private int countryId;
-	
+
 	@Column(name = "englishname")
 	private String countryEnglishName;
-	
+
 	@Column(name = "frenchname")
 	private String countryFrenchName;
-	
+
 	@Column(name = "longitude")
 	private float countryLongitude;
-	
+
 	@Column(name = "latitude")
 	private float countryLatitude;
-	
+
 	@Column(name = "population")
 	private float countryPopulation;
-	
+
 	@Column(name = "currency")
 	private String countryCurrency;
-	
+
 	@Column(name = "isoa2")
 	private String countryIsoA2;
-	
+
 	@Column(name = "isoa3")
 	private String countryIsoA3;
-	
+
 	@Column(name = "wikidescription")
 	private String countryWikiDescription;
-	
+
 	@Column(name = "wikipicture")
 	private String countryWikiPicture;
-	
+
 	@Column(name = "temperature")
 	private float countryTemperature;
-	
+
 	@Column(name = "temperaturelevel")
 	private String countryTemperatureLevel;
-	
+
 	@Column(name = "precipitation")
 	private float countryPrecipitation;
-	
+
 	@Column(name = "precipitationlevel")
 	private String countryPrecipitationLevel;
-	
+
 	@Column(name = "criminality")
 	private float countryCriminality;
-	
+
 	@Column(name = "criminalityLevel")
 	private String countryCriminalityLevel;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "continentid", referencedColumnName = "continentid")
+	private Continent continent;
 
 	/**
 	 * @return the countryEnglishName
@@ -72,7 +79,8 @@ public class Country {
 	}
 
 	/**
-	 * @param countryEnglishName the countryEnglishName to set
+	 * @param countryEnglishName
+	 *            the countryEnglishName to set
 	 */
 	public void setCountryEnglishName(String countryEnglishName) {
 		this.countryEnglishName = countryEnglishName;
@@ -86,7 +94,8 @@ public class Country {
 	}
 
 	/**
-	 * @param countryFrenchName the countryFrenchName to set
+	 * @param countryFrenchName
+	 *            the countryFrenchName to set
 	 */
 	public void setCountryFrenchName(String countryFrenchName) {
 		this.countryFrenchName = countryFrenchName;
@@ -100,7 +109,8 @@ public class Country {
 	}
 
 	/**
-	 * @param countryLongitude the countryLongitude to set
+	 * @param countryLongitude
+	 *            the countryLongitude to set
 	 */
 	public void setCountryLongitude(float countryLongitude) {
 		this.countryLongitude = countryLongitude;
@@ -114,7 +124,8 @@ public class Country {
 	}
 
 	/**
-	 * @param countryLatitude the countryLatitude to set
+	 * @param countryLatitude
+	 *            the countryLatitude to set
 	 */
 	public void setCountryLatitude(float countryLatitude) {
 		this.countryLatitude = countryLatitude;
@@ -128,7 +139,8 @@ public class Country {
 	}
 
 	/**
-	 * @param countryPopulation the countryPopulation to set
+	 * @param countryPopulation
+	 *            the countryPopulation to set
 	 */
 	public void setCountryPopulation(float countryPopulation) {
 		this.countryPopulation = countryPopulation;
@@ -142,7 +154,8 @@ public class Country {
 	}
 
 	/**
-	 * @param countryCurrency the countryCurrency to set
+	 * @param countryCurrency
+	 *            the countryCurrency to set
 	 */
 	public void setCountryCurrency(String countryCurrency) {
 		this.countryCurrency = countryCurrency;
@@ -156,7 +169,8 @@ public class Country {
 	}
 
 	/**
-	 * @param countryIsoA2 the countryIsoA2 to set
+	 * @param countryIsoA2
+	 *            the countryIsoA2 to set
 	 */
 	public void setCountryIsoA2(String countryIsoA2) {
 		this.countryIsoA2 = countryIsoA2;
@@ -170,7 +184,8 @@ public class Country {
 	}
 
 	/**
-	 * @param countryIsoA3 the countryIsoA3 to set
+	 * @param countryIsoA3
+	 *            the countryIsoA3 to set
 	 */
 	public void setCountryIsoA3(String countryIsoA3) {
 		this.countryIsoA3 = countryIsoA3;
@@ -184,7 +199,8 @@ public class Country {
 	}
 
 	/**
-	 * @param countryWikiDescription the countryWikiDescription to set
+	 * @param countryWikiDescription
+	 *            the countryWikiDescription to set
 	 */
 	public void setCountryWikiDescription(String countryWikiDescription) {
 		this.countryWikiDescription = countryWikiDescription;
@@ -198,7 +214,8 @@ public class Country {
 	}
 
 	/**
-	 * @param countryWikiPicture the countryWikiPicture to set
+	 * @param countryWikiPicture
+	 *            the countryWikiPicture to set
 	 */
 	public void setCountryWikiPicture(String countryWikiPicture) {
 		this.countryWikiPicture = countryWikiPicture;
@@ -212,7 +229,8 @@ public class Country {
 	}
 
 	/**
-	 * @param countryTemperature the countryTemperature to set
+	 * @param countryTemperature
+	 *            the countryTemperature to set
 	 */
 	public void setCountryTemperature(float countryTemperature) {
 		this.countryTemperature = countryTemperature;
@@ -226,7 +244,8 @@ public class Country {
 	}
 
 	/**
-	 * @param countryTemperatureLevel the countryTemperatureLevel to set
+	 * @param countryTemperatureLevel
+	 *            the countryTemperatureLevel to set
 	 */
 	public void setCountryTemperatureLevel(String countryTemperatureLevel) {
 		this.countryTemperatureLevel = countryTemperatureLevel;
@@ -240,7 +259,8 @@ public class Country {
 	}
 
 	/**
-	 * @param countryPrecipitation the countryPrecipitation to set
+	 * @param countryPrecipitation
+	 *            the countryPrecipitation to set
 	 */
 	public void setCountryPrecipitation(float countryPrecipitation) {
 		this.countryPrecipitation = countryPrecipitation;
@@ -254,7 +274,8 @@ public class Country {
 	}
 
 	/**
-	 * @param countryPrecipitationLevel the countryPrecipitationLevel to set
+	 * @param countryPrecipitationLevel
+	 *            the countryPrecipitationLevel to set
 	 */
 	public void setCountryPrecipitationLevel(String countryPrecipitationLevel) {
 		this.countryPrecipitationLevel = countryPrecipitationLevel;
@@ -268,7 +289,8 @@ public class Country {
 	}
 
 	/**
-	 * @param countryCriminality the countryCriminality to set
+	 * @param countryCriminality
+	 *            the countryCriminality to set
 	 */
 	public void setCountryCriminality(float countryCriminality) {
 		this.countryCriminality = countryCriminality;
@@ -282,7 +304,8 @@ public class Country {
 	}
 
 	/**
-	 * @param countryCriminalityLevel the countryCriminalityLevel to set
+	 * @param countryCriminalityLevel
+	 *            the countryCriminalityLevel to set
 	 */
 	public void setCountryCriminalityLevel(String countryCriminalityLevel) {
 		this.countryCriminalityLevel = countryCriminalityLevel;
@@ -294,6 +317,20 @@ public class Country {
 	public int getCountryId() {
 		return countryId;
 	}
-	
-	
+
+	/**
+	 * @return the continent
+	 */
+	public Continent getContinent() {
+		return continent;
+	}
+
+	/**
+	 * @param continent
+	 *            the continent to set
+	 */
+	public void setContinent(Continent continent) {
+		this.continent = continent;
+	}
+
 }
