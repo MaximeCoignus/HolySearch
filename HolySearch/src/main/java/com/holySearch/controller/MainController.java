@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +26,7 @@ import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.holySearch.bean.Avatar;
 import com.holySearch.forms.AvatarForm;
@@ -46,7 +48,7 @@ import com.holySearch.services.UserService;
 import com.holySearch.transfert.object.BeachBeanTO;
 
 @Controller
-public class MainController  implements HandlerExceptionResolver {
+public class MainController implements HandlerExceptionResolver{
 
 	private static final Logger log = Logger.getLogger(MainController.class);
 
@@ -127,19 +129,25 @@ public class MainController  implements HandlerExceptionResolver {
 			return "index";
 	}
 	
-	public ModelAndView resolveException(HttpServletRequest request,
-			HttpServletResponse response, Object handler, Exception exception)
+	/*
+	 * Gestion des exceptions liees aux avatars trop volumineux
+	 * */
+	@ExceptionHandler(Exception.class)
+	public ModelAndView resolveException(HttpServletRequest req, HttpServletResponse resp, 
+			Object handler, Exception ex)
 	{
-		Map<String, Object> model = new HashMap<String, Object>();
-		if (exception instanceof MaxUploadSizeExceededException)
-		{
-			model.put("errors", "Fichier trop volumineux, veuillez sélectionner une autre image (< 500 ko)");
-		} else 
-		{
-			model.put("errors", "Unexpected error : " + exception.getMessage());
+		Map<String, Object> mav = new HashMap <String, Object>();
+		if (ex instanceof MaxUploadSizeExceededException) {
+			mav.put("errors", "Fichier trop volumineux, veuillez sélectionner une autre image ( < 500 ko )");
+		} else {
+			mav.put("errors", "Unexpected error : " + ex.getMessage());
 		}
-		model.put("avatar", new Avatar());
-		return new ModelAndView("modifier-photo-profil", model);
+		mav.put("avatar", new Avatar());
+		if (req.getServletPath().equalsIgnoreCase("/createUserAccount")) {
+		return new ModelAndView("inscription" , mav);
+		} else {
+		return new ModelAndView("modifier-photo-profil" , mav);
+		}
 	}
 	
 	@RequestMapping(value = "enregistrer-photo-profil", method = RequestMethod.GET)
