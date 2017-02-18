@@ -1,44 +1,31 @@
 package com.holySearch.dao;
 
-import java.io.UnsupportedEncodingException;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.holySearch.bean.Continent;
-import com.holySearch.bean.Continent;
+import com.holySearch.parser.ContinentParser;
 
 @Repository
 public class ContinentBeanDAO {
+
+	private static final Logger log = Logger.getLogger(ContinentBeanDAO.class);
 
 	@PersistenceContext
 	transient EntityManager entityManager;
 
 	public ContinentBeanDAO() {
 		// TODO Auto-generated constructor stub
-	}
-
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public void createNewContinent(String continentEnglishName, String continentFrenchName, float continentLongitude,
-			float continentLatitude, float continentPopulation, float continentSizeKilometer,
-			String continentWikiDescription, String continentWikiPicture) throws UnsupportedEncodingException {
-		Continent vContinent = new Continent();
-		vContinent.setContinentEnglishName(continentEnglishName);
-		vContinent.setContinentFrenchName(continentFrenchName);
-		vContinent.setContinentLongitude(continentLongitude);
-		vContinent.setContinentLatitude(continentLatitude);
-		vContinent.setContinentPopulation(continentPopulation);
-		vContinent.setContinentSizeKilometer(continentSizeKilometer);
-		vContinent.setContinentWikiDescription(continentWikiDescription);
-		vContinent.setContinentWikiPicture(continentWikiPicture);
-		entityManager.persist(vContinent);
-		entityManager.close();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -69,6 +56,27 @@ public class ContinentBeanDAO {
 		}
 		entityManager.close();
 		return vReturnContinent;
+	}
+
+	public void newContinentInDatabase(String url) throws Exception {
+
+		ArrayList<Continent> continentsList = null;
+		try {
+			// Appel de la methode getBeaches avec en parametre
+			// l'url du webservice
+			continentsList = ContinentParser.getContinents(url);
+			for (Continent continent : continentsList) {
+				System.out.println(continent);
+				if (getContinentBeanByFrenchName(continent.getContinentFrenchName()) == null
+						&& getContinentBeanByEnglishName(continent.getContinentEnglishName()) == null) {
+					entityManager.persist(continent);
+				}
+			}
+			entityManager.close();
+		} catch (IOException e) {
+			log.trace(e);
+		}
+
 	}
 
 }

@@ -2,10 +2,13 @@ package com.holySearch.forms;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class InsertBeachesForm {
+public class InsertDataForm {
 
 	@NotEmpty
 	private String url;
+	
+	@NotEmpty
+	private String objet;
 
 	/**
 	 * @return the url
@@ -19,6 +22,20 @@ public class InsertBeachesForm {
 	 */
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	/**
+	 * @return the objet
+	 */
+	public String getObjet() {
+		return objet;
+	}
+
+	/**
+	 * @param objet the objet to set
+	 */
+	public void setObjet(String objet) {
+		this.objet = objet;
 	}
 	
 	

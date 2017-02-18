@@ -30,7 +30,9 @@ public class MapperUtils {
 			vUserBeanTO.setUserPassword(pUserForm.getUserPassword());
 			SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD");
 			try {
-				vUserBeanTO.setUserBirthday(format.parse(pUserForm.getUserBirthday()));
+				if (!pUserForm.getUserBirthday().toString().isEmpty()) {
+					vUserBeanTO.setUserBirthday(format.parse(pUserForm.getUserBirthday()));
+				}
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -43,7 +43,7 @@
 									<div id="wrapper">
 										<div class="text-center">
 											<input id="fileUpload" class="form-control input-lg"
-												name="userAvatarFile" type="file" /><br />
+												name="userAvatarFile" type="file" accept=".png, .jpg, .jpeg" /><br />
 
 											<script>
 												$("#fileUpload")

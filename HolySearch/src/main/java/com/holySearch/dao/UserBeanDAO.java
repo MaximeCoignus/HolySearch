@@ -1,7 +1,10 @@
 package com.holySearch.dao;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Vector;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -38,6 +41,28 @@ public class UserBeanDAO {
 		}
 		entityManager.close();
 		return vReturnUser;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public boolean checkUserExistence(String login, String nom, String email) {
+		Vector<User> vReturnUser = null;
+		Query vQuery = entityManager.createQuery(
+				"SELECT u FROM User u WHERE u.userLogin = :login or u.userNom = :nom or u.userEmail = :email");
+		vQuery.setParameter("login", login);
+		vQuery.setParameter("nom", nom);
+		vQuery.setParameter("email", email);
+
+		try {
+			vReturnUser = (Vector<User>) vQuery.getResultList();
+		} catch (NoResultException e) {
+		}
+		entityManager.close();
+		if (vReturnUser != null && vReturnUser.size() > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)

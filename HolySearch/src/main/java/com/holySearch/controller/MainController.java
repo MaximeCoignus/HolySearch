@@ -26,13 +26,11 @@ import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
-import com.holySearch.bean.Avatar;
 import com.holySearch.forms.AvatarForm;
 import com.holySearch.forms.ConnexionForm;
 import com.holySearch.forms.ContactForm;
-import com.holySearch.forms.InsertBeachesForm;
+import com.holySearch.forms.InsertDataForm;
 import com.holySearch.forms.ReinitialiserPasswordForm;
 import com.holySearch.forms.ResultatForm;
 import com.holySearch.forms.SearchForm;
@@ -44,11 +42,12 @@ import com.holySearch.mapper.MapperUtils;
 import com.holySearch.reinitialiserPassword.EnvoiMail;
 import com.holySearch.services.AvatarService;
 import com.holySearch.services.BeachService;
+import com.holySearch.services.ContinentService;
 import com.holySearch.services.UserService;
 import com.holySearch.transfert.object.BeachBeanTO;
 
 @Controller
-public class MainController implements HandlerExceptionResolver{
+public class MainController implements HandlerExceptionResolver {
 
 	private static final Logger log = Logger.getLogger(MainController.class);
 
@@ -60,6 +59,9 @@ public class MainController implements HandlerExceptionResolver{
 
 	@Resource
 	AvatarService mAvatarService;
+
+	@Resource
+	ContinentService mContinentService;
 
 	@Autowired
 	private MapperUtils mMapperUtils;
@@ -128,28 +130,37 @@ public class MainController implements HandlerExceptionResolver{
 		} else
 			return "index";
 	}
-	
+
 	/*
 	 * Gestion des exceptions liees aux avatars trop volumineux
-	 * */
+	 */
 	@ExceptionHandler(Exception.class)
-	public ModelAndView resolveException(HttpServletRequest req, HttpServletResponse resp, 
-			Object handler, Exception ex)
-	{
-		Map<String, Object> mav = new HashMap <String, Object>();
+	public ModelAndView resolveException(HttpServletRequest req, HttpServletResponse resp, Object handler,
+			Exception ex) {
+		Map<String, Object> mav = new HashMap<String, Object>();
 		if (ex instanceof MaxUploadSizeExceededException) {
 			mav.put("errors", "Fichier trop volumineux, veuillez sélectionner une autre image ( < 500 ko )");
 		} else {
 			mav.put("errors", "Unexpected error : " + ex.getMessage());
 		}
-		mav.put("avatar", new Avatar());
 		if (req.getServletPath().equalsIgnoreCase("/createUserAccount")) {
-		return new ModelAndView("inscription" , mav);
+			return new ModelAndView("inscription", mav);
 		} else {
-		return new ModelAndView("modifier-photo-profil" , mav);
+			if (req.getSession().getAttribute(ATT_SESSION_USER) != null) {
+				byte[] avatar;
+				try {
+					avatar = mAvatarService.getImageAvatar(req.getSession().getAttribute(ATT_SESSION_USER).toString());
+					mav.put("avatarUser", org.apache.commons.codec.binary.Base64.encodeBase64String(avatar));
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+			return new ModelAndView("modifier-photo-profil", mav);
 		}
 	}
-	
+
 	@RequestMapping(value = "enregistrer-photo-profil", method = RequestMethod.GET)
 	public String enregistrerPhotoProfilGet(@ModelAttribute(value = "avatarForm") final AvatarForm pAvatarForm,
 			final ModelMap pModel, HttpSession session) throws IOException {
@@ -170,7 +181,7 @@ public class MainController implements HandlerExceptionResolver{
 		} else
 			return "index";
 	}
-	
+
 	@RequestMapping(value = "annuler-modification-photo-profil", method = RequestMethod.GET)
 	public String annulerModificationPhotoProfil(@ModelAttribute(value = "avatarForm") final AvatarForm pAvatarForm,
 			final ModelMap pModel, HttpSession session) throws IOException {
@@ -263,6 +274,12 @@ public class MainController implements HandlerExceptionResolver{
 			return "index";
 	}
 
+	@RequestMapping(value = "/createUserAccount", method = RequestMethod.GET)
+	public String createAccountGet(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel,
+			HttpSession session) {
+		return "inscription";
+	}
+
 	@RequestMapping(value = "/deconnexion", method = RequestMethod.GET)
 	public String deconnecter(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel,
 			HttpSession session) {
@@ -278,7 +295,8 @@ public class MainController implements HandlerExceptionResolver{
 		if (puserForm != null) {
 			log.trace(puserForm.getUserBirthday());
 			MultipartFile file = puserForm.getUserAvatarFile();
-			if (puserForm.getUserConfirmPassword().equals(puserForm.getUserPassword())) {
+			if (puserForm.getUserConfirmPassword().equals(puserForm.getUserPassword()) && !mUserService
+					.checkUserExistence(puserForm.getUserLogin(), puserForm.getUserNom(), puserForm.getUserEmail())) {
 				if (puserForm.getUserLogin() != null && !file.isEmpty()) {
 					mAvatarService.createNewAvatar(puserForm.getUserLogin(), puserForm.getUserAvatarFile().getBytes());
 				}
@@ -289,6 +307,14 @@ public class MainController implements HandlerExceptionResolver{
 					pModel.clear();
 					session.setAttribute(ATT_SESSION_USER, puserForm.getUserLogin());
 					redirect = "search";
+				}
+			} else {
+				if (mUserService.checkUserExistence(puserForm.getUserLogin(), puserForm.getUserNom(),
+						puserForm.getUserEmail())) {
+					pModel.addAttribute("errors", "L'identifiant ou le nom ou l'email choisi est déjà utilisé.");
+				}
+				if (!puserForm.getUserConfirmPassword().equals(puserForm.getUserPassword())) {
+					pModel.addAttribute("errors", "Les mots de passes saisies ne sont pas identiques.");
 				}
 			}
 		}
@@ -403,21 +429,41 @@ public class MainController implements HandlerExceptionResolver{
 			return "index";
 	}
 
-	@RequestMapping(value = "/insertBeaches", method = RequestMethod.POST)
-	public String insertBeaches(@ModelAttribute(value = "insertBeachesForm") final InsertBeachesForm insertBeachesForm,
-			final ModelMap pModel) throws UnsupportedEncodingException {
-		if (insertBeachesForm != null && !insertBeachesForm.getUrl().isEmpty()) {
-			mBeachService.insertBeaches(insertBeachesForm.getUrl());
+	@RequestMapping(value = "/insertData", method = RequestMethod.POST)
+	public String insertDataPost(@ModelAttribute(value = "insertBeachesForm") final InsertDataForm insertDataForm,
+			final ModelMap pModel) throws Exception {
+		if (insertDataForm != null && !insertDataForm.getUrl().isEmpty()) {
+			if (insertDataForm.getObjet() != null) {
+				if ("Continent".equals(insertDataForm.getObjet())) {
+					mContinentService.insertContinents(insertDataForm.getUrl());
+					pModel.addAttribute("resultatInsertionData", "Les continents ont bien été insérés");
+				}
+				if ("City".equals(insertDataForm.getObjet())) {
+					pModel.addAttribute("resultatInsertionData", "Les villes ont bien été insérées");
+				}
+				if ("Country".equals(insertDataForm.getObjet())) {
+					pModel.addAttribute("resultatInsertionData", "Les pays ont bien été insérés");
+				}
+				if ("Destination".equals(insertDataForm.getObjet())) {
+					mBeachService.insertBeaches(insertDataForm.getUrl());
+					pModel.addAttribute("resultatInsertionData", "Les destinations ont bien été insérées");
+				}
+			}
 		}
-		return "insertBeaches";
+		return "insertData";
 
 	}
 
-	@RequestMapping(value = "/insertBeachesForm", method = RequestMethod.GET)
-	public String insertBeachesForm(
-			@ModelAttribute(value = "insertBeachesForm") final InsertBeachesForm insertBeachesForm,
+	@RequestMapping(value = "/insertDataForm", method = RequestMethod.GET)
+	public String insertDataForm(@ModelAttribute(value = "insertDataForm") final InsertDataForm insertDataForm,
 			final ModelMap pModel) throws UnsupportedEncodingException {
-		return "insertBeaches";
+		return "insertData";
+	}
+
+	@RequestMapping(value = "/insertData", method = RequestMethod.GET)
+	public String insertData(@ModelAttribute(value = "insertDataForm") final InsertDataForm insertDataForm,
+			final ModelMap pModel) throws UnsupportedEncodingException {
+		return "insertData";
 	}
 
 }

@@ -8,6 +8,7 @@
 		<class>com.holySearch.bean.User</class>
 		<class>com.holySearch.bean.Beach</class>
 		<class>com.holySearch.bean.Avatar</class>
+		<class>com.holySearch.bean.Continent</class>
 
 
 		<properties>

@@ -52,7 +52,7 @@
 									<div id="wrapper">
 										<div class="text-center">
 											<input id="fileUpload" class="form-control input-lg"
-												name="userAvatarFile" type="file" /><br />
+												name="userAvatarFile" type="file" accept=".png, .jpg, .jpeg" /><br />
 
 											<script>
 												$("#fileUpload")
@@ -85,7 +85,7 @@
 																});
 											</script>
 											<c:if test="${not empty errors}">
-												<p style="color:red;">${errors}.</p>
+												<p style="color: red;">${errors}.</p>
 											</c:if>
 										</div>
 									</div>
@@ -113,7 +113,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="bootstrap/dist/vendors.js"></script>

@@ -43,6 +43,16 @@ public class UserService {
 	}
 	
 	
+	/*
+	 * Get User By nom
+	 */
+	public boolean checkUserExistence(String login, String nom, String email) throws UnsupportedEncodingException {
+		if(login != null && nom != null && email!=null){
+			return mUserBeanDAO.checkUserExistence(login, nom, email);
+		}
+		return false;
+	}
+	
 	
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public boolean createNewUser(UserBeanTO pTestBeanTO) throws UnsupportedEncodingException {
