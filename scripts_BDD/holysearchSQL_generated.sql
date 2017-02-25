@@ -9,14 +9,14 @@
 
 CREATE TABLE Continent(
         continentid     int (11) Auto_increment  NOT NULL ,
-        englishname     Varchar (25) ,
-        frenchname      Varchar (25) ,
+        englishname     Text  ,
+        frenchname      Text  ,
         longitude       FLOAT NOT NULL ,
         latitude        FLOAT NOT NULL ,
         population      FLOAT ,
         sizekm          FLOAT ,
-        wikidescription Varchar (25) ,
-        wikipicture     Varchar (25) ,
+        wikidescription Text ,
+        wikipicture     Text ,
         PRIMARY KEY (continentid )
 )ENGINE=InnoDB;
 
@@ -27,22 +27,22 @@ CREATE TABLE Continent(
 
 CREATE TABLE Country(
         countryid          int (11) Auto_increment  NOT NULL ,
-        englishname        Varchar (25) NOT NULL ,
-        frenchname         Varchar (25) ,
+        englishname        Text   NOT NULL ,
+        frenchname         Text  ,
         longitude          FLOAT NOT NULL ,
         latitude           FLOAT NOT NULL ,
         population         FLOAT NOT NULL ,
-        currency           Varchar (25) ,
-        isoa2              Varchar (25) ,
-        isoa3              Varchar (25) ,
-        wikidescription    Varchar (25) NOT NULL ,
-        wikipicture        Varchar (25) NOT NULL ,
+        currency           Text   ,
+        isoa2              Text   ,
+        isoa3              Text  ,
+        wikidescription    Text  ,
+        wikipicture        Text  ,
         temperature        TinyINT ,
-        temperaturelevel   Varchar (25) ,
+        temperaturelevel   Text   ,
         precipitation      FLOAT ,
-        precipitationlevel Varchar (25) ,
+        precipitationlevel Text   ,
         criminality        FLOAT ,
-        criminalitylevel   Varchar (25) ,
+        criminalitylevel   Text   ,
         continentid        Int ,
         PRIMARY KEY (countryid )
 )ENGINE=InnoDB;
@@ -54,13 +54,13 @@ CREATE TABLE Country(
 
 CREATE TABLE City(
         cityid          int (11) Auto_increment  NOT NULL ,
-        englishname     Varchar (25) NOT NULL ,
-        frenchname      Varchar (25) NOT NULL ,
+        englishname     Text   ,
+        frenchname      Text   ,
         longitude       FLOAT ,
         latitude        FLOAT ,
         population      FLOAT NOT NULL ,
-        wikidescription Varchar (25) NOT NULL ,
-        wikipicture     Varchar (25) NOT NULL ,
+        wikidescription Text  ,
+        wikipicture    Text   ,
         iscapital       Bool ,
         countryid       Int ,
         PRIMARY KEY (cityid )
@@ -73,19 +73,14 @@ CREATE TABLE City(
 
 CREATE TABLE Destination(
         destinationid   int (11) Auto_increment  NOT NULL ,
-        englishname     Varchar (25) NOT NULL ,
-        frenchname      Varchar (25) NOT NULL ,
+        englishname     Text   NOT NULL ,
+        frenchname      Text   NOT NULL ,
         longitude       FLOAT NOT NULL ,
         latitude        FLOAT ,
-        wikidescription Varchar (25) NOT NULL ,
-        wikipicture     Varchar (25) NOT NULL ,
-        type            Varchar (25) NOT NULL ,
+        wikidescription Text   ,
+        wikipicture     Text   ,
+        type            Text   NOT NULL ,
         countryid       Int ,
         cityid          Int ,
         PRIMARY KEY (destinationid )
 )ENGINE=InnoDB;
-
-ALTER TABLE Country ADD CONSTRAINT FK_Country_continentid FOREIGN KEY (continentid) REFERENCES Continent(continentid);
-ALTER TABLE City ADD CONSTRAINT FK_City_countryid FOREIGN KEY (countryid) REFERENCES Country(countryid);
-ALTER TABLE Destination ADD CONSTRAINT FK_Destination_countryid FOREIGN KEY (countryid) REFERENCES Country(countryid);
-ALTER TABLE Destination ADD CONSTRAINT FK_Destination_cityid FOREIGN KEY (cityid) REFERENCES City(cityid);

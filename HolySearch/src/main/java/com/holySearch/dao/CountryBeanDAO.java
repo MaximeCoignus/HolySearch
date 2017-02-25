@@ -1,21 +1,28 @@
 package com.holySearch.dao;
 
-import java.io.UnsupportedEncodingException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.holySearch.bean.Continent;
 import com.holySearch.bean.Country;
-import com.holySearch.bean.User;
+import com.holySearch.parser.CountryParser;
 
 @Repository
 public class CountryBeanDAO {
+
+	private static final Logger log = Logger.getLogger(CountryBeanDAO.class);
 
 	@PersistenceContext
 	transient EntityManager entityManager;
@@ -24,61 +31,84 @@ public class CountryBeanDAO {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public void createNewCountry(String countryEnglishName, String countryFrenchName, float countryLongitude,
-			float countryLatitude, float countryPopulation, String countryCurrency, String countryIsoA2,
-			String countryIsoA3, String countryWikiDescription, String countryWikiPicture, float countryTemperature,
-			String countryTemperatureLevel, float countryPrecipitation, String countryPrecipitationLevel,
-			float countryCriminality, String countryCriminalityLevel) throws UnsupportedEncodingException {
-		Country vCountry = new Country();
-		vCountry.setCountryEnglishName(countryEnglishName);
-		vCountry.setCountryFrenchName(countryFrenchName);
-		vCountry.setCountryLongitude(countryLongitude);
-		vCountry.setCountryLatitude(countryLatitude);
-		vCountry.setCountryPopulation(countryPopulation);
-		vCountry.setCountryCurrency(countryCurrency);
-		vCountry.setCountryIsoA2(countryIsoA2);
-		vCountry.setCountryIsoA3(countryIsoA3);
-		vCountry.setCountryWikiDescription(countryWikiDescription);
-		vCountry.setCountryWikiPicture(countryWikiPicture);
-		vCountry.setCountryTemperature(countryTemperature);
-		vCountry.setCountryTemperatureLevel(countryTemperatureLevel);
-		vCountry.setCountryPrecipitation(countryPrecipitation);
-		vCountry.setCountryPrecipitationLevel(countryPrecipitationLevel);
-		vCountry.setCountryCriminality(countryCriminality);
-		vCountry.setCountryCriminalityLevel(countryCriminalityLevel);
-		// Ajouter le continent
-		entityManager.persist(vCountry);
-		entityManager.close();
-	}
-
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public Country getCountryBeanByFrenchName(String frenchName) {
-		Country vReturnCountry = null;
-		Query vQuery = entityManager.createQuery("SELECT u FROM Country u WHERE u.countryFrenchName = :name");
-		vQuery.setParameter("name", frenchName);
-
-		try {
-			vReturnCountry = (Country) vQuery.getSingleResult();
-		} catch (NoResultException e) {
-		}
+	public List<Country> getAllCountry() {
+		List<Country> vReturnCountry = null;
+		Query vQuery = entityManager.createQuery("SELECT u FROM Country u");
+		vReturnCountry = (Vector<Country>) vQuery.getResultList();
 		entityManager.close();
 		return vReturnCountry;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public Country getCountryBeanByEnglishName(String englishName) {
-		Country vReturnCountry = null;
-		Query vQuery = entityManager.createQuery("SELECT u FROM Country u WHERE u.countryEnglishName = :name");
+	public void deleteAllCountry() {
+		List<Country> countries = getAllCountry();
+		if (countries != null && !countries.isEmpty()) {
+			System.out.println("remove");
+			for (Country country : countries) {
+				entityManager.remove(country);
+			}
+		}
+		entityManager.close();
+
+	}
+
+	public void newCountryInDatabase() throws Exception {
+
+		ArrayList<Country> countriesList = null;
+		ArrayList<String> continentNameList = null;
+		try {
+			// Appel de la methode getBeaches avec en parametre
+			// l'url du webservice
+			countriesList = CountryParser.getCountries();
+			continentNameList = CountryParser.getContinentNameList();
+			cleanList(countriesList, continentNameList);
+			for (Country country : countriesList) {
+				System.out.println(country);
+				if (continentNameList.get(countriesList.indexOf(country)) != null
+						&& !continentNameList.get(countriesList.indexOf(country)).isEmpty()
+						&& !"null".equals(continentNameList.get(countriesList.indexOf(country)))) {
+					System.out.println("continent Name = " + continentNameList.get(countriesList.indexOf(country)));
+					country.setContinent(
+							getContinentBeanByEnglishName(continentNameList.get(countriesList.indexOf(country))));
+				}
+				entityManager.persist(country);
+
+			}
+			entityManager.close();
+		} catch (IOException e) {
+			log.trace(e);
+		}
+
+	}
+
+	private void cleanList(ArrayList<Country> countriesList, ArrayList<String> continentNameList) {
+		for (int i = 0; i < countriesList.size(); i++) {
+			for (int j = i + 1; j < countriesList.size(); j++) {
+				if (countriesList.get(i).getCountryEnglishName().equals(countriesList.get(j).getCountryEnglishName())) {
+					System.out.println("supression de " + countriesList.get(j).getCountryEnglishName());
+					countriesList.remove(j);
+					continentNameList.remove(j);
+					j--;
+				}
+			}
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public Continent getContinentBeanByEnglishName(String englishName) {
+		Continent vReturnContinent = null;
+		Query vQuery = entityManager.createQuery("SELECT u FROM Continent u WHERE u.continentEnglishName = :name");
 		vQuery.setParameter("name", englishName);
 
 		try {
-			vReturnCountry = (Country) vQuery.getSingleResult();
+			vReturnContinent = (Continent) vQuery.getSingleResult();
 		} catch (NoResultException e) {
 		}
 		entityManager.close();
-		return vReturnCountry;
+		return vReturnContinent;
 	}
 }

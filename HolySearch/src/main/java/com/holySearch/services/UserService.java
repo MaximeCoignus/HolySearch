@@ -35,9 +35,9 @@ public class UserService {
 	/*
 	 * Get User By nom
 	 */
-	public User getUserByNom(String nom) throws UnsupportedEncodingException {
-		if(nom != null){
-			return mUserBeanDAO.getUserBeanByNom(nom);
+	public User getUserByLogin(String login) throws UnsupportedEncodingException {
+		if(login != null){
+			return mUserBeanDAO.getUserBeanByLogin(login);
 		}
 		return null;
 	}

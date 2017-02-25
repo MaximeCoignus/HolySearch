@@ -2,6 +2,8 @@ package com.holySearch.dao;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -30,47 +32,36 @@ public class ContinentBeanDAO {
 
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public Continent getContinentBeanByFrenchName(String frenchName) {
-		Continent vReturnContinent = null;
-		Query vQuery = entityManager.createQuery("SELECT u FROM Continent u WHERE u.continentFrenchName = :name");
-		vQuery.setParameter("name", frenchName);
-
-		try {
-			vReturnContinent = (Continent) vQuery.getSingleResult();
-		} catch (NoResultException e) {
-		}
+	public List<Continent> getAllContinent() {
+		List<Continent> vReturnContinent = null;
+		Query vQuery = entityManager.createQuery("select u FROM Continent u");
+		vReturnContinent = (Vector<Continent>) vQuery.getResultList();
 		entityManager.close();
 		return vReturnContinent;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public Continent getContinentBeanByEnglishName(String englishName) {
-		Continent vReturnContinent = null;
-		Query vQuery = entityManager.createQuery("SELECT u FROM Continent u WHERE u.continentEnglishName = :name");
-		vQuery.setParameter("name", englishName);
-
-		try {
-			vReturnContinent = (Continent) vQuery.getSingleResult();
-		} catch (NoResultException e) {
+	public void deleteAllContinent() {
+		List<Continent> continents = getAllContinent();
+		if (continents != null && !continents.isEmpty()) {
+			System.out.println("remove");
+			for (Continent continent : continents) {
+				entityManager.remove(continent);
+			}
 		}
 		entityManager.close();
-		return vReturnContinent;
 	}
 
-	public void newContinentInDatabase(String url) throws Exception {
+	public void newContinentInDatabase() throws Exception {
 
 		ArrayList<Continent> continentsList = null;
 		try {
-			// Appel de la methode getBeaches avec en parametre
-			// l'url du webservice
-			continentsList = ContinentParser.getContinents(url);
+
+			continentsList = ContinentParser.getContinents();
 			for (Continent continent : continentsList) {
 				System.out.println(continent);
-				if (getContinentBeanByFrenchName(continent.getContinentFrenchName()) == null
-						&& getContinentBeanByEnglishName(continent.getContinentEnglishName()) == null) {
-					entityManager.persist(continent);
-				}
+				entityManager.persist(continent);
 			}
 			entityManager.close();
 		} catch (IOException e) {

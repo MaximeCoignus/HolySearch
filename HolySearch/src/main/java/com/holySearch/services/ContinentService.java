@@ -1,7 +1,5 @@
 package com.holySearch.services;
 
-import java.io.UnsupportedEncodingException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
@@ -16,9 +14,12 @@ public class ContinentService {
 	ContinentBeanDAO mContinentBeanDAO;
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public void insertContinents(String url) throws Exception {
-		if (!url.isEmpty()) {
-			mContinentBeanDAO.newContinentInDatabase(url);
-		}
+	public void insertContinents() throws Exception {
+		mContinentBeanDAO.newContinentInDatabase();
+	}
+
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public void deleteAllContinent() throws Exception {
+		mContinentBeanDAO.deleteAllContinent();
 	}
 }

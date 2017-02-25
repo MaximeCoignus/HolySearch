@@ -5,102 +5,196 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.StringReader;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
 
-import com.holySearch.bean.Beach;
+import com.holySearch.bean.Destination;
 
-public class BeachParser
-{
-	//public static JSONObject json = readJsonFromUrl("http://overpass-api.de/api/interpreter?data=[out:json];area[name=%22France%22];(node[natural=%22beach%22](area););out;");
+import eu.bitm.NominatimReverseGeocoding.Address;
+import eu.bitm.NominatimReverseGeocoding.NominatimReverseGeocodingJAPI;
 
-	//fonction intermédiaire qui permet de lire une entrée entierement
-	private static String readAll(Reader rd)
-	{
+public class BeachParser {
+
+	ArrayList<String> countriesNameList = new ArrayList<String>();
+	ArrayList<String> citiesNameList = new ArrayList<String>();
+
+	/**
+	 * @return the countriesNameList
+	 */
+	public ArrayList<String> getCountriesNameList() {
+		return countriesNameList;
+	}
+
+	/**
+	 * @return the citiesNameList
+	 */
+	public ArrayList<String> getCitiesNameList() {
+		return citiesNameList;
+	}
+
+	private static String readAll(Reader rd) {
 		StringBuilder sb = new StringBuilder();
 		int cp;
-		try
-		{
-			while ((cp = rd.read()) != -1)
-			{
+		try {
+			while ((cp = rd.read()) != -1) {
 				sb.append((char) cp);
 			}
-		}
-		catch(IOException e)
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return sb.toString();
 	}
 
-	//fonction qui permet de retourner un objet JSON à partir d'une url
-	private static JSONObject readJsonFromUrl(String url) throws IOException
-	{
+	// fonction qui permet de retourner un objet JSON à partir d'une url
+	private static JSONObject readJsonFromFile() throws IOException {
+
 		JSONObject json = null;
-		InputStream is = null;
-		try
-		{
-			is = new URL(url).openStream();
-			BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-			String jsonText = readAll(rd);
-			json = new JSONObject(jsonText);
-		}
-		catch(JSONException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			is.close();
-		}
+		BufferedReader rd = new BufferedReader(new InputStreamReader(
+				Thread.currentThread().getContextClassLoader().getResourceAsStream("/beachJSON.txt"),
+				Charset.forName("UTF-8")));
+
+		String jsonText = readAll(rd);
+		json = new JSONObject(jsonText);
 		return json;
 	}
 
-	public static ArrayList<Beach> getBeaches(String url) throws IOException
-	{
-		JSONObject json = readJsonFromUrl(url);
-		Beach beach = null;
-		ArrayList <Beach> beaches = new ArrayList<Beach>();
-		String beachName = null;
-		float lat = 0.0f;
-		float lon = 0.0f;
-		
-		try
-		{
-			//on parcourt les éléments du résultat pour alimenter l'arrayList de Beach
-			for(int i = 0; i < json.getJSONArray("elements").length(); i++)
-			{
-				//le name n'est pas toujours disponible pour éviter les erreurs on l'encapsule dans un if
-				if(! json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("name"))
-				{
-					beachName = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").get("name").toString();
-				}
-				else
-					beachName = "Plage name null";
-				
-				//on alimente la latitude et la longitude
-				lat = Float.parseFloat(json.getJSONArray("elements").getJSONObject(i).get("lat").toString());
-				lon = Float.parseFloat(json.getJSONArray("elements").getJSONObject(i).get("lon").toString());
-				
-				//on alimente l'objet et on l'ajouter à l'ArrayList
-				beach = new Beach();
-				beach.setBeachName(beachName);
-				beach.setLatitude(lat);
-				beach.setLongitude(lon);
-				beaches.add(beach);
-				
-				//on remet le beachName à null pour ne pas avoir de doublon au niveau des noms
-				beachName = null;
+	public static Document loadXML(String url) throws Exception {
+		InputStream is = null;
+		String xmlText = null;
+		try {
+			is = new URL(url).openStream();
+			BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+			xmlText = readAll(rd);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		} finally {
+			is.close();
+		}
+		DocumentBuilderFactory fctr = DocumentBuilderFactory.newInstance();
+		DocumentBuilder bldr = fctr.newDocumentBuilder();
+		InputSource insrc = new InputSource(new StringReader(xmlText));
+		return bldr.parse(insrc);
+	}
+
+	private void getCountryNameAndCityNameWithAPI(Destination pDestination) throws Exception {
+		System.out.println("get names");
+		NominatimReverseGeocodingJAPI nominatim1 = new NominatimReverseGeocodingJAPI(18);
+		Address adresse = nominatim1.getAdress(pDestination.getDestinationLatitude(),
+				pDestination.getDestinationLongitude());
+		if (adresse != null) {
+			if (adresse.getCounty() != null && !adresse.getCounty().isEmpty()) {
+				citiesNameList.add(adresse.getCounty());
+			} else {
+				citiesNameList.add("null");
+			}
+			if (adresse.getCountry() != null && !adresse.getCountry().isEmpty()) {
+				countriesNameList.add(adresse.getCountry());
+			} else {
+				countriesNameList.add("null");
 			}
 		}
-		catch(JSONException e)
-		{
+	}
+
+	public ArrayList<Destination> getBeaches() throws Exception {
+		JSONObject json = readJsonFromFile();
+		Destination beach = null;
+		ArrayList<Destination> beaches = new ArrayList<Destination>();
+		String beachFrenchName = null;
+		String beachEnglishName = null;
+		float lat = 0.0f;
+		float lon = 0.0f;
+		String wikiDescription = null;
+		String wikiPictureUrl = null;
+
+		try {
+			// on parcourt les éléments du résultat pour alimenter
+			// l'arrayList de Country
+			for (int i = 0; i < json.getJSONArray("elements").length(); i++) {
+				System.out.println(i);
+				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("name")) {
+
+					beachFrenchName = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").get("name")
+							.toString();
+
+					beachEnglishName = beachFrenchName;
+
+					// on alimente la latitude et la longitude
+
+					lat = Float.parseFloat(json.getJSONArray("elements").getJSONObject(i).get("lat").toString());
+
+					lon = Float.parseFloat(json.getJSONArray("elements").getJSONObject(i).get("lon").toString());
+
+					if (beachFrenchName != null && !beachFrenchName.isEmpty()) {
+						wikiDescription = getWikiDescription(beachFrenchName);
+
+						wikiPictureUrl = getWikiPictureUrl(beachFrenchName);
+					}
+
+					// on alimente l'objet et on l'ajouter à l'ArrayList
+					beach = new Destination();
+					beach.setDestinationFrenchName(beachFrenchName);
+					beach.setDestinationEnglishName(beachEnglishName);
+					beach.setDestinationLatitude(lat);
+					beach.setDestinationLongitude(lon);
+					beach.setDestinationWikiDescription(wikiDescription);
+					beach.setDestinationWikiPicture(wikiPictureUrl);
+					beach.setDestinationType("beach");
+					beaches.add(beach);
+					getCountryNameAndCityNameWithAPI(beach);
+					System.out.println(beach + " country = " + countriesNameList.get(countriesNameList.size() - 1)
+							+ " city = " + citiesNameList.get(citiesNameList.size() - 1));
+				}
+			}
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		System.out.println("taille " + beaches.size());
 		return beaches;
 	}
+
+	public static String getWikiDescription(String frenchName) throws Exception {
+		Document xmlDocument = loadXML(
+				"https://fr.wikipedia.org/w/api.php?format=xml&action=query&prop=extracts&exintro=&explaintext=&titles="
+						+ frenchName.replace(" ", "%20"));
+		String wikiDescription = null;
+
+		try {
+			if (xmlDocument != null && xmlDocument.getElementsByTagName("extract") != null
+					&& xmlDocument.getElementsByTagName("extract").item(0) != null) {
+				wikiDescription = xmlDocument.getElementsByTagName("extract").item(0).getTextContent();
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return wikiDescription;
+	}
+
+	public static String getWikiPictureUrl(String frenchName) throws Exception {
+		Document xmlDocument = loadXML(
+				"https://fr.wikipedia.org/w/api.php?format=xml&action=query&prop=pageimages&pithumbsize=9000&titles="
+						+ frenchName.replace(" ", "%20"));
+		String wikiPictureUrl = null;
+
+		try {
+			if (xmlDocument != null && xmlDocument.getElementsByTagName("thumbnail") != null
+					&& xmlDocument.getElementsByTagName("thumbnail").item(0) != null) {
+				wikiPictureUrl = xmlDocument.getElementsByTagName("thumbnail").item(0).getAttributes()
+						.getNamedItem("source").getTextContent();
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return wikiPictureUrl;
+	}
+
 }

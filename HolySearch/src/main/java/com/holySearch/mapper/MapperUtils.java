@@ -8,12 +8,12 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.holySearch.bean.Avatar;
-import com.holySearch.bean.Beach;
+import com.holySearch.bean.Destination;
 import com.holySearch.bean.User;
 import com.holySearch.forms.ResultatForm;
 import com.holySearch.forms.UserForm;
 import com.holySearch.transfert.object.AvatarTO;
-import com.holySearch.transfert.object.BeachBeanTO;
+import com.holySearch.transfert.object.DestinationTO;
 import com.holySearch.transfert.object.UserBeanTO;
 
 @Component
@@ -86,47 +86,46 @@ public class MapperUtils {
 		return vAvatarTO;
 	}
 
-	public BeachBeanTO mapBeachToBeachBeanTO(Beach beach) {
-		BeachBeanTO vBeachBeanTO = null;
-
-		if (beach != null) {
-			vBeachBeanTO = new BeachBeanTO();
-
-			vBeachBeanTO.setBeachId(beach.getBeachId());
-			vBeachBeanTO.setBeachName(beach.getBeachName());
-			vBeachBeanTO.setLatitude(beach.getLatitude());
-			vBeachBeanTO.setLongitude(beach.getLongitude());
-
+	public DestinationTO mapDestinationBeanToDestinationTO(Destination pDestination) {
+		DestinationTO vDestinationTO = null;
+		if (pDestination != null) {
+			vDestinationTO = new DestinationTO();
+			vDestinationTO.setDestinationFrenchName(pDestination.getDestinationFrenchName());
+			vDestinationTO.setDestinationEnglishName(pDestination.getDestinationEnglishName());
+			vDestinationTO.setDestinationLatitude(pDestination.getDestinationLatitude());
+			vDestinationTO.setDestinationLongitude(pDestination.getDestinationLongitude());
+			vDestinationTO.setDestinationId(pDestination.getDestinationId());
+			vDestinationTO.setDestinationType(pDestination.getDestinationType());
+			vDestinationTO.setDestinationWikiDescription(pDestination.getDestinationWikiDescription());
+			vDestinationTO.setDestinationWikiPicture(pDestination.getDestinationWikiPicture());
 		}
-
-		return vBeachBeanTO;
+		return vDestinationTO;
 	}
 
-	public List<BeachBeanTO> mapListBeachToListBeachBeanTO(List<Beach> beach) {
-		List<BeachBeanTO> vBeachBeanTO = null;
-
-		if (beach != null) {
-			vBeachBeanTO = new ArrayList<BeachBeanTO>();
-			for (Beach vBeach : beach) {
-				vBeachBeanTO.add(mapBeachToBeachBeanTO(vBeach));
+	public List<DestinationTO> mapListDestinationBeanToDestinationTO(List<Destination> pDestinationList) {
+		List<DestinationTO> listeDestinationTO = null;
+		if (pDestinationList != null && !pDestinationList.isEmpty()) {
+			listeDestinationTO = new ArrayList<DestinationTO>();
+			for (Destination pDestination : pDestinationList) {
+				listeDestinationTO.add(mapDestinationBeanToDestinationTO(pDestination));
 			}
 		}
-
-		return vBeachBeanTO;
+		return listeDestinationTO;
 	}
 
-	public ResultatForm mapBeachBeanTOToResultatForm(BeachBeanTO pBeachBeanTO) {
+	public ResultatForm mapDestinationTOToResultatForm(DestinationTO vDestinationBeanTO) {
 		ResultatForm vResultatForm = null;
-
-		if (pBeachBeanTO != null) {
+		if (vDestinationBeanTO != null) {
 			vResultatForm = new ResultatForm();
-			vResultatForm.setBeachName(pBeachBeanTO.getBeachName());
-			vResultatForm.setLatitude(pBeachBeanTO.getLatitude());
-			vResultatForm.setLongitude(pBeachBeanTO.getLongitude());
-
+			vResultatForm.setDestinationFrenchName(vDestinationBeanTO.getDestinationFrenchName());
+			vResultatForm.setDestinationEnglishName(vDestinationBeanTO.getDestinationEnglishName());
+			vResultatForm.setDestinationLatitude(vDestinationBeanTO.getDestinationLatitude());
+			vResultatForm.setDestinationLongitude(vDestinationBeanTO.getDestinationLongitude());
+			vResultatForm.setDestinationId(vDestinationBeanTO.getDestinationId());
+			vResultatForm.setDestinationType(vDestinationBeanTO.getDestinationType());
+			vResultatForm.setDestinationWikiDescription(vDestinationBeanTO.getDestinationWikiDescription());
+			vResultatForm.setDestinationWikiPicture(vDestinationBeanTO.getDestinationWikiPicture());
 		}
-
 		return vResultatForm;
 	}
-
 }

@@ -22,8 +22,7 @@
 	<div class="container voffset5 background-white">
 		<div class="container">
 
-			<br /> <br />
-			<br /> <br />
+			<br /> <br /> <br /> <br />
 			<form:form action="rechercher" method="get"
 				modelAttribute="searchForm" class="inline-form">
 				<div class="row" style="margin-left: 10%;">
@@ -53,13 +52,18 @@
 					<c:forEach var="resultat" items="${listeResultatForm}">
 						<tr>
 							<td><label><spring:message code="resultat.nomPlage" />:</label>
-								<c:out value="${resultat.beachName}" /></td>
+								<c:out value="${resultat.destinationFrenchName}" /></td>
 							<td><label><spring:message
-										code="resultat.latitudePlage" />:</label> <c:out
+										code="resultat.destinationLatitude" />:</label> <c:out
 									value="${resultat.latitude}" /></td>
 							<td><label><spring:message
 										code="resultat.longitudePlage" />:</label> <c:out
-									value="${resultat.longitude}" /></td>
+									value="${resultat.destinationLongitude}" /></td>
+							<td><label>Wiki Description:</label> <c:out
+									value="${resultat.destinationWikiDescription}" /></td>
+							<td><label>Wiki picture:</label> <img
+								src="<c:out
+									value="${resultat.destinationWikiPicture}"" /></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -75,10 +79,12 @@
 
 		</div>
 	</div>
-	<br /> <br />
-			<br /> <br />
-			
-<script
+	<br />
+	<br />
+	<br />
+	<br />
+
+	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="bootstrap/dist/vendors.js"></script>
 	<script src="bootstrap/dist/app.js"></script>

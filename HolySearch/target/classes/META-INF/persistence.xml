@@ -6,9 +6,11 @@
 	<persistence-unit name="holySearch">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>com.holySearch.bean.User</class>
-		<class>com.holySearch.bean.Beach</class>
 		<class>com.holySearch.bean.Avatar</class>
 		<class>com.holySearch.bean.Continent</class>
+		<class>com.holySearch.bean.Country</class>
+		<class>com.holySearch.bean.City</class>
+		<class>com.holySearch.bean.Destination</class>
 
 
 		<properties>

@@ -38,19 +38,14 @@ public class ContinentParser {
 	}
 
 	// fonction qui permet de retourner un objet JSON à partir d'une url
-	private static JSONObject readJsonFromUrl(String url) throws IOException {
+	private static JSONObject readJsonFromFile() throws IOException {
+
 		JSONObject json = null;
-		InputStream is = null;
-		try {
-			is = new URL(url).openStream();
-			BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-			String jsonText = readAll(rd);
-			json = new JSONObject(jsonText);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		} finally {
-			is.close();
-		}
+		BufferedReader rd = new BufferedReader(new InputStreamReader(
+				Thread.currentThread().getContextClassLoader().getResourceAsStream("/continentJSON.txt"), Charset.forName("UTF-8")));
+
+		String jsonText = readAll(rd);
+		json = new JSONObject(jsonText);
 		return json;
 	}
 
@@ -72,8 +67,8 @@ public class ContinentParser {
 		return bldr.parse(insrc);
 	}
 
-	public static ArrayList<Continent> getContinents(String url) throws Exception {
-		JSONObject json = readJsonFromUrl(url);
+	public static ArrayList<Continent> getContinents() throws Exception {
+		JSONObject json = readJsonFromFile();
 		Continent continent = null;
 		ArrayList<Continent> continents = new ArrayList<Continent>();
 		String continentFrenchName = null;
@@ -119,7 +114,6 @@ public class ContinentParser {
 				continent.setContinentWikiDescription(wikiDescription);
 				continent.setContinentWikiPicture(wikiPictureUrl);
 				continents.add(continent);
-				System.out.println(continent);
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -134,15 +128,7 @@ public class ContinentParser {
 		String wikiDescription = null;
 
 		try {
-			NodeList nodes = xmlDocument.getElementsByTagName("api");
-			Element elementApi = (Element) nodes.item(0);
-			NodeList query = elementApi.getElementsByTagName("query");
-			Element elementQuery = (Element) nodes.item(0);
-			NodeList pages = elementQuery.getElementsByTagName("pages");
-			Element elementPages = (Element) nodes.item(0);
-			NodeList page = elementPages.getElementsByTagName("page");
-			Element elementPage = (Element) nodes.item(0);
-			wikiDescription = elementPage.getElementsByTagName("extract").item(0).getTextContent();
+			wikiDescription = xmlDocument.getElementsByTagName("extract").item(0).getTextContent();
 			System.out.println(wikiDescription);
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -157,15 +143,7 @@ public class ContinentParser {
 		String wikiPictureUrl = null;
 
 		try {
-			NodeList nodes = xmlDocument.getElementsByTagName("api");
-			Element elementApi = (Element) nodes.item(0);
-			NodeList query = elementApi.getElementsByTagName("query");
-			Element elementQuery = (Element) nodes.item(0);
-			NodeList pages = elementQuery.getElementsByTagName("pages");
-			Element elementPages = (Element) nodes.item(0);
-			NodeList page = elementPages.getElementsByTagName("page");
-			Element elementPage = (Element) nodes.item(0);
-			wikiPictureUrl = elementPage.getElementsByTagName("thumbnail").item(0).getAttributes()
+			wikiPictureUrl = xmlDocument.getElementsByTagName("thumbnail").item(0).getAttributes()
 					.getNamedItem("source").getTextContent();
 			System.out.println(wikiPictureUrl);
 		} catch (JSONException e) {

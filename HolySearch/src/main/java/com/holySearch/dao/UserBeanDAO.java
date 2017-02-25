@@ -30,10 +30,10 @@ public class UserBeanDAO {
 
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public User getUserBeanByNom(String nom) {
+	public User getUserBeanByLogin(String login) {
 		User vReturnUser = null;
-		Query vQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.userNom = :name");
-		vQuery.setParameter("name", nom);
+		Query vQuery = entityManager.createQuery("SELECT u FROM User u WHERE u.userLogin= :login");
+		vQuery.setParameter("login", login);
 
 		try {
 			vReturnUser = (User) vQuery.getSingleResult();

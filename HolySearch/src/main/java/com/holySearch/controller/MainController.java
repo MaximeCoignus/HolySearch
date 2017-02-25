@@ -30,21 +30,22 @@ import org.springframework.web.servlet.ModelAndView;
 import com.holySearch.forms.AvatarForm;
 import com.holySearch.forms.ConnexionForm;
 import com.holySearch.forms.ContactForm;
-import com.holySearch.forms.InsertDataForm;
 import com.holySearch.forms.ReinitialiserPasswordForm;
 import com.holySearch.forms.ResultatForm;
 import com.holySearch.forms.SearchForm;
 import com.holySearch.forms.UserForm;
-import com.holySearch.lucene.BeachIndexItem;
-import com.holySearch.lucene.BeachIndexer;
-import com.holySearch.lucene.BeachSearcher;
+import com.holySearch.lucene.DestinationIndexItem;
+import com.holySearch.lucene.DestinationIndexer;
+import com.holySearch.lucene.DestinationSearcher;
 import com.holySearch.mapper.MapperUtils;
 import com.holySearch.reinitialiserPassword.EnvoiMail;
 import com.holySearch.services.AvatarService;
-import com.holySearch.services.BeachService;
+import com.holySearch.services.CityService;
 import com.holySearch.services.ContinentService;
+import com.holySearch.services.CountryService;
+import com.holySearch.services.DestinationService;
 import com.holySearch.services.UserService;
-import com.holySearch.transfert.object.BeachBeanTO;
+import com.holySearch.transfert.object.DestinationTO;
 
 @Controller
 public class MainController implements HandlerExceptionResolver {
@@ -55,13 +56,19 @@ public class MainController implements HandlerExceptionResolver {
 	UserService mUserService;
 
 	@Resource
-	BeachService mBeachService;
+	DestinationService mDestinationService;
 
 	@Resource
 	AvatarService mAvatarService;
 
 	@Resource
 	ContinentService mContinentService;
+
+	@Resource
+	CountryService mCountryService;
+
+	@Resource
+	CityService mCityService;
 
 	@Autowired
 	private MapperUtils mMapperUtils;
@@ -117,8 +124,8 @@ public class MainController implements HandlerExceptionResolver {
 
 			// Récupérer les informations de l'utilisateur à partir de son nom
 			// (variable de session ATT_SESSION_USER)
-			UserForm vUserForm = mMapperUtils.mapUserBeanTOToUserForm(mMapperUtils
-					.mapUserToUserBeanTO(mUserService.getUserByNom(session.getAttribute(ATT_SESSION_USER).toString())));
+			UserForm vUserForm = mMapperUtils.mapUserBeanTOToUserForm(mMapperUtils.mapUserToUserBeanTO(
+					mUserService.getUserByLogin(session.getAttribute(ATT_SESSION_USER).toString())));
 
 			// Récupérer l'avatar de l'utilisateur à partir de son nom (variable
 			// de session ATT_SESSION_USER)
@@ -168,8 +175,8 @@ public class MainController implements HandlerExceptionResolver {
 			String redirect = "mon-profil";
 			// Récupérer les informations de l'utilisateur à partir de son nom
 			// (variable de session ATT_SESSION_USER)
-			UserForm vUserForm = mMapperUtils.mapUserBeanTOToUserForm(mMapperUtils
-					.mapUserToUserBeanTO(mUserService.getUserByNom(session.getAttribute(ATT_SESSION_USER).toString())));
+			UserForm vUserForm = mMapperUtils.mapUserBeanTOToUserForm(mMapperUtils.mapUserToUserBeanTO(
+					mUserService.getUserByLogin(session.getAttribute(ATT_SESSION_USER).toString())));
 
 			// Récupérer l'avatar de l'utilisateur à partir de son nom (variable
 			// de session ATT_SESSION_USER)
@@ -189,8 +196,8 @@ public class MainController implements HandlerExceptionResolver {
 			String redirect = "mon-profil";
 			// Récupérer les informations de l'utilisateur à partir de son nom
 			// (variable de session ATT_SESSION_USER)
-			UserForm vUserForm = mMapperUtils.mapUserBeanTOToUserForm(mMapperUtils
-					.mapUserToUserBeanTO(mUserService.getUserByNom(session.getAttribute(ATT_SESSION_USER).toString())));
+			UserForm vUserForm = mMapperUtils.mapUserBeanTOToUserForm(mMapperUtils.mapUserToUserBeanTO(
+					mUserService.getUserByLogin(session.getAttribute(ATT_SESSION_USER).toString())));
 
 			// Récupérer l'avatar de l'utilisateur à partir de son nom (variable
 			// de session ATT_SESSION_USER)
@@ -209,8 +216,8 @@ public class MainController implements HandlerExceptionResolver {
 		if (session.getAttribute(ATT_SESSION_USER) != null) {
 			// Récupérer les informations de l'utilisateur à partir de son nom
 			// (variable de session ATT_SESSION_USER)
-			UserForm vUserForm = mMapperUtils.mapUserBeanTOToUserForm(mMapperUtils
-					.mapUserToUserBeanTO(mUserService.getUserByNom(session.getAttribute(ATT_SESSION_USER).toString())));
+			UserForm vUserForm = mMapperUtils.mapUserBeanTOToUserForm(mMapperUtils.mapUserToUserBeanTO(
+					mUserService.getUserByLogin(session.getAttribute(ATT_SESSION_USER).toString())));
 
 			// Récupérer l'avatar de l'utilisateur à partir de son nom (variable
 			// de session ATT_SESSION_USER)
@@ -325,7 +332,7 @@ public class MainController implements HandlerExceptionResolver {
 
 	@RequestMapping(value = "/connexion", method = RequestMethod.POST)
 	public String checkExistence(@Valid @ModelAttribute(value = "connexionForm") final ConnexionForm pConnexionForm,
-			final BindingResult pBindingResult, final ModelMap pModel, HttpSession session) throws IOException {
+			final BindingResult pBindingResult, final ModelMap pModel, HttpSession session) throws Exception {
 
 		String redirect = "index";
 		if (mUserService.userBeanExist(pConnexionForm.getLogin(), pConnexionForm.getPassword())) {
@@ -348,19 +355,21 @@ public class MainController implements HandlerExceptionResolver {
 
 	}
 
-	private void insertIndex() throws IOException {
+	private void insertIndex() throws Exception {
 		// the items to be indexed
-		List<BeachBeanTO> vListeBeach = mBeachService.getAllBeaches();
-		List<BeachIndexItem> vListeBeachIndexItem = null;
-		if (vListeBeach != null) {
-			vListeBeachIndexItem = new ArrayList<BeachIndexItem>();
-			for (BeachBeanTO vBeachBeanTO : vListeBeach) {
-				vListeBeachIndexItem.add(new BeachIndexItem(vBeachBeanTO.getBeachId(), vBeachBeanTO.getBeachName()));
+		List<DestinationTO> vListeDestinations = mMapperUtils
+				.mapListDestinationBeanToDestinationTO(mDestinationService.getAllDestinations());
+		List<DestinationIndexItem> vListeDestinationsIndexItem = null;
+		if (vListeDestinations != null) {
+			vListeDestinationsIndexItem = new ArrayList<DestinationIndexItem>();
+			for (DestinationTO vDestinationBeanTO : vListeDestinations) {
+				vListeDestinationsIndexItem.add(new DestinationIndexItem(vDestinationBeanTO.getDestinationId(),
+						vDestinationBeanTO.getDestinationFrenchName()));
 			}
 		}
 
-		BeachIndexer indexer = new BeachIndexer(INDEX_DIR);
-		for (BeachIndexItem indexItem : vListeBeachIndexItem) {
+		DestinationIndexer indexer = new DestinationIndexer(INDEX_DIR);
+		for (DestinationIndexItem indexItem : vListeDestinationsIndexItem) {
 			indexer.index(indexItem);
 		}
 
@@ -407,17 +416,19 @@ public class MainController implements HandlerExceptionResolver {
 			// Traitement avec Lucene
 			if (pSearchForm != null && pSearchForm.getObjetSearch() != null
 					&& !pSearchForm.getObjetSearch().isEmpty()) {
-				BeachSearcher searcher = new BeachSearcher(INDEX_DIR);
-				List<BeachIndexItem> result = searcher.findByBeachName(pSearchForm.getObjetSearch(),
+				DestinationSearcher searcher = new DestinationSearcher(INDEX_DIR);
+				List<DestinationIndexItem> result = searcher.findByDestinationName(pSearchForm.getObjetSearch(),
 						DEFAULT_RESULT_SIZE);
 
 				List<ResultatForm> vListeResultatForm = null;
 				if (result != null) {
 					vListeResultatForm = new ArrayList<ResultatForm>();
-					for (BeachIndexItem vBeachIndexItem : result) {
-						BeachBeanTO vBeachBeanTO = mBeachService.getBeachByNom(vBeachIndexItem.getBeachName());
-						if (vBeachBeanTO != null) {
-							vListeResultatForm.add(mMapperUtils.mapBeachBeanTOToResultatForm(vBeachBeanTO));
+					for (DestinationIndexItem vDestinationIndexItem : result) {
+						DestinationTO vDestinationBeanTO = mMapperUtils
+								.mapDestinationBeanToDestinationTO(mDestinationService
+										.getDestinationByNom(vDestinationIndexItem.getDestinationFrenchName()));
+						if (vDestinationBeanTO != null) {
+							vListeResultatForm.add(mMapperUtils.mapDestinationTOToResultatForm(vDestinationBeanTO));
 						}
 					}
 				}
@@ -430,39 +441,30 @@ public class MainController implements HandlerExceptionResolver {
 	}
 
 	@RequestMapping(value = "/insertData", method = RequestMethod.POST)
-	public String insertDataPost(@ModelAttribute(value = "insertBeachesForm") final InsertDataForm insertDataForm,
-			final ModelMap pModel) throws Exception {
-		if (insertDataForm != null && !insertDataForm.getUrl().isEmpty()) {
-			if (insertDataForm.getObjet() != null) {
-				if ("Continent".equals(insertDataForm.getObjet())) {
-					mContinentService.insertContinents(insertDataForm.getUrl());
-					pModel.addAttribute("resultatInsertionData", "Les continents ont bien été insérés");
-				}
-				if ("City".equals(insertDataForm.getObjet())) {
-					pModel.addAttribute("resultatInsertionData", "Les villes ont bien été insérées");
-				}
-				if ("Country".equals(insertDataForm.getObjet())) {
-					pModel.addAttribute("resultatInsertionData", "Les pays ont bien été insérés");
-				}
-				if ("Destination".equals(insertDataForm.getObjet())) {
-					mBeachService.insertBeaches(insertDataForm.getUrl());
-					pModel.addAttribute("resultatInsertionData", "Les destinations ont bien été insérées");
-				}
-			}
-		}
-		return "insertData";
+	public String insertDataPost(final ModelMap pModel) throws Exception {
 
-	}
+		mDestinationService.deleteAllBeaches();
+		mCityService.deleteAllCity();
+		mCountryService.deleteAllCountry();
+		mContinentService.deleteAllContinent();
 
-	@RequestMapping(value = "/insertDataForm", method = RequestMethod.GET)
-	public String insertDataForm(@ModelAttribute(value = "insertDataForm") final InsertDataForm insertDataForm,
-			final ModelMap pModel) throws UnsupportedEncodingException {
+		mContinentService.insertContinents();
+
+		mCountryService.insertCountries();
+
+		mCityService.insertCities();
+
+		mDestinationService.insertBeaches();
+
+		// ajout des stations de ski
+
+		pModel.addAttribute("resultatInsertionData", "Les datas ont bien été insérés");
+
 		return "insertData";
 	}
 
 	@RequestMapping(value = "/insertData", method = RequestMethod.GET)
-	public String insertData(@ModelAttribute(value = "insertDataForm") final InsertDataForm insertDataForm,
-			final ModelMap pModel) throws UnsupportedEncodingException {
+	public String insertData(final ModelMap pModel) throws UnsupportedEncodingException {
 		return "insertData";
 	}
 
