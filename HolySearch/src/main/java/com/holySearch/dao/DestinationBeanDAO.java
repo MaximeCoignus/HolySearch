@@ -65,25 +65,21 @@ public class DestinationBeanDAO {
 			BeachParser vBeachParser = new BeachParser();
 			beachesList = vBeachParser.getBeaches();
 			countryNameList = vBeachParser.getCountriesNameList();
-			cityNameList = vBeachParser.getCitiesNameList();
-			cleanList(beachesList, countryNameList, cityNameList);
+			cleanList(beachesList, countryNameList);
 			System.out.println("add Beaches");
 			for (Destination beach : beachesList) {
-				System.out.println("add Beaches " + beachesList.indexOf(beach));
-				if (countryNameList.get(beachesList.indexOf(beach)) != null
-						&& !countryNameList.get(beachesList.indexOf(beach)).isEmpty()
-						&& !"null".equals(countryNameList.get(beachesList.indexOf(beach)))
-						&& !countryNameList.get(beachesList.indexOf(beach)).toString().contains("?")) {
-					beach.setCountry(
-							getCountryBeanByFrenchOrEnglishName(countryNameList.get(beachesList.indexOf(beach))));
+				if (!beach.getDestinationEnglishName().toString().contains("?")
+						&& !beach.getDestinationFrenchName().toString().contains("?")) {
+					System.out.println("add Beach " + beach.toString());
+					if (countryNameList.get(beachesList.indexOf(beach)) != null
+							&& !countryNameList.get(beachesList.indexOf(beach)).isEmpty()
+							&& !"null".equals(countryNameList.get(beachesList.indexOf(beach)))
+							&& !countryNameList.get(beachesList.indexOf(beach)).toString().contains("?")) {
+						beach.setCountry(
+								getCountryBeanByFrenchOrEnglishName(countryNameList.get(beachesList.indexOf(beach))));
+					}
+					entityManager.persist(beach);
 				}
-				if (cityNameList.get(beachesList.indexOf(beach)) != null
-						&& !cityNameList.get(beachesList.indexOf(beach)).isEmpty()
-						&& !"null".equals(cityNameList.get(beachesList.indexOf(beach)))
-						&& !countryNameList.get(beachesList.indexOf(beach)).toString().contains("?")) {
-					beach.setCity(getCityBeanByFrenchOrEnglishName(cityNameList.get(beachesList.indexOf(beach))));
-				}
-				entityManager.persist(beach);
 			}
 			entityManager.close();
 		} catch (IOException e) {
@@ -124,8 +120,7 @@ public class DestinationBeanDAO {
 		return vReturnCity;
 	}
 
-	private void cleanList(ArrayList<Destination> beachesList, ArrayList<String> countriesNameList,
-			ArrayList<String> cityNameList) {
+	private void cleanList(ArrayList<Destination> beachesList, ArrayList<String> countriesNameList) {
 		for (int i = 0; i < beachesList.size(); i++) {
 			for (int j = i + 1; j < beachesList.size(); j++) {
 				if (beachesList.get(i).getDestinationEnglishName()
@@ -133,7 +128,6 @@ public class DestinationBeanDAO {
 					System.out.println("supression de " + beachesList.get(j).getDestinationEnglishName());
 					beachesList.remove(j);
 					countriesNameList.remove(j);
-					cityNameList.remove(j);
 					j--;
 				}
 			}

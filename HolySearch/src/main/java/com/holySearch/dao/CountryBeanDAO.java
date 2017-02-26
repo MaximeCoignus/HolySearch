@@ -66,15 +66,18 @@ public class CountryBeanDAO {
 			continentNameList = CountryParser.getContinentNameList();
 			cleanList(countriesList, continentNameList);
 			for (Country country : countriesList) {
-				System.out.println(country);
-				if (continentNameList.get(countriesList.indexOf(country)) != null
-						&& !continentNameList.get(countriesList.indexOf(country)).isEmpty()
-						&& !"null".equals(continentNameList.get(countriesList.indexOf(country)))) {
-					System.out.println("continent Name = " + continentNameList.get(countriesList.indexOf(country)));
-					country.setContinent(
-							getContinentBeanByEnglishName(continentNameList.get(countriesList.indexOf(country))));
+				if (!country.getCountryEnglishName().toString().contains("?")
+						&& !country.getCountryFrenchName().toString().contains("?")) {
+					System.out.println(country);
+					if (continentNameList.get(countriesList.indexOf(country)) != null
+							&& !continentNameList.get(countriesList.indexOf(country)).isEmpty()
+							&& !"null".equals(continentNameList.get(countriesList.indexOf(country)))) {
+						System.out.println("continent Name = " + continentNameList.get(countriesList.indexOf(country)));
+						country.setContinent(
+								getContinentBeanByEnglishName(continentNameList.get(countriesList.indexOf(country))));
+					}
+					entityManager.persist(country);
 				}
-				entityManager.persist(country);
 
 			}
 			entityManager.close();

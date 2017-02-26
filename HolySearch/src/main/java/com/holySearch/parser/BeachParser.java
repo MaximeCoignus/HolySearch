@@ -26,20 +26,12 @@ import eu.bitm.NominatimReverseGeocoding.NominatimReverseGeocodingJAPI;
 public class BeachParser {
 
 	ArrayList<String> countriesNameList = new ArrayList<String>();
-	ArrayList<String> citiesNameList = new ArrayList<String>();
 
 	/**
 	 * @return the countriesNameList
 	 */
 	public ArrayList<String> getCountriesNameList() {
 		return countriesNameList;
-	}
-
-	/**
-	 * @return the citiesNameList
-	 */
-	public ArrayList<String> getCitiesNameList() {
-		return citiesNameList;
 	}
 
 	private static String readAll(Reader rd) {
@@ -91,18 +83,13 @@ public class BeachParser {
 		NominatimReverseGeocodingJAPI nominatim1 = new NominatimReverseGeocodingJAPI(18);
 		Address adresse = nominatim1.getAdress(pDestination.getDestinationLatitude(),
 				pDestination.getDestinationLongitude());
-		String ville = "null";
 		String pays = "null";
 		if (adresse != null) {
-			if (adresse.getCounty() != null && !adresse.getCounty().isEmpty()) {
-				ville = adresse.getCounty();
-			}
 			if (adresse.getCountry() != null && !adresse.getCountry().isEmpty()) {
 				pays = adresse.getCountry();
 			}
 		}
 		countriesNameList.add(pays);
-		citiesNameList.add(ville);
 	}
 
 	public ArrayList<Destination> getBeaches() throws Exception {
@@ -153,8 +140,7 @@ public class BeachParser {
 					beach.setDestinationType("beach");
 					beaches.add(beach);
 					getCountryNameAndCityNameWithAPI(beach);
-					System.out.println(beach + " country = " + countriesNameList.get(countriesNameList.size() - 1)
-							+ " city = " + citiesNameList.get(citiesNameList.size() - 1));
+					System.out.println(beach + " country = " + countriesNameList.get(countriesNameList.size() - 1));
 				}
 			}
 

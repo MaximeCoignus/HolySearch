@@ -219,34 +219,4 @@ public class CityParser {
 		return wikiPictureUrl;
 	}
 
-	private void deleteAllWrongNames(ArrayList<City> citiesList) {
-		for (City city : citiesList) {
-			boolean deleteFrenchName = true;
-			boolean deleteEnglishName = true;
-			int i = 0;
-			while (i < city.getCityEnglishName().length() && deleteEnglishName == true) {
-				if (city.getCityEnglishName().charAt(i) != '?') {
-					deleteEnglishName = false;
-				}
-			}
-			while (i < city.getCityFrenchName().length() && deleteFrenchName == true) {
-				if (city.getCityFrenchName().charAt(i) != '?') {
-					deleteFrenchName = false;
-				}
-			}
-
-			if (deleteEnglishName == false && deleteFrenchName == true) {
-				city.setCityFrenchName(city.getCityEnglishName());
-			}
-			if (deleteEnglishName == true && deleteFrenchName == false) {
-				city.setCityEnglishName(city.getCityFrenchName());
-			}
-			if (deleteEnglishName == true && deleteFrenchName == true) {
-				citiesList.remove(i);
-				i--;
-			}
-
-		}
-	}
-
 }

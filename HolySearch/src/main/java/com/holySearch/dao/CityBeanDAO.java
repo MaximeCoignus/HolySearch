@@ -65,13 +65,16 @@ public class CityBeanDAO {
 			cleanList(citiesList, countryNameList);
 			System.out.println("add cities");
 			for (City city : citiesList) {
-				System.out.println("add cities " + citiesList.indexOf(city));
-				if (countryNameList.get(citiesList.indexOf(city)) != null
-						&& !countryNameList.get(citiesList.indexOf(city)).isEmpty()
-						&& !"null".equals(countryNameList.get(citiesList.indexOf(city)))) {
-					city.setCountry(getCountryBeanByEnglishName(countryNameList.get(citiesList.indexOf(city))));
+				if (!city.getCityEnglishName().toString().contains("?")
+						&& !city.getCityFrenchName().toString().contains("?")) {
+					System.out.println("add cities " + citiesList.indexOf(city));
+					if (countryNameList.get(citiesList.indexOf(city)) != null
+							&& !countryNameList.get(citiesList.indexOf(city)).isEmpty()
+							&& !"null".equals(countryNameList.get(citiesList.indexOf(city)))) {
+						city.setCountry(getCountryBeanByEnglishName(countryNameList.get(citiesList.indexOf(city))));
+					}
+					entityManager.persist(city);
 				}
-				entityManager.persist(city);
 			}
 			entityManager.close();
 		} catch (IOException e) {
