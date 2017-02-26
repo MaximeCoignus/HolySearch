@@ -1,6 +1,9 @@
 package com.holySearch.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -81,11 +84,12 @@ public class MainController implements HandlerExceptionResolver {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String afficher(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel,
-			HttpSession session) {
+			HttpSession session) throws FileNotFoundException {
 		if (session.getAttribute(ATT_SESSION_USER) != null) {
 			return "search";
 		} else
 			return "index";
+
 	}
 
 	@RequestMapping(value = "mentions-legales", method = RequestMethod.GET)

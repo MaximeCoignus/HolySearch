@@ -43,7 +43,8 @@ public class CityParser {
 
 		JSONObject json = null;
 		BufferedReader rd = new BufferedReader(new InputStreamReader(
-				Thread.currentThread().getContextClassLoader().getResourceAsStream("/cityJSON.txt"), Charset.forName("UTF-8")));
+				Thread.currentThread().getContextClassLoader().getResourceAsStream("/cityJSON.txt"),
+				Charset.forName("UTF-8")));
 		System.out.println("add cities");
 
 		String jsonText = readAll(rd);
@@ -72,7 +73,7 @@ public class CityParser {
 	public static ArrayList<String> getCountryNameList() throws Exception {
 		JSONObject json = readJsonFromFile();
 		ArrayList<String> countryNameList = new ArrayList<String>();
-		String countryName = null;
+		String countryName = "null";
 
 		try {
 			// on parcourt les éléments du résultat pour alimenter
@@ -96,31 +97,42 @@ public class CityParser {
 
 	public static ArrayList<City> getCities() throws Exception {
 		JSONObject json = readJsonFromFile();
-		City city = null;
 		ArrayList<City> cities = new ArrayList<City>();
-		String cityFrenchName = null;
-		String cityEnglishName = null;
-		float lat = 0.0f;
-		float lon = 0.0f;
-		float population = 0.0f;
-		String wikiDescription = null;
-		String wikiPictureUrl = null;
-		String capital = "no";
 
 		try {
 			// on parcourt les éléments du résultat pour alimenter
 			// l'arrayList de Country
 			for (int i = 0; i < json.getJSONArray("elements").length(); i++) {
+				City city = new City();
+				String cityFrenchName = "null";
+				String cityEnglishName = "null";
+				float lat = 0.0f;
+				float lon = 0.0f;
+				float population = 0.0f;
+				String wikiDescription = "null";
+				String wikiPictureUrl = "null";
+				String capital = "no";
+				String nom = "null";
+				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("name")) {
+
+					nom = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").get("name").toString();
+				}
 				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("name:fr")) {
 
 					cityFrenchName = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").get("name:fr")
 							.toString();
+				} else {
+					cityFrenchName = nom;
 				}
+
 				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("name:en")) {
 					cityEnglishName = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags")
 							.get("name:en").toString();
+				} else {
+					cityEnglishName = nom;
 				}
 
+				System.out.println(" indice " + i + " un des 2 noms est bons ");
 				// on alimente la latitude et la longitude
 
 				lat = Float.parseFloat(json.getJSONArray("elements").getJSONObject(i).get("lat").toString());
@@ -146,7 +158,6 @@ public class CityParser {
 				}
 
 				// on alimente l'objet et on l'ajouter à l'ArrayList
-				city = new City();
 				city.setCityFrenchName(cityFrenchName);
 				city.setCityEnglishName(cityEnglishName);
 				city.setCityLatitude(lat);
@@ -165,6 +176,7 @@ public class CityParser {
 				}
 				cities.add(city);
 				System.out.println(city);
+
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -176,7 +188,7 @@ public class CityParser {
 		Document xmlDocument = loadXML(
 				"https://fr.wikipedia.org/w/api.php?format=xml&action=query&prop=extracts&exintro=&explaintext=&titles="
 						+ frenchName.replace(" ", "%20"));
-		String wikiDescription = null;
+		String wikiDescription = "null";
 
 		try {
 			if (xmlDocument != null && xmlDocument.getElementsByTagName("extract") != null
@@ -193,7 +205,7 @@ public class CityParser {
 		Document xmlDocument = loadXML(
 				"https://fr.wikipedia.org/w/api.php?format=xml&action=query&prop=pageimages&pithumbsize=9000&titles="
 						+ frenchName.replace(" ", "%20"));
-		String wikiPictureUrl = null;
+		String wikiPictureUrl = "null";
 
 		try {
 			if (xmlDocument != null && xmlDocument.getElementsByTagName("thumbnail") != null
@@ -205,6 +217,36 @@ public class CityParser {
 			e.printStackTrace();
 		}
 		return wikiPictureUrl;
+	}
+
+	private void deleteAllWrongNames(ArrayList<City> citiesList) {
+		for (City city : citiesList) {
+			boolean deleteFrenchName = true;
+			boolean deleteEnglishName = true;
+			int i = 0;
+			while (i < city.getCityEnglishName().length() && deleteEnglishName == true) {
+				if (city.getCityEnglishName().charAt(i) != '?') {
+					deleteEnglishName = false;
+				}
+			}
+			while (i < city.getCityFrenchName().length() && deleteFrenchName == true) {
+				if (city.getCityFrenchName().charAt(i) != '?') {
+					deleteFrenchName = false;
+				}
+			}
+
+			if (deleteEnglishName == false && deleteFrenchName == true) {
+				city.setCityFrenchName(city.getCityEnglishName());
+			}
+			if (deleteEnglishName == true && deleteFrenchName == false) {
+				city.setCityEnglishName(city.getCityFrenchName());
+			}
+			if (deleteEnglishName == true && deleteFrenchName == true) {
+				citiesList.remove(i);
+				i--;
+			}
+
+		}
 	}
 
 }

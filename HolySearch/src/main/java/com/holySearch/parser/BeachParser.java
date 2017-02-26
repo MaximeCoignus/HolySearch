@@ -91,35 +91,36 @@ public class BeachParser {
 		NominatimReverseGeocodingJAPI nominatim1 = new NominatimReverseGeocodingJAPI(18);
 		Address adresse = nominatim1.getAdress(pDestination.getDestinationLatitude(),
 				pDestination.getDestinationLongitude());
+		String ville = "null";
+		String pays = "null";
 		if (adresse != null) {
 			if (adresse.getCounty() != null && !adresse.getCounty().isEmpty()) {
-				citiesNameList.add(adresse.getCounty());
-			} else {
-				citiesNameList.add("null");
+				ville = adresse.getCounty();
 			}
 			if (adresse.getCountry() != null && !adresse.getCountry().isEmpty()) {
-				countriesNameList.add(adresse.getCountry());
-			} else {
-				countriesNameList.add("null");
+				pays = adresse.getCountry();
 			}
 		}
+		countriesNameList.add(pays);
+		citiesNameList.add(ville);
 	}
 
 	public ArrayList<Destination> getBeaches() throws Exception {
 		JSONObject json = readJsonFromFile();
-		Destination beach = null;
+
 		ArrayList<Destination> beaches = new ArrayList<Destination>();
-		String beachFrenchName = null;
-		String beachEnglishName = null;
-		float lat = 0.0f;
-		float lon = 0.0f;
-		String wikiDescription = null;
-		String wikiPictureUrl = null;
 
 		try {
 			// on parcourt les éléments du résultat pour alimenter
 			// l'arrayList de Country
 			for (int i = 0; i < json.getJSONArray("elements").length(); i++) {
+				Destination beach = new Destination();
+				String beachFrenchName = "null";
+				String beachEnglishName = "null";
+				float lat = 0.0f;
+				float lon = 0.0f;
+				String wikiDescription = "null";
+				String wikiPictureUrl = "null";
 				System.out.println(i);
 				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("name")) {
 
@@ -127,6 +128,8 @@ public class BeachParser {
 							.toString();
 
 					beachEnglishName = beachFrenchName;
+
+					System.out.println(" indice beach = " + i + " le nom est ok ");
 
 					// on alimente la latitude et la longitude
 
@@ -141,7 +144,6 @@ public class BeachParser {
 					}
 
 					// on alimente l'objet et on l'ajouter à l'ArrayList
-					beach = new Destination();
 					beach.setDestinationFrenchName(beachFrenchName);
 					beach.setDestinationEnglishName(beachEnglishName);
 					beach.setDestinationLatitude(lat);
@@ -155,7 +157,10 @@ public class BeachParser {
 							+ " city = " + citiesNameList.get(citiesNameList.size() - 1));
 				}
 			}
-		} catch (JSONException e) {
+
+		} catch (
+
+		JSONException e) {
 			e.printStackTrace();
 		}
 		System.out.println("taille " + beaches.size());
@@ -166,7 +171,7 @@ public class BeachParser {
 		Document xmlDocument = loadXML(
 				"https://fr.wikipedia.org/w/api.php?format=xml&action=query&prop=extracts&exintro=&explaintext=&titles="
 						+ frenchName.replace(" ", "%20"));
-		String wikiDescription = null;
+		String wikiDescription = "null";
 
 		try {
 			if (xmlDocument != null && xmlDocument.getElementsByTagName("extract") != null
@@ -183,7 +188,7 @@ public class BeachParser {
 		Document xmlDocument = loadXML(
 				"https://fr.wikipedia.org/w/api.php?format=xml&action=query&prop=pageimages&pithumbsize=9000&titles="
 						+ frenchName.replace(" ", "%20"));
-		String wikiPictureUrl = null;
+		String wikiPictureUrl = "null";
 
 		try {
 			if (xmlDocument != null && xmlDocument.getElementsByTagName("thumbnail") != null

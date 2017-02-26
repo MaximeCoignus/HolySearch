@@ -40,7 +40,8 @@ public class CountryParser {
 
 		JSONObject json = null;
 		BufferedReader rd = new BufferedReader(new InputStreamReader(
-				Thread.currentThread().getContextClassLoader().getResourceAsStream("/countryJSON.txt"), Charset.forName("UTF-8")));
+				Thread.currentThread().getContextClassLoader().getResourceAsStream("/countryJSON.txt"),
+				Charset.forName("UTF-8")));
 
 		String jsonText = readAll(rd);
 		json = new JSONObject(jsonText);
@@ -68,7 +69,7 @@ public class CountryParser {
 	public static ArrayList<String> getContinentNameList() throws Exception {
 		JSONObject json = readJsonFromFile();
 		ArrayList<String> continentNameList = new ArrayList<String>();
-		String continentName = null;
+		String continentName = "null";
 
 		try {
 			// on parcourt les éléments du résultat pour alimenter
@@ -92,31 +93,41 @@ public class CountryParser {
 
 	public static ArrayList<Country> getCountries() throws Exception {
 		JSONObject json = readJsonFromFile();
-		Country country = null;
+
 		ArrayList<Country> countries = new ArrayList<Country>();
-		String countryFrenchName = null;
-		String countryEnglishName = null;
-		float lat = 0.0f;
-		float lon = 0.0f;
-		float population = 0.0f;
-		String currency = null;
-		String isoa2 = null;
-		String isoa3 = null;
-		String wikiDescription = null;
-		String wikiPictureUrl = null;
 
 		try {
 			// on parcourt les éléments du résultat pour alimenter
 			// l'arrayList de Country
 			for (int i = 0; i < json.getJSONArray("elements").length(); i++) {
+				Country country = new Country();
+				String countryFrenchName = "null";
+				String countryEnglishName = "null";
+				float lat = 0.0f;
+				float lon = 0.0f;
+				float population = 0.0f;
+				String currency = "null";
+				String isoa2 = "null";
+				String isoa3 = "null";
+				String wikiDescription = "null";
+				String wikiPictureUrl = "null";
+				String nom = "null";
+				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("name")) {
+
+					nom = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").get("name").toString();
+				}
 				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("name:fr")) {
 
 					countryFrenchName = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags")
 							.get("name:fr").toString();
+				} else {
+					countryFrenchName = nom;
 				}
 				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("name:en")) {
 					countryEnglishName = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags")
 							.get("name:en").toString();
+				} else {
+					countryEnglishName = nom;
 				}
 
 				// on alimente la latitude et la longitude
@@ -152,7 +163,6 @@ public class CountryParser {
 				}
 
 				// on alimente l'objet et on l'ajouter à l'ArrayList
-				country = new Country();
 				country.setCountryFrenchName(countryFrenchName);
 				country.setCountryEnglishName(countryEnglishName);
 				country.setCountryLatitude(lat);
@@ -176,7 +186,7 @@ public class CountryParser {
 		Document xmlDocument = loadXML(
 				"https://fr.wikipedia.org/w/api.php?format=xml&action=query&prop=extracts&exintro=&explaintext=&titles="
 						+ frenchName.replace(" ", "%20"));
-		String wikiDescription = null;
+		String wikiDescription = "null";
 
 		try {
 			if (xmlDocument.getElementsByTagName("extract").item(0) != null) {
@@ -192,7 +202,7 @@ public class CountryParser {
 		Document xmlDocument = loadXML(
 				"https://fr.wikipedia.org/w/api.php?format=xml&action=query&prop=pageimages&pithumbsize=9000&titles="
 						+ frenchName.replace(" ", "%20"));
-		String wikiPictureUrl = null;
+		String wikiPictureUrl = "null";
 
 		try {
 			if (xmlDocument.getElementsByTagName("thumbnail").item(0) != null) {

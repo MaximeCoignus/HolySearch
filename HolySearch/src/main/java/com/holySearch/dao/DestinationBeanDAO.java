@@ -72,13 +72,15 @@ public class DestinationBeanDAO {
 				System.out.println("add Beaches " + beachesList.indexOf(beach));
 				if (countryNameList.get(beachesList.indexOf(beach)) != null
 						&& !countryNameList.get(beachesList.indexOf(beach)).isEmpty()
-						&& !"null".equals(countryNameList.get(beachesList.indexOf(beach)))) {
+						&& !"null".equals(countryNameList.get(beachesList.indexOf(beach)))
+						&& !countryNameList.get(beachesList.indexOf(beach)).toString().contains("?")) {
 					beach.setCountry(
 							getCountryBeanByFrenchOrEnglishName(countryNameList.get(beachesList.indexOf(beach))));
 				}
 				if (cityNameList.get(beachesList.indexOf(beach)) != null
 						&& !cityNameList.get(beachesList.indexOf(beach)).isEmpty()
-						&& !"null".equals(cityNameList.get(beachesList.indexOf(beach)))) {
+						&& !"null".equals(cityNameList.get(beachesList.indexOf(beach)))
+						&& !countryNameList.get(beachesList.indexOf(beach)).toString().contains("?")) {
 					beach.setCity(getCityBeanByFrenchOrEnglishName(cityNameList.get(beachesList.indexOf(beach))));
 				}
 				entityManager.persist(beach);

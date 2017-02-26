@@ -42,7 +42,8 @@ public class ContinentParser {
 
 		JSONObject json = null;
 		BufferedReader rd = new BufferedReader(new InputStreamReader(
-				Thread.currentThread().getContextClassLoader().getResourceAsStream("/continentJSON.txt"), Charset.forName("UTF-8")));
+				Thread.currentThread().getContextClassLoader().getResourceAsStream("/continentJSON.txt"),
+				Charset.forName("UTF-8")));
 
 		String jsonText = readAll(rd);
 		json = new JSONObject(jsonText);
@@ -69,21 +70,22 @@ public class ContinentParser {
 
 	public static ArrayList<Continent> getContinents() throws Exception {
 		JSONObject json = readJsonFromFile();
-		Continent continent = null;
 		ArrayList<Continent> continents = new ArrayList<Continent>();
-		String continentFrenchName = null;
-		String continentEnglishName = null;
-		float lat = 0.0f;
-		float lon = 0.0f;
-		float population = 0.0f;
-		float sizekm = 0.0f;
-		String wikiDescription = null;
-		String wikiPictureUrl = null;
 
 		try {
 			// on parcourt les éléments du résultat pour alimenter
 			// l'arrayList de Continent
 			for (int i = 0; i < json.getJSONArray("elements").length(); i++) {
+				String continentFrenchName = "null";
+				String continentEnglishName = "null";
+				float lat = 0.0f;
+				float lon = 0.0f;
+				float population = 0.0f;
+				float sizekm = 0.0f;
+				String wikiDescription = "null";
+				String wikiPictureUrl = "null";
+
+				Continent continent = new Continent();
 
 				continentFrenchName = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags")
 						.get("name:fr").toString();
@@ -104,7 +106,6 @@ public class ContinentParser {
 				wikiPictureUrl = getWikiPictureUrl(continentFrenchName);
 
 				// on alimente l'objet et on l'ajouter à l'ArrayList
-				continent = new Continent();
 				continent.setContinentFrenchName(continentFrenchName);
 				continent.setContinentEnglishName(continentEnglishName);
 				continent.setContinentLatitude(lat);
@@ -125,7 +126,7 @@ public class ContinentParser {
 		Document xmlDocument = loadXML(
 				"https://fr.wikipedia.org/w/api.php?format=xml&action=query&prop=extracts&exintro=&explaintext=&titles="
 						+ frenchName.replace(" ", "%20"));
-		String wikiDescription = null;
+		String wikiDescription = "null";
 
 		try {
 			wikiDescription = xmlDocument.getElementsByTagName("extract").item(0).getTextContent();
@@ -140,7 +141,7 @@ public class ContinentParser {
 		Document xmlDocument = loadXML(
 				"https://fr.wikipedia.org/w/api.php?format=xml&action=query&prop=pageimages&pithumbsize=9000&titles="
 						+ frenchName.replace(" ", "%20"));
-		String wikiPictureUrl = null;
+		String wikiPictureUrl = "null";
 
 		try {
 			wikiPictureUrl = xmlDocument.getElementsByTagName("thumbnail").item(0).getAttributes()
