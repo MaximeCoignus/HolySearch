@@ -37,12 +37,6 @@ public class Country {
 	@Column(name = "currency")
 	private String countryCurrency;
 
-	@Column(name = "isoa2")
-	private String countryIsoA2;
-
-	@Column(name = "isoa3")
-	private String countryIsoA3;
-
 	@Column(name = "wikidescription")
 	private String countryWikiDescription;
 
@@ -159,36 +153,6 @@ public class Country {
 	 */
 	public void setCountryCurrency(String countryCurrency) {
 		this.countryCurrency = countryCurrency;
-	}
-
-	/**
-	 * @return the countryIsoA2
-	 */
-	public String getCountryIsoA2() {
-		return countryIsoA2;
-	}
-
-	/**
-	 * @param countryIsoA2
-	 *            the countryIsoA2 to set
-	 */
-	public void setCountryIsoA2(String countryIsoA2) {
-		this.countryIsoA2 = countryIsoA2;
-	}
-
-	/**
-	 * @return the countryIsoA3
-	 */
-	public String getCountryIsoA3() {
-		return countryIsoA3;
-	}
-
-	/**
-	 * @param countryIsoA3
-	 *            the countryIsoA3 to set
-	 */
-	public void setCountryIsoA3(String countryIsoA3) {
-		this.countryIsoA3 = countryIsoA3;
 	}
 
 	/**

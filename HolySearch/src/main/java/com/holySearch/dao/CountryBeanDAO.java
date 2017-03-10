@@ -74,7 +74,7 @@ public class CountryBeanDAO {
 							&& !"null".equals(continentNameList.get(countriesList.indexOf(country)))) {
 						System.out.println("continent Name = " + continentNameList.get(countriesList.indexOf(country)));
 						country.setContinent(
-								getContinentBeanByEnglishName(continentNameList.get(countriesList.indexOf(country))));
+								getContinentBeanByFrenchName(continentNameList.get(countriesList.indexOf(country))));
 					}
 					entityManager.persist(country);
 				}
@@ -90,8 +90,8 @@ public class CountryBeanDAO {
 	private void cleanList(ArrayList<Country> countriesList, ArrayList<String> continentNameList) {
 		for (int i = 0; i < countriesList.size(); i++) {
 			for (int j = i + 1; j < countriesList.size(); j++) {
-				if (countriesList.get(i).getCountryEnglishName().equals(countriesList.get(j).getCountryEnglishName())) {
-					System.out.println("supression de " + countriesList.get(j).getCountryEnglishName());
+				if (countriesList.get(i).getCountryFrenchName().equals(countriesList.get(j).getCountryFrenchName())) {
+					System.out.println("supression de " + countriesList.get(j).getCountryFrenchName());
 					countriesList.remove(j);
 					continentNameList.remove(j);
 					j--;
@@ -102,10 +102,10 @@ public class CountryBeanDAO {
 
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public Continent getContinentBeanByEnglishName(String englishName) {
+	public Continent getContinentBeanByFrenchName(String franchName) {
 		Continent vReturnContinent = null;
-		Query vQuery = entityManager.createQuery("SELECT u FROM Continent u WHERE u.continentEnglishName = :name");
-		vQuery.setParameter("name", englishName);
+		Query vQuery = entityManager.createQuery("SELECT u FROM Continent u WHERE u.continentFrenchName = :name");
+		vQuery.setParameter("name", franchName);
 
 		try {
 			vReturnContinent = (Continent) vQuery.getSingleResult();

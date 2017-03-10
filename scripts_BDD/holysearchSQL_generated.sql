@@ -33,8 +33,6 @@ CREATE TABLE Country(
         latitude           FLOAT NOT NULL ,
         population         FLOAT NOT NULL ,
         currency           Text   ,
-        isoa2              Text   ,
-        isoa3              Text  ,
         wikidescription    Text  ,
         wikipicture        Text  ,
         temperature        TinyINT ,

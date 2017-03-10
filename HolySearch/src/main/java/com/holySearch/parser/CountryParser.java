@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Document;
@@ -21,6 +22,8 @@ import org.xml.sax.InputSource;
 import com.holySearch.bean.Country;
 
 public class CountryParser {
+	
+	private static final Logger log = Logger.getLogger(CountryParser.class);
 
 	private static String readAll(Reader rd) {
 		StringBuilder sb = new StringBuilder();
@@ -107,27 +110,17 @@ public class CountryParser {
 				float lon = 0.0f;
 				float population = 0.0f;
 				String currency = "null";
-				String isoa2 = "null";
-				String isoa3 = "null";
 				String wikiDescription = "null";
 				String wikiPictureUrl = "null";
-				String nom = "null";
-				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("name")) {
-
-					nom = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").get("name").toString();
-				}
+				
 				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("name:fr")) {
-
+					
 					countryFrenchName = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags")
 							.get("name:fr").toString();
-				} else {
-					countryFrenchName = nom;
 				}
 				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("name:en")) {
 					countryEnglishName = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags")
 							.get("name:en").toString();
-				} else {
-					countryEnglishName = nom;
 				}
 
 				// on alimente la latitude et la longitude
@@ -139,16 +132,6 @@ public class CountryParser {
 				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("population")) {
 					population = Float.parseFloat(json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags")
 							.get("population").toString());
-				}
-
-				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("ISO3166-1:alpha2")) {
-					isoa2 = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").get("ISO3166-1:alpha2")
-							.toString();
-				}
-
-				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("ISO3166-1:alpha3")) {
-					isoa3 = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").get("ISO3166-1:alpha3")
-							.toString();
 				}
 
 				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("currency")) {
@@ -171,8 +154,7 @@ public class CountryParser {
 				country.setCountryCurrency(currency);
 				country.setCountryWikiDescription(wikiDescription);
 				country.setCountryWikiPicture(wikiPictureUrl);
-				country.setCountryIsoA2(isoa2);
-				country.setCountryIsoA3(isoa3);
+				log.info("\n Country c " +country.getCountryFrenchName());
 				countries.add(country);
 
 			}

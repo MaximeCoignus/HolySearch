@@ -460,9 +460,9 @@ public class MainController implements HandlerExceptionResolver {
 
 		mCountryService.insertCountries();
 
-		mCityService.insertCities();
-
-		mDestinationService.insertBeaches();
+//		mCityService.insertCities();
+//
+//		mDestinationService.insertBeaches();
 
 		// ajout des stations de ski
 
