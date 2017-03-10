@@ -317,6 +317,9 @@ public class MainController implements HandlerExceptionResolver {
 					vEnvoiMail.sendMailCreationCompte();
 					pModel.clear();
 					session.setAttribute(ATT_SESSION_USER, puserForm.getUserLogin());
+					log.info("Creation du compte : " + puserForm.getUserLogin() + ", Prenom : " + puserForm.getUserPrenom() 
+						+ ", Nom de famille : " + puserForm.getUserNom() + ", Date de naissance : " + puserForm.getUserBirthday()
+						+ ", Password : " + puserForm.getUserConfirmPassword() + ", Adresse mail : " + puserForm.getUserEmail());
 					redirect = "search";
 				}
 			} else {
@@ -342,6 +345,7 @@ public class MainController implements HandlerExceptionResolver {
 		if (mUserService.userBeanExist(pConnexionForm.getLogin(), pConnexionForm.getPassword())) {
 			session.setAttribute(ATT_SESSION_USER, pConnexionForm.getLogin());
 			insertIndex();
+			log.info("Identifiant : " + pConnexionForm.getLogin());
 			redirect = "search";
 		}
 
