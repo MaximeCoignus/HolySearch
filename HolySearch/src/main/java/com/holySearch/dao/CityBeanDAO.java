@@ -71,7 +71,7 @@ public class CityBeanDAO {
 					if (countryNameList.get(citiesList.indexOf(city)) != null
 							&& !countryNameList.get(citiesList.indexOf(city)).isEmpty()
 							&& !"null".equals(countryNameList.get(citiesList.indexOf(city)))) {
-						city.setCountry(getCountryBeanByEnglishName(countryNameList.get(citiesList.indexOf(city))));
+						city.setCountry(getCountryBeanByFrenchName(countryNameList.get(citiesList.indexOf(city))));
 					}
 					entityManager.persist(city);
 				}
@@ -85,10 +85,10 @@ public class CityBeanDAO {
 
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public Country getCountryBeanByEnglishName(String englishName) {
+	public Country getCountryBeanByFrenchName(String frenchName) {
 		Country vReturnCountry = null;
-		Query vQuery = entityManager.createQuery("SELECT u FROM Country u WHERE u.countryEnglishName = :name");
-		vQuery.setParameter("name", englishName);
+		Query vQuery = entityManager.createQuery("SELECT u FROM Country u WHERE u.countryFrenchName = :name");
+		vQuery.setParameter("name", frenchName);
 
 		try {
 			vReturnCountry = (Country) vQuery.getSingleResult();

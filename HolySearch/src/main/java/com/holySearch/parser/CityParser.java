@@ -69,7 +69,7 @@ public class CityParser {
 		InputSource insrc = new InputSource(new StringReader(xmlText));
 		return bldr.parse(insrc);
 	}
-
+	
 	public static ArrayList<String> getCountryNameList() throws Exception {
 		JSONObject json = readJsonFromFile();
 		ArrayList<String> countryNameList = new ArrayList<String>();
@@ -113,23 +113,15 @@ public class CityParser {
 				String wikiPictureUrl = "null";
 				String capital = "no";
 				String nom = "null";
-				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("name")) {
-
-					nom = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").get("name").toString();
-				}
 				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("name:fr")) {
 
 					cityFrenchName = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").get("name:fr")
 							.toString();
-				} else {
-					cityFrenchName = nom;
 				}
 
 				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("name:en")) {
 					cityEnglishName = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags")
 							.get("name:en").toString();
-				} else {
-					cityEnglishName = nom;
 				}
 
 				System.out.println(" indice " + i + " un des 2 noms est bons ");
