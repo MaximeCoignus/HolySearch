@@ -24,9 +24,9 @@ public class DestinationIndexer {
 
 	public void index(DestinationIndexItem indexItem) throws IOException {
 
-		writer.deleteDocuments(new Term(DestinationIndexItem.ID, Integer.toString(indexItem.getId())));
+		writer.deleteDocuments(new Term(DestinationIndexItem.DESTINATIONID, Integer.toString(indexItem.getDestinationId())));
 		Document doc = new Document();
-		doc.add(new Field(DestinationIndexItem.ID, Integer.toString(indexItem.getId()), Field.Store.YES,
+		doc.add(new Field(DestinationIndexItem.DESTINATIONID, Integer.toString(indexItem.getDestinationId()), Field.Store.YES,
 				Field.Index.NOT_ANALYZED));
 		doc.add(new Field(DestinationIndexItem.DESTINATIONFRENCHNAME, indexItem.getDestinationFrenchName(),
 				Field.Store.YES, Field.Index.ANALYZED));

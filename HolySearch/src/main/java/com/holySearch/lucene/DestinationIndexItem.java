@@ -1,18 +1,18 @@
 package com.holySearch.lucene;
 
 public class DestinationIndexItem {
-	private int id;
+	private int destinationId;
 	private String destinationFrenchName;
-	public static final String ID = "id";
+	public static final String DESTINATIONID = "destinationId";
 	public static final String DESTINATIONFRENCHNAME = "destinationFrenchName";
 
-	public DestinationIndexItem(int id, String destinationFrenchName) {
-		this.id = id;
+	public DestinationIndexItem(int destinationId, String destinationFrenchName) {
+		this.destinationId = destinationId;
 		this.destinationFrenchName = destinationFrenchName;
 	}
 
-	public int getId() {
-		return id;
+	public int getDestinationId() {
+		return destinationId;
 	}
 
 	public String getDestinationFrenchName() {
@@ -21,6 +21,6 @@ public class DestinationIndexItem {
 
 	@Override
 	public String toString() {
-		return "IndexItem{" + "id=" + id + ", destinationFrenchName='" + destinationFrenchName + '}';
+		return "IndexItem{" + "destinationId=" + destinationId + ", destinationFrenchName=" + destinationFrenchName + '}';
 	}
 }
