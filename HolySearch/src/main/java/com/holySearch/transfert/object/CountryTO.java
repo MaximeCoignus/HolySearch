@@ -5,36 +5,34 @@ public class CountryTO {
 	private int countryId;
 
 	private String countryEnglishName;
-	
+
 	private String countryFrenchName;
-	
+
 	private float countryLongitude;
-	
+
 	private float countryLatitude;
-	
+
 	private float countryPopulation;
-	
+
 	private String countryCurrency;
-	
-	private String countryIsoA2;
-	
-	private String countryIsoA3;
-	
+
 	private String countryWikiDescription;
-	
+
 	private String countryWikiPicture;
-	
+
 	private float countryTemperature;
-	
+
 	private String countryTemperatureLevel;
-	
+
 	private float countryPrecipitation;
-	
+
 	private String countryPrecipitationLevel;
-	
+
 	private float countryCriminality;
-	
+
 	private String countryCriminalityLevel;
+
+	private ContinentTO continent;
 
 	/**
 	 * @return the countryEnglishName
@@ -44,7 +42,8 @@ public class CountryTO {
 	}
 
 	/**
-	 * @param countryEnglishName the countryEnglishName to set
+	 * @param countryEnglishName
+	 *            the countryEnglishName to set
 	 */
 	public void setCountryEnglishName(String countryEnglishName) {
 		this.countryEnglishName = countryEnglishName;
@@ -58,7 +57,8 @@ public class CountryTO {
 	}
 
 	/**
-	 * @param countryFrenchName the countryFrenchName to set
+	 * @param countryFrenchName
+	 *            the countryFrenchName to set
 	 */
 	public void setCountryFrenchName(String countryFrenchName) {
 		this.countryFrenchName = countryFrenchName;
@@ -72,7 +72,8 @@ public class CountryTO {
 	}
 
 	/**
-	 * @param countryLongitude the countryLongitude to set
+	 * @param countryLongitude
+	 *            the countryLongitude to set
 	 */
 	public void setCountryLongitude(float countryLongitude) {
 		this.countryLongitude = countryLongitude;
@@ -86,7 +87,8 @@ public class CountryTO {
 	}
 
 	/**
-	 * @param countryLatitude the countryLatitude to set
+	 * @param countryLatitude
+	 *            the countryLatitude to set
 	 */
 	public void setCountryLatitude(float countryLatitude) {
 		this.countryLatitude = countryLatitude;
@@ -100,7 +102,8 @@ public class CountryTO {
 	}
 
 	/**
-	 * @param countryPopulation the countryPopulation to set
+	 * @param countryPopulation
+	 *            the countryPopulation to set
 	 */
 	public void setCountryPopulation(float countryPopulation) {
 		this.countryPopulation = countryPopulation;
@@ -114,38 +117,11 @@ public class CountryTO {
 	}
 
 	/**
-	 * @param countryCurrency the countryCurrency to set
+	 * @param countryCurrency
+	 *            the countryCurrency to set
 	 */
 	public void setCountryCurrency(String countryCurrency) {
 		this.countryCurrency = countryCurrency;
-	}
-
-	/**
-	 * @return the countryIsoA2
-	 */
-	public String getCountryIsoA2() {
-		return countryIsoA2;
-	}
-
-	/**
-	 * @param countryIsoA2 the countryIsoA2 to set
-	 */
-	public void setCountryIsoA2(String countryIsoA2) {
-		this.countryIsoA2 = countryIsoA2;
-	}
-
-	/**
-	 * @return the countryIsoA3
-	 */
-	public String getCountryIsoA3() {
-		return countryIsoA3;
-	}
-
-	/**
-	 * @param countryIsoA3 the countryIsoA3 to set
-	 */
-	public void setCountryIsoA3(String countryIsoA3) {
-		this.countryIsoA3 = countryIsoA3;
 	}
 
 	/**
@@ -156,7 +132,8 @@ public class CountryTO {
 	}
 
 	/**
-	 * @param countryWikiDescription the countryWikiDescription to set
+	 * @param countryWikiDescription
+	 *            the countryWikiDescription to set
 	 */
 	public void setCountryWikiDescription(String countryWikiDescription) {
 		this.countryWikiDescription = countryWikiDescription;
@@ -170,7 +147,8 @@ public class CountryTO {
 	}
 
 	/**
-	 * @param countryWikiPicture the countryWikiPicture to set
+	 * @param countryWikiPicture
+	 *            the countryWikiPicture to set
 	 */
 	public void setCountryWikiPicture(String countryWikiPicture) {
 		this.countryWikiPicture = countryWikiPicture;
@@ -184,7 +162,8 @@ public class CountryTO {
 	}
 
 	/**
-	 * @param countryTemperature the countryTemperature to set
+	 * @param countryTemperature
+	 *            the countryTemperature to set
 	 */
 	public void setCountryTemperature(float countryTemperature) {
 		this.countryTemperature = countryTemperature;
@@ -198,7 +177,8 @@ public class CountryTO {
 	}
 
 	/**
-	 * @param countryTemperatureLevel the countryTemperatureLevel to set
+	 * @param countryTemperatureLevel
+	 *            the countryTemperatureLevel to set
 	 */
 	public void setCountryTemperatureLevel(String countryTemperatureLevel) {
 		this.countryTemperatureLevel = countryTemperatureLevel;
@@ -212,7 +192,8 @@ public class CountryTO {
 	}
 
 	/**
-	 * @param countryPrecipitation the countryPrecipitation to set
+	 * @param countryPrecipitation
+	 *            the countryPrecipitation to set
 	 */
 	public void setCountryPrecipitation(float countryPrecipitation) {
 		this.countryPrecipitation = countryPrecipitation;
@@ -226,7 +207,8 @@ public class CountryTO {
 	}
 
 	/**
-	 * @param countryPrecipitationLevel the countryPrecipitationLevel to set
+	 * @param countryPrecipitationLevel
+	 *            the countryPrecipitationLevel to set
 	 */
 	public void setCountryPrecipitationLevel(String countryPrecipitationLevel) {
 		this.countryPrecipitationLevel = countryPrecipitationLevel;
@@ -240,7 +222,8 @@ public class CountryTO {
 	}
 
 	/**
-	 * @param countryCriminality the countryCriminality to set
+	 * @param countryCriminality
+	 *            the countryCriminality to set
 	 */
 	public void setCountryCriminality(float countryCriminality) {
 		this.countryCriminality = countryCriminality;
@@ -254,7 +237,8 @@ public class CountryTO {
 	}
 
 	/**
-	 * @param countryCriminalityLevel the countryCriminalityLevel to set
+	 * @param countryCriminalityLevel
+	 *            the countryCriminalityLevel to set
 	 */
 	public void setCountryCriminalityLevel(String countryCriminalityLevel) {
 		this.countryCriminalityLevel = countryCriminalityLevel;
@@ -268,11 +252,26 @@ public class CountryTO {
 	}
 
 	/**
-	 * @param countryId the countryId to set
+	 * @param countryId
+	 *            the countryId to set
 	 */
 	public void setCountryId(int countryId) {
 		this.countryId = countryId;
 	}
-	
-	
+
+	/**
+	 * @return the continent
+	 */
+	public ContinentTO getContinent() {
+		return continent;
+	}
+
+	/**
+	 * @param continent
+	 *            the continent to set
+	 */
+	public void setContinent(ContinentTO continent) {
+		this.continent = continent;
+	}
+
 }

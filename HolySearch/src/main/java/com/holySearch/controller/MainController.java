@@ -91,10 +91,10 @@ public class MainController implements HandlerExceptionResolver {
 			return "index";
 
 	}
-	
+
 	@RequestMapping(value = "details", method = RequestMethod.GET)
-	public String afficherDetailsRecherche(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel,
-			HttpSession session) throws FileNotFoundException {
+	public String afficherDetailsRecherche(@ModelAttribute(value = "userForm") final UserForm puserForm,
+			final ModelMap pModel, HttpSession session) throws FileNotFoundException {
 		if (session.getAttribute(ATT_SESSION_USER) != null) {
 			return "details";
 		} else
@@ -384,18 +384,17 @@ public class MainController implements HandlerExceptionResolver {
 		if (vListeDestinations != null) {
 			vListeDestinationsIndexItem = new ArrayList<DestinationIndexItem>();
 			for (DestinationTO vDestinationBeanTO : vListeDestinations) {
-				log.info(" Destnation "+vListeDestinations.indexOf(vDestinationBeanTO));
-				DestinationIndexItem vDestinationIndexItem = new DestinationIndexItem(vDestinationBeanTO.getDestinationId(),
-						vDestinationBeanTO.getDestinationFrenchName());
-				
+				log.info(" Destnation " + vListeDestinations.indexOf(vDestinationBeanTO));
+				DestinationIndexItem vDestinationIndexItem = new DestinationIndexItem(vDestinationBeanTO);
+
 				vListeDestinationsIndexItem.add(vDestinationIndexItem);
 			}
 		}
 
 		DestinationIndexer indexer = new DestinationIndexer(INDEX_DIR);
-		
+
 		for (DestinationIndexItem indexItem : vListeDestinationsIndexItem) {
-			log.info("Indexation de "+indexItem.toString());
+			log.info("Indexation de " + indexItem.toString());
 			indexer.index(indexItem);
 		}
 
@@ -445,15 +444,14 @@ public class MainController implements HandlerExceptionResolver {
 				DestinationSearcher searcher = new DestinationSearcher(INDEX_DIR);
 				List<DestinationIndexItem> result = searcher.findByDestinationName(pSearchForm.getObjetSearch(),
 						DEFAULT_RESULT_SIZE);
-				log.info(result.size()+" résultats trouvés");
+				log.info(result.size() + " résultats trouvés");
 				List<ResultatForm> vListeResultatForm = null;
 				if (result != null) {
 					vListeResultatForm = new ArrayList<ResultatForm>();
 					for (DestinationIndexItem vDestinationIndexItem : result) {
 						log.info(vDestinationIndexItem.toString());
-						DestinationTO vDestinationBeanTO = mMapperUtils
-								.mapDestinationBeanToDestinationTO(mDestinationService
-										.getDestinationByNom(vDestinationIndexItem.getDestinationFrenchName()));
+						DestinationTO vDestinationBeanTO = mMapperUtils.mapDestinationBeanToDestinationTO(
+								mDestinationService.getDestinationById(vDestinationIndexItem.getDestinationId()));
 						if (vDestinationBeanTO != null) {
 							vListeResultatForm.add(mMapperUtils.mapDestinationTOToResultatForm(vDestinationBeanTO));
 						}
@@ -471,8 +469,11 @@ public class MainController implements HandlerExceptionResolver {
 	public String insertDataPost(final ModelMap pModel) throws Exception {
 
 		mDestinationService.deleteAllBeaches();
+
 		mCityService.deleteAllCity();
+
 		mCountryService.deleteAllCountry();
+
 		mContinentService.deleteAllContinent();
 
 		mContinentService.insertContinents();
@@ -480,10 +481,10 @@ public class MainController implements HandlerExceptionResolver {
 		mCountryService.insertCountries();
 
 		mCityService.insertCities();
-		//
-		// mDestinationService.insertBeaches();
 
-		// ajout des stations de ski
+		mDestinationService.insertDestinations();
+
+		insertIndex();
 
 		pModel.addAttribute("resultatInsertionData", "Les datas ont bien été insérés");
 

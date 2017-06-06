@@ -28,7 +28,7 @@ public class DestinationIndexer {
 		Document doc = new Document();
 		doc.add(new Field(DestinationIndexItem.DESTINATIONID, Integer.toString(indexItem.getDestinationId()), Field.Store.YES,
 				Field.Index.NOT_ANALYZED));
-		doc.add(new Field(DestinationIndexItem.DESTINATIONFRENCHNAME, indexItem.getDestinationFrenchName(),
+		doc.add(new Field(DestinationIndexItem.DESTINATIONJSON, indexItem.getDestinationJSON(),
 				Field.Store.YES, Field.Index.ANALYZED));
 
 		writer.addDocument(doc);

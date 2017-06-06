@@ -10,9 +10,13 @@ import org.springframework.stereotype.Component;
 import com.holySearch.bean.Avatar;
 import com.holySearch.bean.Destination;
 import com.holySearch.bean.User;
+import com.holySearch.forms.ContinentForm;
+import com.holySearch.forms.CountryForm;
 import com.holySearch.forms.ResultatForm;
 import com.holySearch.forms.UserForm;
 import com.holySearch.transfert.object.AvatarTO;
+import com.holySearch.transfert.object.ContinentTO;
+import com.holySearch.transfert.object.CountryTO;
 import com.holySearch.transfert.object.DestinationTO;
 import com.holySearch.transfert.object.UserBeanTO;
 
@@ -98,6 +102,49 @@ public class MapperUtils {
 			vDestinationTO.setDestinationType(pDestination.getDestinationType());
 			vDestinationTO.setDestinationWikiDescription(pDestination.getDestinationWikiDescription());
 			vDestinationTO.setDestinationWikiPicture(pDestination.getDestinationWikiPicture());
+
+			if (pDestination.getCountry() != null) {
+				CountryTO vCountryTO = new CountryTO();
+				vCountryTO.setCountryId(pDestination.getCountry().getCountryId());
+				vCountryTO.setCountryFrenchName(pDestination.getCountry().getCountryFrenchName());
+				vCountryTO.setCountryEnglishName(pDestination.getCountry().getCountryEnglishName());
+				vCountryTO.setCountryCurrency(pDestination.getCountry().getCountryCurrency());
+				vCountryTO.setCountryCriminality(pDestination.getCountry().getCountryCriminality());
+				vCountryTO.setCountryCriminalityLevel(pDestination.getCountry().getCountryCriminalityLevel());
+				vCountryTO.setCountryPopulation(pDestination.getCountry().getCountryPopulation());
+				vCountryTO.setCountryLatitude(pDestination.getCountry().getCountryLatitude());
+				vCountryTO.setCountryLongitude(pDestination.getCountry().getCountryLongitude());
+				vCountryTO.setCountryPrecipitation(pDestination.getCountry().getCountryPrecipitation());
+				vCountryTO.setCountryPrecipitationLevel(pDestination.getCountry().getCountryPrecipitationLevel());
+				vCountryTO.setCountryTemperature(pDestination.getCountry().getCountryTemperature());
+				vCountryTO.setCountryTemperatureLevel(pDestination.getCountry().getCountryTemperatureLevel());
+				vCountryTO.setCountryWikiDescription(pDestination.getCountry().getCountryWikiDescription());
+				vCountryTO.setCountryWikiPicture(pDestination.getCountry().getCountryWikiPicture());
+
+				if (pDestination.getCountry().getContinent() != null) {
+					ContinentTO vContinentTO = new ContinentTO();
+					vContinentTO.setContinentId(pDestination.getCountry().getContinent().getContinentId());
+					vContinentTO
+							.setContinentFrenchName(pDestination.getCountry().getContinent().getContinentFrenchName());
+					vContinentTO.setContinentEnglishName(
+							pDestination.getCountry().getContinent().getContinentEnglishName());
+					vContinentTO.setContinentLatitude(pDestination.getCountry().getContinent().getContinentLatitude());
+					vContinentTO
+							.setContinentLongitude(pDestination.getCountry().getContinent().getContinentLongitude());
+					vContinentTO
+							.setContinentPopulation(pDestination.getCountry().getContinent().getContinentPopulation());
+					vContinentTO.setContinentSizeKilometer(
+							pDestination.getCountry().getContinent().getContinentSizeKilometer());
+					vContinentTO.setContinentWikiDescription(
+							pDestination.getCountry().getContinent().getContinentWikiDescription());
+					vContinentTO.setContinentWikiPicture(
+							pDestination.getCountry().getContinent().getContinentWikiPicture());
+					
+					vCountryTO.setContinent(vContinentTO);
+				}
+				
+				vDestinationTO.setCountry(vCountryTO);
+			}
 		}
 		return vDestinationTO;
 	}
@@ -125,6 +172,49 @@ public class MapperUtils {
 			vResultatForm.setDestinationType(vDestinationBeanTO.getDestinationType());
 			vResultatForm.setDestinationWikiDescription(vDestinationBeanTO.getDestinationWikiDescription());
 			vResultatForm.setDestinationWikiPicture(vDestinationBeanTO.getDestinationWikiPicture());
+			
+			if (vDestinationBeanTO.getCountry() != null) {
+				CountryForm vCountryForm = new CountryForm();
+				vCountryForm.setCountryId(vDestinationBeanTO.getCountry().getCountryId());
+				vCountryForm.setCountryFrenchName(vDestinationBeanTO.getCountry().getCountryFrenchName());
+				vCountryForm.setCountryEnglishName(vDestinationBeanTO.getCountry().getCountryEnglishName());
+				vCountryForm.setCountryCurrency(vDestinationBeanTO.getCountry().getCountryCurrency());
+				vCountryForm.setCountryCriminality(vDestinationBeanTO.getCountry().getCountryCriminality());
+				vCountryForm.setCountryCriminalityLevel(vDestinationBeanTO.getCountry().getCountryCriminalityLevel());
+				vCountryForm.setCountryPopulation(vDestinationBeanTO.getCountry().getCountryPopulation());
+				vCountryForm.setCountryLatitude(vDestinationBeanTO.getCountry().getCountryLatitude());
+				vCountryForm.setCountryLongitude(vDestinationBeanTO.getCountry().getCountryLongitude());
+				vCountryForm.setCountryPrecipitation(vDestinationBeanTO.getCountry().getCountryPrecipitation());
+				vCountryForm.setCountryPrecipitationLevel(vDestinationBeanTO.getCountry().getCountryPrecipitationLevel());
+				vCountryForm.setCountryTemperature(vDestinationBeanTO.getCountry().getCountryTemperature());
+				vCountryForm.setCountryTemperatureLevel(vDestinationBeanTO.getCountry().getCountryTemperatureLevel());
+				vCountryForm.setCountryWikiDescription(vDestinationBeanTO.getCountry().getCountryWikiDescription());
+				vCountryForm.setCountryWikiPicture(vDestinationBeanTO.getCountry().getCountryWikiPicture());
+
+				if (vDestinationBeanTO.getCountry().getContinent() != null) {
+					ContinentForm vContinentForm = new ContinentForm();
+					vContinentForm.setContinentId(vDestinationBeanTO.getCountry().getContinent().getContinentId());
+					vContinentForm
+							.setContinentFrenchName(vDestinationBeanTO.getCountry().getContinent().getContinentFrenchName());
+					vContinentForm.setContinentEnglishName(
+							vDestinationBeanTO.getCountry().getContinent().getContinentEnglishName());
+					vContinentForm.setContinentLatitude(vDestinationBeanTO.getCountry().getContinent().getContinentLatitude());
+					vContinentForm
+							.setContinentLongitude(vDestinationBeanTO.getCountry().getContinent().getContinentLongitude());
+					vContinentForm
+							.setContinentPopulation(vDestinationBeanTO.getCountry().getContinent().getContinentPopulation());
+					vContinentForm.setContinentSizeKilometer(
+							vDestinationBeanTO.getCountry().getContinent().getContinentSizeKilometer());
+					vContinentForm.setContinentWikiDescription(
+							vDestinationBeanTO.getCountry().getContinent().getContinentWikiDescription());
+					vContinentForm.setContinentWikiPicture(
+							vDestinationBeanTO.getCountry().getContinent().getContinentWikiPicture());
+					
+					vCountryForm.setContinentForm(vContinentForm);
+				}
+				
+				vResultatForm.setCountryForm(vCountryForm);
+			}
 		}
 		return vResultatForm;
 	}

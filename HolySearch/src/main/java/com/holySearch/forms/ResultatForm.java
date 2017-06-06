@@ -18,6 +18,8 @@ public class ResultatForm {
 
 	private String destinationType;
 
+	private CountryForm countryForm;
+
 	/**
 	 * @return the destinationId
 	 */
@@ -137,4 +139,20 @@ public class ResultatForm {
 	public void setDestinationType(String destinationType) {
 		this.destinationType = destinationType;
 	}
+
+	/**
+	 * @return the countryForm
+	 */
+	public CountryForm getCountryForm() {
+		return countryForm;
+	}
+
+	/**
+	 * @param countryForm
+	 *            the countryForm to set
+	 */
+	public void setCountryForm(CountryForm countryForm) {
+		this.countryForm = countryForm;
+	}
+
 }

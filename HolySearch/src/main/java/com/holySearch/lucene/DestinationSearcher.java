@@ -28,7 +28,7 @@ public class DestinationSearcher {
 		log.info("IndexReader " + IndexReader.open(FSDirectory.open(new File(indexDir))).getRefCount());
 		searcher = new IndexSearcher(IndexReader.open(FSDirectory.open(new File(indexDir))));
 		StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_36);
-		destinationNameQueryParser = new QueryParser(Version.LUCENE_36, DestinationIndexItem.DESTINATIONFRENCHNAME,
+		destinationNameQueryParser = new QueryParser(Version.LUCENE_36, DestinationIndexItem.DESTINATIONJSON,
 				analyzer);
 	}
 
@@ -51,9 +51,9 @@ public class DestinationSearcher {
 			log.info(doc+" doc");
 			if (doc != null) {
 				int id = Integer.parseInt(doc.get(DestinationIndexItem.DESTINATIONID));
-				String name = doc.get(DestinationIndexItem.DESTINATIONFRENCHNAME);
+				String name = doc.get(DestinationIndexItem.DESTINATIONJSON);
 				results.add(new DestinationIndexItem(Integer.parseInt(doc.get(DestinationIndexItem.DESTINATIONID)),
-						doc.get(DestinationIndexItem.DESTINATIONFRENCHNAME)));
+						doc.get(DestinationIndexItem.DESTINATIONJSON)));
 			}
 		}
 		return results;

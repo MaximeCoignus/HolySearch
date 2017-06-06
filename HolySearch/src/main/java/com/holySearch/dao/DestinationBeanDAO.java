@@ -3,7 +3,6 @@ package com.holySearch.dao;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -19,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.holySearch.bean.City;
 import com.holySearch.bean.Country;
 import com.holySearch.bean.Destination;
-import com.holySearch.parser.BeachParser;
+import com.holySearch.parser.DestinationParser;
 
 @Repository
 public class DestinationBeanDAO {
@@ -35,48 +34,37 @@ public class DestinationBeanDAO {
 
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public List<Destination> getAllBeach() {
-		List<Destination> vReturnBeach = null;
-		Query vQuery = entityManager.createQuery("SELECT u FROM Destination u where u.destinationType = :type");
-		vQuery.setParameter("type", "beach");
-		vReturnBeach = (Vector<Destination>) vQuery.getResultList();
-		entityManager.close();
-		return vReturnBeach;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public void deleteAllBeach() {
-		List<Destination> beachesList = getAllBeach();
-		if (beachesList != null && !beachesList.isEmpty()) {
-			for (Destination beach : beachesList) {
-				entityManager.remove(beach);
+	public void deleteAllDestinations() {
+		List<Destination> liste = getAllDestinations();
+		if (liste != null && !liste.isEmpty()) {
+			for (Destination destination : liste) {
+				entityManager.remove(destination);
 			}
 		}
 		entityManager.close();
 	}
 
-	public void newBeachInDatabase() throws Exception {
+	public void newDestinationInDatabase() throws Exception {
 
-		ArrayList<Destination> beachesList = null;
+		ArrayList<Destination> liste = null;
 		ArrayList<String> countryNameList = null;
 		ArrayList<String> cityNameList = null;
 		try {
-			BeachParser vBeachParser = new BeachParser();
-			beachesList = vBeachParser.getBeaches();
-			countryNameList = vBeachParser.getCountriesNameList();
-			cleanList(beachesList, countryNameList);
+			DestinationParser vDestinationParser = new DestinationParser();
+			liste = vDestinationParser.getDestinations();
+			countryNameList = vDestinationParser.getCountriesNameList();
+			cleanList(liste, countryNameList);
 			System.out.println("add Beaches");
-			for (Destination beach : beachesList) {
+			for (Destination beach : liste) {
 				if (!beach.getDestinationEnglishName().toString().contains("?")
 						&& !beach.getDestinationFrenchName().toString().contains("?")) {
 					System.out.println("add Beach " + beach.toString());
-					if (countryNameList.get(beachesList.indexOf(beach)) != null
-							&& !countryNameList.get(beachesList.indexOf(beach)).isEmpty()
-							&& !"null".equals(countryNameList.get(beachesList.indexOf(beach)))
-							&& !countryNameList.get(beachesList.indexOf(beach)).toString().contains("?")) {
+					if (countryNameList.get(liste.indexOf(beach)) != null
+							&& !countryNameList.get(liste.indexOf(beach)).isEmpty()
+							&& !"null".equals(countryNameList.get(liste.indexOf(beach)))
+							&& !countryNameList.get(liste.indexOf(beach)).toString().contains("?")) {
 						beach.setCountry(
-								getCountryBeanByFrenchOrEnglishName(countryNameList.get(beachesList.indexOf(beach))));
+								getCountryBeanByFrenchOrEnglishName(countryNameList.get(liste.indexOf(beach))));
 					}
 					entityManager.persist(beach);
 				}
@@ -104,29 +92,13 @@ public class DestinationBeanDAO {
 		return vReturnCountry;
 	}
 
-	@SuppressWarnings("unchecked")
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public City getCityBeanByFrenchOrEnglishName(String name) {
-		City vReturnCity = null;
-		Query vQuery = entityManager
-				.createQuery("SELECT u FROM City u WHERE u.cityEnglishName = :name or u.cityFrenchName = :name");
-		vQuery.setParameter("name", name);
-
-		try {
-			vReturnCity = (City) vQuery.getSingleResult();
-		} catch (NoResultException e) {
-		}
-		entityManager.close();
-		return vReturnCity;
-	}
-
-	private void cleanList(ArrayList<Destination> beachesList, ArrayList<String> countriesNameList) {
-		for (int i = 0; i < beachesList.size(); i++) {
-			for (int j = i + 1; j < beachesList.size(); j++) {
-				if (beachesList.get(i).getDestinationEnglishName()
-						.equals(beachesList.get(j).getDestinationEnglishName())) {
-					System.out.println("supression de " + beachesList.get(j).getDestinationEnglishName());
-					beachesList.remove(j);
+	private void cleanList(ArrayList<Destination> destinationsList, ArrayList<String> countriesNameList) {
+		for (int i = 0; i < destinationsList.size(); i++) {
+			for (int j = i + 1; j < destinationsList.size(); j++) {
+				if (destinationsList.get(i).getDestinationEnglishName()
+						.equals(destinationsList.get(j).getDestinationEnglishName())) {
+					System.out.println("supression de " + destinationsList.get(j).getDestinationEnglishName());
+					destinationsList.remove(j);
 					countriesNameList.remove(j);
 					j--;
 				}
@@ -135,28 +107,29 @@ public class DestinationBeanDAO {
 	}
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public Destination getDestinationBeanByNom(String nom) {
+	public Destination getDestinationBeanById(Integer id) {
 		Destination vDestination = null;
 		try {
 			vDestination = (Destination) entityManager
-					.createQuery("SELECT A FROM Destination A WHERE A.destinationFrenchName = :name")
-					.setParameter("name", nom).getSingleResult();
+					.createQuery("SELECT A FROM Destination A WHERE A.destinationId = :destinationid")
+					.setParameter("destinationid", id).getSingleResult();
 		} catch (NoResultException e) {
-			log.trace("erreur sql de recherche des destinations");
+			log.trace("erreur sql de recherche de la destination : null");
 		} catch (NonUniqueResultException e) {
-			log.trace("erreur sql de recherche de la destinations");
+			log.trace("erreur sql de recherche de la destination : plusieurs resultats");
 		}
 		entityManager.close();
 		return vDestination;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public List<Destination> getAllDestinations() {
 		List<Destination> vDestination = null;
 		try {
 			vDestination = (List<Destination>) entityManager.createQuery("SELECT A FROM Destination A").getResultList();
 		} catch (NoResultException e) {
-			log.trace("erreur sql de recherche de la plage");
+			log.trace("erreur sql de récupération des destinations");
 		}
 		entityManager.close();
 		return vDestination;

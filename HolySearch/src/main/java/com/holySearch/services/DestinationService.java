@@ -18,26 +18,26 @@ public class DestinationService {
 	DestinationBeanDAO mDestinationBeanDAO;
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public void insertBeaches() throws Exception {
-		mDestinationBeanDAO.newBeachInDatabase();
+	public void insertDestinations() throws Exception {
+		mDestinationBeanDAO.newDestinationInDatabase();
 	}
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public void deleteAllBeaches() throws Exception {
-		mDestinationBeanDAO.deleteAllBeach();
+		mDestinationBeanDAO.deleteAllDestinations();
 	}
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public List<Destination> getAllDestinations() throws Exception {
 		return mDestinationBeanDAO.getAllDestinations();
 	}
-
+	
 	/*
-	 * Get Destination By nom
+	 * Get Destination By Id
 	 */
-	public Destination getDestinationByNom(String nom) throws UnsupportedEncodingException {
-		if (nom != null) {
-			return mDestinationBeanDAO.getDestinationBeanByNom(nom);
+	public Destination getDestinationById(Integer id) throws UnsupportedEncodingException {
+		if (id != null) {
+			return mDestinationBeanDAO.getDestinationBeanById(id);
 		}
 		return null;
 	}

@@ -18,6 +18,8 @@ public class DestinationTO {
 	private String destinationWikiPicture;
 
 	private String destinationType;
+	
+	private CountryTO country;
 
 	/**
 	 * @return the destinationId
@@ -130,4 +132,20 @@ public class DestinationTO {
 	public void setDestinationType(String destinationType) {
 		this.destinationType = destinationType;
 	}
+
+	/**
+	 * @return the country
+	 */
+	public CountryTO getCountry() {
+		return country;
+	}
+
+	/**
+	 * @param country the country to set
+	 */
+	public void setCountry(CountryTO country) {
+		this.country = country;
+	}
+	
+	
 }

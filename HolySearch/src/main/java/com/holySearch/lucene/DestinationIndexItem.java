@@ -1,26 +1,35 @@
 package com.holySearch.lucene;
 
+import com.google.gson.Gson;
+import com.holySearch.transfert.object.DestinationTO;
+
 public class DestinationIndexItem {
 	private int destinationId;
-	private String destinationFrenchName;
+	private String destinationJSON;
 	public static final String DESTINATIONID = "destinationId";
-	public static final String DESTINATIONFRENCHNAME = "destinationFrenchName";
+	public static final String DESTINATIONJSON = "destinationJSON";
 
-	public DestinationIndexItem(int destinationId, String destinationFrenchName) {
+	public DestinationIndexItem(DestinationTO pDestinationTO) {
+		this.destinationId = pDestinationTO.getDestinationId();
+		Gson gson = new Gson();
+		this.destinationJSON = gson.toJson(pDestinationTO);
+	}
+
+	public DestinationIndexItem(int destinationId, String destinationJSON) {
 		this.destinationId = destinationId;
-		this.destinationFrenchName = destinationFrenchName;
+		this.destinationJSON = destinationJSON;
 	}
 
 	public int getDestinationId() {
 		return destinationId;
 	}
 
-	public String getDestinationFrenchName() {
-		return destinationFrenchName;
+	public String getDestinationJSON() {
+		return destinationJSON;
 	}
 
 	@Override
 	public String toString() {
-		return "IndexItem{" + "destinationId=" + destinationId + ", destinationFrenchName=" + destinationFrenchName + '}';
+		return "IndexItem{" + "destinationId=" + destinationId + ", destinationJSON=" + destinationJSON + '}';
 	}
 }
