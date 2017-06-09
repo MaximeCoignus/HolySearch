@@ -15,7 +15,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.holySearch.bean.City;
 import com.holySearch.bean.Country;
 import com.holySearch.bean.Destination;
 import com.holySearch.parser.DestinationParser;

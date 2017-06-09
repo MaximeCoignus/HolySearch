@@ -1,9 +1,0 @@
-USE holysearch ;
-CREATE TABLE IF NOT EXISTS beaches
-(
-id int(10) NOT NULL AUTO_INCREMENT,
-beach_name VARCHAR(500) NOT NULL,
-latitude FLOAT NOT NULL,
-longitude FLOAT NOT NULL,
-PRIMARY KEY (id)
-) ;

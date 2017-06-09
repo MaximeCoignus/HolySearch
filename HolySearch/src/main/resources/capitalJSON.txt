@@ -1,0 +1,1958 @@
+{
+  "elements": 
+  [
+  {
+    "lon": 24.9425683,
+    "lat": 60.1674086,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Helsinki",
+      "name:en": "Helsinki",
+      "is_in:country": "Finlande",
+      "population": "629725"
+    }
+  },
+  {
+    "lon": 89.629548,
+    "lat": 27.4727617,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Thimphou",
+      "name:en": "Thimphu",
+      "is_in:country": "Bhoutan",
+      "population": "79185"
+    }
+  },
+  {
+    "lon": 14.5136759,
+    "lat": 35.8989818,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "La Valette",
+      "name:en": "Valletta",
+      "is_in:country": "Malte",
+      "population": "5721"
+    }
+  },
+  {
+    "lon": 15.9770298,
+    "lat": 45.8131545,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Zagreb",
+      "name:en": "Zagreb",
+      "is_in:country": "Croatie",
+      "population": "792875"
+    }
+  },
+  {
+    "lon": 14.4212535,
+    "lat": 50.0874654,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Prague",
+      "name:en": "Prague",
+      "is_in:country": "République tchèque",
+      "population": "1243201"
+    }
+  },
+  {
+    "lon": 44.8015019,
+    "lat": 41.6935247,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Tbilissi",
+      "name:en": "Tbilisi",
+      "is_in:country": "Géorgie",
+      "population": "1132000"
+    }
+  },
+  {
+    "lon": 100.493087,
+    "lat": 13.7542529,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Bangkok",
+      "name:en": "Bangkok",
+      "is_in:country": "Thaïlande",
+      "population": "8600000"
+    }
+  },
+  {
+    "lon": 4.351697,
+    "lat": 50.8465565,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Bruxelles",
+      "name:en": "Brussels",
+      "is_in:country": "Belgique",
+      "population": "153377"
+    }
+  },
+  {
+    "lon": 35.9239625,
+    "lat": 31.9515694,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Amman",
+      "name:en": "Amman",
+      "is_in:country": "Jordanie",
+      "population": "4000000"
+    }
+  },
+  {
+    "lon": 2.6253361,
+    "lat": 6.4990718,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Porto-Novo",
+      "name:en": "Porto-Novo",
+      "is_in:country": "Bénin",
+      "population": "265500"
+    }
+  },
+  {
+    "lon": 51.5264162,
+    "lat": 25.2856329,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Doha",
+      "name:en": "Doha",
+      "is_in:country": "Qatar"
+    }
+  },
+  {
+    "lon": 37.6174976,
+    "lat": 55.7506828,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Moscou",
+      "name:en": "Moscow",
+      "population": "12330126"
+    }
+  },
+  {
+    "lon": 114.9417574,
+    "lat": 4.8895453,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Bandar Seri Begawan",
+      "name:en": "Bandar Seri Begawan",
+      "is_in:country": "Brunei"
+    }
+  },
+  {
+    "lon": 13.1777923,
+    "lat": 32.896672,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Tripoli",
+      "name:en": "Tripoli",
+      "is_in:country": "Libye",
+      "population": "2127000"
+    }
+  },
+  {
+    "lon": 23.3225964,
+    "lat": 42.6977211,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Sofia",
+      "name:en": "Sofia",
+      "is_in:country": "Bulgarie",
+      "population": "1286383"
+    }
+  },
+  {
+    "lon": 7.4197576,
+    "lat": 43.7311424,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Monaco",
+      "name:en": "Monaco",
+      "is_in:country": "France",
+      "population": "36371"
+    }
+  },
+  {
+    "lon": 58.3874263,
+    "lat": 37.9396678,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Achgabat",
+      "name:en": "Ashgabat",
+      "is_in:country": "Turkménistan",
+      "population": "909000"
+    }
+  },
+  {
+    "lon": 19.8185323,
+    "lat": 41.3279457,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Tirana",
+      "name:en": "TiranÃ«",
+      "is_in:country": "Albanie",
+      "population": "421286"
+    }
+  },
+  {
+    "lon": 101.7009528,
+    "lat": 3.1570976,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Kuala Lumpur",
+      "name:en": "Kuala Lumpur",
+      "is_in:country": "Malaisie",
+      "population": "1588750"
+    }
+  },
+  {
+    "lon": 33.364726,
+    "lat": 35.1739302,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Nicosie",
+      "name:en": "Nicosia",
+      "is_in:country": "Chypre",
+      "population": "310355"
+    }
+  },
+  {
+    "lon": 126.9782914,
+    "lat": 37.5666791,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Séoul",
+      "name:en": "Seoul",
+      "population": "9631482"
+    }
+  },
+  {
+    "lon": 18.3866868,
+    "lat": 43.8519774,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Sarajevo",
+      "name:en": "Sarajevo",
+      "is_in:country": "Bosnie-Herzégovine",
+      "population": "411161"
+    }
+  },
+  {
+    "lon": -21.9422367,
+    "lat": 64.145981,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "ReykjavÃ­k",
+      "name:en": "Reykjavik",
+      "is_in:country": "Islande",
+      "population": "121841"
+    }
+  },
+  {
+    "lon": 49.8328549,
+    "lat": 40.3754289,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Bakou",
+      "name:en": "Baku",
+      "is_in:country": "Azerbaïdjan",
+      "population": "2204000"
+    }
+  },
+  {
+    "lon": 1.215829,
+    "lat": 6.130419,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Lomé",
+      "name:en": "Lomé",
+      "population": "837437"
+    }
+  },
+  {
+    "lon": 178.4421662,
+    "lat": -18.1415884,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Suva",
+      "name:en": "Suva",
+      "is_in:country": "Fidji",
+      "population": "100000"
+    }
+  },
+  {
+    "lon": -61.5180173,
+    "lat": 10.6572678,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Port of Spain",
+      "name:en": "Port of Spain",
+      "is_in:country": "Trinité-et-Tobago"
+    }
+  },
+  {
+    "lon": 21.1638351,
+    "lat": 42.6639939,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "PrishtinÃ«",
+      "name:en": "Pristina",
+      "population": "465186"
+    }
+  },
+  {
+    "lon": 33.7878122,
+    "lat": -13.973456,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Lilongwe",
+      "name:en": "Lilongwe",
+      "is_in:country": "Malawi"
+    }
+  },
+  {
+    "lon": 79.9091644,
+    "lat": 6.9031663,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Sri Jayawardenapura Kotte",
+      "name:en": "Sri Jayawardenapura Kotte",
+      "is_in:country": "Sri Lanka",
+      "population": "107925"
+    }
+  },
+  {
+    "lon": 90.3788136,
+    "lat": 23.7593572,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Dacca",
+      "name:en": "Dhaka",
+      "population": "7000940"
+    }
+  },
+  {
+    "lon": -6.2602732,
+    "lat": 53.3497645,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Dublin",
+      "name:en": "Dublin",
+      "is_in:country": "Irlande",
+      "population": "553165"
+    }
+  },
+  {
+    "lon": -77.0365256,
+    "lat": -12.0621065,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Lima",
+      "name:en": "Lima",
+      "is_in:country": "Pérou",
+      "population": "9989369"
+    }
+  },
+  {
+    "lon": 79.9051208,
+    "lat": 6.8508554,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Sri Jayewardenepura",
+      "name:en": "Sri Jayewardenepura",
+      "population": "135000"
+    }
+  },
+  {
+    "lon": -87.2012631,
+    "lat": 14.0931919,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Tegucigalpa",
+      "name:en": "Tegucigalpa",
+      "is_in:country": "Honduras"
+    }
+  },
+  {
+    "lon": -65.2596023,
+    "lat": -19.047862,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Sucre",
+      "name:en": "Sucre",
+      "is_in:country": "Bolivie",
+      "population": "576153"
+    }
+  },
+  {
+    "lon": -69.942111,
+    "lat": 18.4801972,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Saint-Domingue",
+      "name:en": "Santo Domingo",
+      "is_in:country": "République Dominicaine",
+      "population": "965040"
+    }
+  },
+  {
+    "lon": 46.7150648,
+    "lat": 24.6319692,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Riyad",
+      "name:en": "Riyadh",
+      "is_in:country": "Arabie saoudite",
+      "population": "5900000"
+    }
+  },
+  {
+    "lon": 96.1344976,
+    "lat": 19.7540045,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Naypyidaw",
+      "name:en": "Naypyidaw",
+      "is_in:country": "Birmanie"
+    }
+  },
+  {
+    "lon": -5.273263,
+    "lat": 6.809107,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Yamoussoukro",
+      "name:en": "Yamoussoukro",
+      "population": "200000"
+    }
+  },
+  {
+    "lon": 11.5213344,
+    "lat": 3.8689867,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "YaoundÃ©",
+      "name:en": "Yaounde",
+      "is_in:country": "Cameroun",
+      "population": "1817524"
+    }
+  },
+  {
+    "lon": 43.2543044,
+    "lat": -11.6931255,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Moroni",
+      "name:en": "Moroni",
+      "is_in:country": "Comores"
+    }
+  },
+  {
+    "lon": 171.3816354,
+    "lat": 7.0909924,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Majuro",
+      "name:en": "Majuro",
+      "is_in:country": "Îles Marshall",
+      "population": "26000"
+    }
+  },
+  {
+    "lon": 21.0067265,
+    "lat": 52.2319237,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Varsovie",
+      "name:en": "Warsaw",
+      "population": "1744351"
+    }
+  },
+  {
+    "lon": 15.2712256,
+    "lat": -4.2694407,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Brazzaville",
+      "name:en": "Brazzaville",
+      "population": "1018541"
+    }
+  },
+  {
+    "lon": -90.5132239,
+    "lat": 14.6417889,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Guatemala",
+      "name:en": "Guatemala City",
+      "is_in:country": "Guatémala",
+      "population": "1010253"
+    }
+  },
+  {
+    "lon": 17.1096711,
+    "lat": 48.1535383,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Bratislava",
+      "name:en": "Bratislava",
+      "is_in:country": "Slovaquie",
+      "population": "432801"
+    }
+  },
+  {
+    "lon": 103.852038,
+    "lat": 1.2904527,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Singapour",
+      "name:en": "Singapore",
+      "is_in:country": "Singapour",
+      "population": "5076700"
+    }
+  },
+  {
+    "lon": 47.9735629,
+    "lat": 29.3797091,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Koweït",
+      "name:en": "Kuwait City",
+      "is_in:country": "Koweït"
+    }
+  },
+  {
+    "lon": 104.9224426,
+    "lat": 11.568271,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Phnom Penh",
+      "name:en": "Phnom Penh",
+      "is_in:country": "Cambodge",
+      "population": "2009264"
+    }
+  },
+  {
+    "lon": -74.0760867,
+    "lat": 4.5980478,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Bogota",
+      "name:en": "Bogota",
+      "is_in:country": "Colombie",
+      "population": "6776009"
+    }
+  },
+  {
+    "lon": 32.5813539,
+    "lat": 0.3177137,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Kampala",
+      "name:en": "Kampala",
+      "is_in:country": "Ouganda",
+      "population": "1516210"
+    }
+  },
+  {
+    "lon": -81.3807776,
+    "lat": 19.2953549,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "George Town",
+      "name:en": "George Town",
+      "is_in:country": "Îles Caïmans"
+    }
+  },
+  {
+    "lon": 159.9552773,
+    "lat": -9.4312971,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Honiara",
+      "name:en": "Honiara",
+      "is_in:country": "Salomon",
+      "population": "54600"
+    }
+  },
+  {
+    "lon": -66.9146017,
+    "lat": 10.506098,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Caracas",
+      "name:en": "Caracas",
+      "is_in:country": "Venezuela",
+      "population": "3274000"
+    }
+  },
+  {
+    "lon": -51.7355386,
+    "lat": 64.175029,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Nuuk",
+      "name:en": "Nuuk",
+      "population": "16454"
+    }
+  },
+  {
+    "lon": -175.2018085,
+    "lat": -21.1343401,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Nuku'alofa",
+      "name:en": "Nuku'alofa",
+      "is_in:country": "Tonga",
+      "population": "36045"
+    }
+  },
+  {
+    "lon": 36.3095814,
+    "lat": 33.5130695,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Damas",
+      "name:en": "Damascus",
+      "is_in:country": "Syrie",
+      "population": "1711000"
+    }
+  },
+  {
+    "lon": 121.5637,
+    "lat": 25.0375167,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Taipei",
+      "name:en": "Taipei",
+      "population": "2695704"
+    }
+  },
+  {
+    "lon": -79.5341802,
+    "lat": 8.9714493,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Panama",
+      "name:en": "Panama",
+      "is_in:country": "Panama",
+      "population": "880691"
+    }
+  },
+  {
+    "lon": -0.1276474,
+    "lat": 51.5073219,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Londres",
+      "name:en": "London",
+      "is_in:country": "Royaume-Uni",
+      "population": "8416535"
+    }
+  },
+  {
+    "lon": 174.7772239,
+    "lat": -41.2887639,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Wellington",
+      "name:en": "Wellington",
+      "is_in:country": "Nouvelle-Zélande",
+      "population": "201900"
+    }
+  },
+  {
+    "lon": 23.7279843,
+    "lat": 37.9841493,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Athènes",
+      "name:en": "Athens",
+      "is_in:country": "Grèce",
+      "population": "3090508"
+    }
+  },
+  {
+    "lon": 14.5068921,
+    "lat": 46.049865,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Ljubljana",
+      "name:en": "Ljubljana",
+      "is_in:country": "Slovénie",
+      "population": "272000"
+    }
+  },
+  {
+    "lon": 12.5700724,
+    "lat": 55.6867243,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Copenhague",
+      "name:en": "Copenhagen",
+      "is_in:country": "Danemark",
+      "population": "559440"
+    }
+  },
+  {
+    "lon": 77.2159562,
+    "lat": 28.6138967,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "New Delhi",
+      "name:en": "New Delhi",
+      "is_in:country": "Inde",
+      "population": "249998"
+    }
+  },
+  {
+    "lon": 73.0643744,
+    "lat": 33.6945756,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Islamabad",
+      "name:en": "Islamabad",
+      "is_in:country": "Pakistan",
+      "population": "1740000"
+    }
+  },
+  {
+    "lon": 16.3725042,
+    "lat": 48.2083537,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Vienne",
+      "name:en": "Vienna",
+      "is_in:country": "Autriche",
+      "population": "1766746"
+    }
+  },
+  {
+    "lon": 2.3514992,
+    "lat": 48.8566101,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Paris",
+      "name:en": "Paris",
+      "is_in:country": "France",
+      "population": "2243833"
+    }
+  },
+  {
+    "lon": 7.4514512,
+    "lat": 46.9482713,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Berne",
+      "name:en": "Bern",
+      "population": "128848"
+    }
+  },
+  {
+    "lon": -75.690308,
+    "lat": 45.421106,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Ottawa",
+      "name:en": "Ottawa",
+      "is_in:country": "Canada",
+      "population": "934243"
+    }
+  },
+  {
+    "lon": 10.7391112,
+    "lat": 59.9132694,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Oslo",
+      "name:en": "Oslo",
+      "is_in:country": "Norvège",
+      "population": "616754"
+    }
+  },
+  {
+    "lon": 44.3787992,
+    "lat": 33.3024309,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Bagdad",
+      "name:en": "Baghdad",
+      "is_in:country": "Irak",
+      "population": "7216040"
+    }
+  },
+  {
+    "lon": -3.7035825,
+    "lat": 40.4167047,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Madrid",
+      "name:en": "Madrid",
+      "is_in:country": "Espagne",
+      "population": "3233527"
+    }
+  },
+  {
+    "lon": 149.1012676,
+    "lat": -35.2975906,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Canberra",
+      "name:en": "Canberra",
+      "is_in:country": "Australie",
+      "population": "396100"
+    }
+  },
+  {
+    "lon": 69.1776476,
+    "lat": 34.5260131,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Kaboul",
+      "name:en": "Kabul",
+      "is_in:country": "Afghanistan",
+      "population": "3289000"
+    }
+  },
+  {
+    "lon": 116.391248,
+    "lat": 39.9059631,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "PÃ©kin",
+      "name:en": "Beijing",
+      "is_in:country": "Chine",
+      "population": "13133000"
+    }
+  },
+  {
+    "lon": 28.18707,
+    "lat": -25.745174,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Pretoria",
+      "name:en": "Pretoria",
+      "is_in:country": "Afrique du Sud",
+      "population": "741651"
+    }
+  },
+  {
+    "lon": 32.8537929,
+    "lat": 39.9215219,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Ankara",
+      "name:en": "Ankara",
+      "is_in:country": "Turquie",
+      "population": "4338620"
+    }
+  },
+  {
+    "lon": 18.0710935,
+    "lat": 59.3251172,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Stockholm",
+      "name:en": "Stockholm",
+      "is_in:country": "Suède",
+      "population": "829417"
+    }
+  },
+  {
+    "lon": 51.401375,
+    "lat": 35.7006177,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Téhéran",
+      "name:en": "Tehran",
+      "is_in:country": "Iran",
+      "population": "8000000"
+    }
+  },
+  {
+    "lon": 30.5240501,
+    "lat": 50.4501071,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Kiev",
+      "name:en": "Kyiv",
+      "is_in:country": "Ukraine",
+      "population": "2909697"
+    }
+  },
+  {
+    "lon": 27.5618791,
+    "lat": 53.902334,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Minsk",
+      "name:en": "Minsk",
+      "population": "1941000"
+    }
+  },
+  {
+    "lon": -82.3658562,
+    "lat": 23.1379911,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "La Havane",
+      "name:en": "Havana",
+      "is_in:country": "Cuba",
+      "population": "2141993"
+    }
+  },
+  {
+    "lon": 24.1051846,
+    "lat": 56.9493977,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Riga",
+      "name:en": "Riga",
+      "is_in:country": "Lettonie",
+      "population": "698529"
+    }
+  },
+  {
+    "lon": 15.3125974,
+    "lat": -4.3217055,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Kinshasa",
+      "name:en": "Kinshasa",
+      "population": "9046000"
+    }
+  },
+  {
+    "lon": 25.2829111,
+    "lat": 54.6870458,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Vilnius",
+      "name:en": "Vilnius",
+      "is_in:country": "Lituanie",
+      "population": "526356"
+    }
+  },
+  {
+    "lon": 74.6069949,
+    "lat": 42.8767446,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Bichkek",
+      "name:en": "Bishkek",
+      "is_in:country": "Kirghizstan",
+      "population": "901700"
+    }
+  },
+  {
+    "lon": 69.2787079,
+    "lat": 41.3123363,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Tachkent",
+      "name:en": "Tashkent",
+      "is_in:country": "Ouzbékistan",
+      "population": "2352900"
+    }
+  },
+  {
+    "lon": 68.786394,
+    "lat": 38.5762757,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "DouchanbÃ©",
+      "name:en": "Dushanbe",
+      "population": "543107"
+    }
+  },
+  {
+    "lon": 106.9177016,
+    "lat": 47.9184676,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Oulan-Bator",
+      "name:en": "Ulaanbaatar",
+      "is_in:country": "Mongolie",
+      "population": "1372000"
+    }
+  },
+  {
+    "lon": 71.43055,
+    "lat": 51.128258,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Astana",
+      "name:en": "Astana",
+      "population": "814400"
+    }
+  },
+  {
+    "lon": 2.109823,
+    "lat": 13.524834,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Niamey",
+      "name:en": "Niamey",
+      "is_in:country": "Niger"
+    }
+  },
+  {
+    "lon": 13.2436665,
+    "lat": -8.8271656,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Luanda",
+      "name:en": "Luanda",
+      "is_in:country": "Angola",
+      "population": "5172900"
+    }
+  },
+  {
+    "lon": -8.000337,
+    "lat": 12.649319,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Bamako",
+      "name:en": "Bamako",
+      "is_in:country": "Mali",
+      "population": "1809106"
+    }
+  },
+  {
+    "lon": 10.184794,
+    "lat": 36.800108,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Tunis",
+      "name:en": "Tunis",
+      "is_in:country": "Tunisie",
+      "population": "728453"
+    }
+  },
+  {
+    "lon": -10.797788,
+    "lat": 6.328034,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Monrovia",
+      "name:en": "Monrovia",
+      "is_in:country": "Libéria",
+      "population": "1010970"
+    }
+  },
+  {
+    "lon": 18.5509126,
+    "lat": 4.3907153,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Bangui",
+      "name:en": "Bangui",
+      "is_in:country": "Centrafrique",
+      "population": "734350"
+    }
+  },
+  {
+    "lon": 28.281381,
+    "lat": -15.416697,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "LUnited States of Americaka",
+      "name:en": "LUnited States of Americaka",
+      "is_in:country": "Zambie",
+      "population": "1742979"
+    }
+  },
+  {
+    "lon": -1.527085,
+    "lat": 12.368148,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Ouagadougou",
+      "name:en": "Ouagadougou",
+      "is_in:country": "Burkina Faso",
+      "population": "1915102"
+    }
+  },
+  {
+    "lon": 15.0502758,
+    "lat": 12.1191543,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Ndjamena",
+      "name:en": "N'Djamena",
+      "is_in:country": "Tchad",
+      "population": "721000"
+    }
+  },
+  {
+    "lon": -17.447938,
+    "lat": 14.693425,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Dakar",
+      "name:en": "Dakar",
+      "is_in:country": "Sénégal",
+      "population": "2396800"
+    }
+  },
+  {
+    "lon": -13.26795,
+    "lat": 8.479004,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Freetown",
+      "name:en": "Freetown",
+      "is_in:country": "Sierra Leone"
+    }
+  },
+  {
+    "lon": -13.6998434,
+    "lat": 9.5170602,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Conakry",
+      "name:en": "Conakry",
+      "is_in:country": "Guinée",
+      "population": "1857153"
+    }
+  },
+  {
+    "lon": 9.454001,
+    "lat": 0.390002,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Libreville",
+      "name:en": "Libreville",
+      "is_in:country": "Gabon",
+      "population": "850000"
+    }
+  },
+  {
+    "lon": 38.7612525,
+    "lat": 9.0107934,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Addis-Abeba",
+      "name:en": "Addis Ababa",
+      "is_in:country": "Éthiopie",
+      "population": "3500000"
+    }
+  },
+  {
+    "lon": -0.2057437,
+    "lat": 5.5600141,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Accra",
+      "name:en": "Accra",
+      "is_in:country": "Ghana",
+      "population": "2291352"
+    }
+  },
+  {
+    "lon": 32.56745,
+    "lat": -25.966213,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Maputo",
+      "name:en": "Maputo",
+      "is_in:country": "Mozambique",
+      "population": "1244227"
+    }
+  },
+  {
+    "lon": 43.14724,
+    "lat": 11.593665,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Djibouti",
+      "name:en": "Djibouti",
+      "population": "475332"
+    }
+  },
+  {
+    "lon": 36.8172449,
+    "lat": -1.2832533,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Nairobi",
+      "name:en": "Nairobi",
+      "is_in:country": "Kenya",
+      "population": "3138295"
+    }
+  },
+  {
+    "lon": 47.5255809,
+    "lat": -18.9100122,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Tananarive",
+      "name:en": "Antananarivo",
+      "is_in:country": "Madagascar",
+      "population": "2000000"
+    }
+  },
+  {
+    "lon": 32.53565,
+    "lat": 15.593325,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Khartoum",
+      "name:en": "Khartoum",
+      "is_in:country": "Soudan",
+      "population": "2682431"
+    }
+  },
+  {
+    "lon": -23.5096132,
+    "lat": 14.9160169,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Praia",
+      "name:en": "Praia"
+    }
+  },
+  {
+    "lon": 35.2266286,
+    "lat": 31.7791134,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Jérusalem",
+      "name:en": "Jerusalem",
+      "is_in:country": "Israël",
+      "population": "780200"
+    }
+  },
+  {
+    "lon": 24.7453688,
+    "lat": 59.4372155,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Tallinn",
+      "name:en": "Tallinn",
+      "is_in:country": "Estonie",
+      "population": "427894"
+    }
+  },
+  {
+    "lon": 106.827183,
+    "lat": -6.1753942,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Jakarta",
+      "name:en": "Jakarta",
+      "is_in:country": "Indonésie",
+      "population": "10187595"
+    }
+  },
+  {
+    "lon": 27.478222,
+    "lat": -29.310054,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Maseru",
+      "name:en": "Maseru",
+      "is_in:country": "Lesotho"
+    }
+  },
+  {
+    "lon": 25.908728,
+    "lat": -24.655319,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Gaborone",
+      "name:en": "Gaborone",
+      "is_in:country": "Botswana"
+    }
+  },
+  {
+    "lon": 7.4892974,
+    "lat": 9.0643305,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Abuja",
+      "name:en": "Abuja",
+      "is_in:country": "Nigéria",
+      "population": "776298"
+    }
+  },
+  {
+    "lon": 125.753388,
+    "lat": 39.0194741,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Pyongyang",
+      "name:en": "Pyongyang",
+      "is_in:country": "Corée du Nord",
+      "population": "3871335"
+    }
+  },
+  {
+    "lon": 18.417396,
+    "lat": -33.928992,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Le Cap",
+      "name:en": "Cape Town",
+      "is_in:country": "Afrique du Sud",
+      "population": "3500000"
+    }
+  },
+  {
+    "lon": 17.0791233,
+    "lat": -22.5744184,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Windhoek",
+      "name:en": "Windhoek",
+      "is_in:country": "Namibie",
+      "population": "350000"
+    }
+  },
+  {
+    "lon": -47.8823172,
+    "lat": -15.7934036,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Brasilia",
+      "name:en": "BrasÃ­lia",
+      "is_in:country": "Brésil",
+      "population": "2914830"
+    }
+  },
+  {
+    "lon": 45.338564,
+    "lat": 2.042778,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Mogadiscio",
+      "name:en": "Mogadishu",
+      "is_in:country": "Somalie",
+      "population": "1700000"
+    }
+  },
+  {
+    "lon": 50.5822436,
+    "lat": 26.2235041,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Manama",
+      "name:en": "Manama",
+      "is_in:country": "Bahreïn"
+    }
+  },
+  {
+    "lon": -70.6504451,
+    "lat": -33.4377968,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Santiago",
+      "name:en": "Santiago",
+      "is_in:country": "Chili",
+      "population": "5428590"
+    }
+  },
+  {
+    "lon": 79.853845,
+    "lat": 6.9349969,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Colombo",
+      "name:en": "Colombo",
+      "is_in:country": "Sri Lanka",
+      "population": "753000"
+    }
+  },
+  {
+    "lon": 6.129799,
+    "lat": 49.6112768,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Luxembourg",
+      "name:en": "Luxembourg",
+      "population": "103641"
+    }
+  },
+  {
+    "lon": -66.116666,
+    "lat": 18.465299,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "San Juan",
+      "name:en": "San Juan"
+    }
+  },
+  {
+    "lon": -76.7928128,
+    "lat": 17.9712148,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Kingston",
+      "name:en": "Kingston",
+      "is_in:country": "Jamaïque",
+      "population": "660000"
+    }
+  },
+  {
+    "lon": -78.5123274,
+    "lat": -0.2201641,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Quito",
+      "name:en": "Quito",
+      "is_in:country": "Équateur",
+      "population": "1608000"
+    }
+  },
+  {
+    "lon": 30.061507,
+    "lat": -1.950851,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Kigali",
+      "name:en": "Kigali",
+      "is_in:country": "Rwanda"
+    }
+  },
+  {
+    "lon": 20.4568089,
+    "lat": 44.8178787,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Belgrade",
+      "name:en": "Belgrade",
+      "is_in:country": "Serbie",
+      "population": "1346930"
+    }
+  },
+  {
+    "lon": 29.3675028,
+    "lat": -3.3638125,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Bujumbura",
+      "name:en": "Bujumbura",
+      "is_in:country": "Burundi"
+    }
+  },
+  {
+    "lon": -99.1333416,
+    "lat": 19.4326009,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Mexico",
+      "name:en": "Mexico City",
+      "is_in:country": "Mexique",
+      "population": "8555500"
+    }
+  },
+  {
+    "lon": 85.320244,
+    "lat": 27.708796,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Katmandou",
+      "name:en": "Kathmandu",
+      "is_in:country": "Népal",
+      "population": "975000"
+    }
+  },
+  {
+    "lon": 12.47311,
+    "lat": 41.8988173,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Rome",
+      "name:en": "Rome",
+      "population": "2864731"
+    }
+  },
+  {
+    "lon": 105.85247,
+    "lat": 21.0292095,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Hanoé",
+      "name:en": "Hanoi",
+      "is_in:country": "Viêt Nam",
+      "population": "6449000"
+    }
+  },
+  {
+    "lon": 19.0404707,
+    "lat": 47.4983815,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Budapest",
+      "name:en": "Budapest",
+      "is_in:country": "Hongrie",
+      "population": "1759407"
+    }
+  },
+  {
+    "lon": 26.1027202,
+    "lat": 44.4361414,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Bucarest",
+      "name:en": "Bucharest",
+      "population": "1883425"
+    }
+  },
+  {
+    "lon": 31.5951655,
+    "lat": 4.8472017,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Djouba",
+      "name:en": "Juba",
+      "is_in:country": "Sud-Soudan",
+      "population": "372410"
+    }
+  },
+  {
+    "lon": 168.3150163,
+    "lat": -17.7414972,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Port-Vila",
+      "name:en": "Port Vila",
+      "is_in:country": "Vanuatu",
+      "population": "44039"
+    }
+  },
+  {
+    "lon": -77.3383331,
+    "lat": 25.0783456,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Nassau",
+      "name:en": "Nassau",
+      "is_in:country": "Bahamas"
+    }
+  },
+  {
+    "lon": 102.6133707,
+    "lat": 17.9640988,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Vientiane",
+      "name:en": "Vientiane",
+      "is_in:country": "Laos",
+      "population": "200000"
+    }
+  },
+  {
+    "lon": 19.2621081,
+    "lat": 42.4415238,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Podgorica",
+      "name:en": "Podgorica",
+      "is_in:country": "Monténégro",
+      "population": "169132"
+    }
+  },
+  {
+    "lon": 28.8605936,
+    "lat": 47.0122737,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Chisinau",
+      "name:en": "ChisinÄƒu",
+      "is_in:country": "Moldavie",
+      "population": "750000"
+    }
+  },
+  {
+    "lon": 44.5125849,
+    "lat": 40.1776121,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Erevan",
+      "name:en": "Yerevan",
+      "is_in:country": "Arménie",
+      "population": "1129300"
+    }
+  },
+  {
+    "lon": -77.0366456,
+    "lat": 38.8949549,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Washington",
+      "name:en": "Washington",
+      "population": "672228"
+    }
+  },
+  {
+    "lon": 21.4316495,
+    "lat": 41.9960924,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Skopje",
+      "name:en": "Skopje",
+      "is_in:country": "Macédoine",
+      "population": "668500"
+    }
+  },
+  {
+    "lon": -86.273717,
+    "lat": 12.1461244,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Managua",
+      "name:en": "Managua",
+      "is_in:country": "Nicaragua"
+    }
+  },
+  {
+    "lon": -84.0795782,
+    "lat": 9.9325427,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "San José",
+      "name:en": "San José",
+      "is_in:country": "Costa Rica",
+      "population": "288054"
+    }
+  },
+  {
+    "lon": -89.19301,
+    "lat": 13.6977587,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "San Salvador",
+      "name:en": "San Salvador",
+      "is_in:country": "Salvador"
+    }
+  },
+  {
+    "lon": 120.9799696,
+    "lat": 14.5906216,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Manille",
+      "name:en": "Manila",
+      "is_in:country": "Philippines",
+      "population": "1780148"
+    }
+  },
+  {
+    "lon": 58.5451305,
+    "lat": 23.5997857,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Mascate",
+      "name:en": "Muscat",
+      "is_in:country": "Oman",
+      "population": "1090797"
+    }
+  },
+  {
+    "lon": 147.1599504,
+    "lat": -9.4743301,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Port Moresby",
+      "name:en": "Port Moresby",
+      "is_in:country": "Papouasie-Nouvelle-Guinée",
+      "population": "364145"
+    }
+  },
+  {
+    "lon": 13.3888599,
+    "lat": 52.5170365,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Berlin",
+      "name:en": "Berlin",
+      "is_in:country": "Allemagne",
+      "population": "3531201"
+    }
+  },
+  {
+    "lon": 57.5045331,
+    "lat": -20.1637281,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Port-Louis",
+      "name:en": "Port-Louis",
+      "is_in:country": "Maurice",
+      "population": "147688"
+    }
+  },
+  {
+    "lon": 31.144663,
+    "lat": -26.325745,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Mbabane",
+      "name:en": "Mbabane",
+      "is_in:country": "Swaziland"
+    }
+  },
+  {
+    "lon": -59.6184184,
+    "lat": 13.0977832,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Bridgetown",
+      "name:en": "Bridgetown",
+      "is_in:country": "Barbade"
+    }
+  },
+  {
+    "lon": -15.9780071,
+    "lat": 18.0792379,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Nouakchott",
+      "name:en": "Nouakchott",
+      "is_in:country": "Mauritanie",
+      "population": "760000"
+    }
+  },
+  {
+    "lon": -16.575646,
+    "lat": 13.45535,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Banjul",
+      "name:en": "Banjul",
+      "is_in:country": "Gambie"
+    }
+  },
+  {
+    "lon": -57.6311196,
+    "lat": -25.2959916,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Asuncion",
+      "name:en": "Asuncion",
+      "is_in:country": "Paraguay",
+      "population": "742023"
+    }
+  },
+  {
+    "lon": -15.583055,
+    "lat": 11.861324,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Bissau",
+      "name:en": "Bissau",
+      "is_in:country": "Guinée-Bissau"
+    }
+  },
+  {
+    "lon": 44.2005197,
+    "lat": 15.342101,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Sanaa",
+      "name:en": "Sana'a",
+      "is_in:country": "Yémen",
+      "population": "2431000"
+    }
+  },
+  {
+    "lon": 54.3705762,
+    "lat": 24.4747961,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Abou Dabi",
+      "name:en": "Abu Dhabi",
+      "is_in:country": "Émirats arabes unis",
+      "population": "921000"
+    }
+  },
+  {
+    "lon": 125.5784093,
+    "lat": -8.5536809,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Dili",
+      "name:en": "Dili",
+      "is_in:country": "Timor Oriental",
+      "population": "222323"
+    }
+  },
+  {
+    "lon": 38.932672,
+    "lat": 15.338997,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Asmara",
+      "name:en": "Asmara",
+      "is_in:country": "Érythrée",
+      "population": "579000"
+    }
+  },
+  {
+    "lon": 139.7589667,
+    "lat": 35.6828378,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Tokyo",
+      "name:en": "Tokyo",
+      "is_in:country": "Japon",
+      "population": "13613660"
+    }
+  },
+  {
+    "lon": -9.1365061,
+    "lat": 38.7077926,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Lisbonne",
+      "name:en": "Lisbon",
+      "is_in:country": "Portugal",
+      "population": "545245"
+    }
+  },
+  {
+    "lon": 4.9001115,
+    "lat": 52.3710088,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Amsterdam",
+      "name:en": "Amsterdam",
+      "is_in:country": "Pays-Bas",
+      "population": "825080"
+    }
+  },
+  {
+    "lon": 31.243666,
+    "lat": 30.048819,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Le Caire",
+      "name:en": "Cairo",
+      "is_in:country": "Égypte",
+      "population": "9120350"
+    }
+  },
+  {
+    "lon": -55.1771974,
+    "lat": 5.8216198,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Paramaribo",
+      "name:en": "Paramaribo",
+      "is_in:country": "Suriname",
+      "population": "242946"
+    }
+  },
+  {
+    "lon": -88.770018,
+    "lat": 17.250199,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Belmopan",
+      "name:en": "Belmopan",
+      "is_in:country": "Bélize",
+      "population": "13351"
+    }
+  },
+  {
+    "lon": 31.045686,
+    "lat": -17.831773,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Harare",
+      "name:en": "Harare",
+      "is_in:country": "Zimbabwe",
+      "population": "1606000"
+    }
+  },
+  {
+    "lon": -72.3395928,
+    "lat": 18.547327,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Port-au-Prince",
+      "name:en": "Port-au-Prince",
+      "is_in:country": "Haïti",
+      "population": "1275000"
+    }
+  },
+  {
+    "lon": 35.47843,
+    "lat": 33.8959203,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Beyrouth",
+      "name:en": "Beirut",
+      "is_in:country": "Liban",
+      "population": "1252000"
+    }
+  },
+  {
+    "lon": 8.780061,
+    "lat": 3.752828,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Malabo",
+      "name:en": "Malabo",
+      "is_in:country": "Guinée équatoriale",
+      "population": "187302"
+    }
+  },
+  {
+    "lon": -58.1628612,
+    "lat": 6.8025766,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Georgetown",
+      "name:en": "Georgetown",
+      "is_in:country": "Guyana",
+      "population": "310320"
+    }
+  },
+  {
+    "lon": 6.7313031,
+    "lat": 0.3389242,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Säo Tomé",
+      "name:en": "Säo Tomé",
+      "population": "53300"
+    }
+  },
+  {
+    "lon": -56.1913569,
+    "lat": -34.9059039,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Montevideo",
+      "name:en": "Montevideo",
+      "is_in:country": "Uruguay",
+      "population": "1319108"
+    }
+  },
+  {
+    "lon": -6.834543,
+    "lat": 34.022405,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Rabat",
+      "name:en": "Rabat",
+      "is_in:country": "Maroc",
+      "population": "1650000"
+    }
+  },
+  {
+    "lon": 3.060065,
+    "lat": 36.775348,
+    "tags": {
+      "capital": "yes",
+      "name:fr": "Alger",
+      "name:en": "Algiers",
+      "is_in:country": "Algérie",
+      "population": "3415811"
+    }
+  }
+]
+}

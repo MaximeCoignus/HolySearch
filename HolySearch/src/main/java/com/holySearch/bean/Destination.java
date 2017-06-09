@@ -44,10 +44,6 @@ public class Destination {
 	@JoinColumn(name = "countryid", referencedColumnName = "countryid")
 	private Country country;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "cityid", referencedColumnName = "cityid")
-	private City city;
-
 	/**
 	 * @return the destinationId
 	 */
@@ -173,21 +169,6 @@ public class Destination {
 	 */
 	public void setCountry(Country country) {
 		this.country = country;
-	}
-
-	/**
-	 * @return the city
-	 */
-	public City getCity() {
-		return city;
-	}
-
-	/**
-	 * @param city
-	 *            the city to set
-	 */
-	public void setCity(City city) {
-		this.city = city;
 	}
 
 }

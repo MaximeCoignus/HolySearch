@@ -15,6 +15,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.util.StringUtils;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
@@ -79,6 +80,7 @@ public class DestinationParser {
 	public ArrayList<Destination> getDestinations() throws Exception {
 		getBeaches();
 		getSkiStations();
+		getCapitales();
 		System.out.println("taille " + destinations.size());
 		return destinations;
 	}
@@ -207,6 +209,70 @@ public class DestinationParser {
 		} catch (
 
 		JSONException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void getCapitales() throws Exception {
+		JSONObject json = readJsonFromFile("/capitalJSON.txt");
+
+		try {
+			// on parcourt les éléments du résultat pour alimenter
+			// l'arrayList de Country
+			for (int i = 0; i < json.getJSONArray("elements").length(); i++) {
+				Destination capital = new Destination();
+				String capitalFrenchName = "null";
+				String capitalEnglishName = "null";
+				float lat = 0.0f;
+				float lon = 0.0f;
+				String wikiDescription = "null";
+				String wikiPictureUrl = "null";
+				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("name:fr")) {
+
+					capitalFrenchName = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags")
+							.get("name:fr").toString();
+				}
+
+				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("name:en")) {
+					capitalEnglishName = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags")
+							.get("name:en").toString();
+				}
+
+				System.out.println(" indice " + i + " un des 2 noms est bons ");
+				// on alimente la latitude et la longitude
+
+				lat = Float.parseFloat(json.getJSONArray("elements").getJSONObject(i).get("lat").toString());
+
+				lon = Float.parseFloat(json.getJSONArray("elements").getJSONObject(i).get("lon").toString());
+
+				if (capitalFrenchName != null && !capitalFrenchName.isEmpty()) {
+					wikiDescription = getWikiDescription(capitalFrenchName);
+
+					wikiPictureUrl = getWikiPictureUrl(capitalFrenchName);
+				}
+
+				String countryName = "null";
+
+				if (!json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags").isNull("is_in:country")) {
+					countryName = json.getJSONArray("elements").getJSONObject(i).getJSONObject("tags")
+							.get("is_in:country").toString();
+				}
+
+				countriesNameList.add(countryName);
+
+				// on alimente l'objet et on l'ajouter à l'ArrayList
+				capital.setDestinationFrenchName(capitalFrenchName);
+				capital.setDestinationEnglishName(capitalEnglishName);
+				capital.setDestinationLatitude(lat);
+				capital.setDestinationLongitude(lon);
+				capital.setDestinationWikiDescription(wikiDescription);
+				capital.setDestinationWikiPicture(wikiPictureUrl);
+				capital.setDestinationType("capital");
+				destinations.add(capital);
+				System.out.println(capital);
+				System.out.println(capital + " country = " + countriesNameList.get(countriesNameList.size() - 1));
+			}
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}

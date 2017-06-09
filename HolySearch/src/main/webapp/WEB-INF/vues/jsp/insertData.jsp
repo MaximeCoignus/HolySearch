@@ -16,6 +16,18 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 
 <link href="css/carousel.css" rel="stylesheet">
+<script>
+	function displayLoad() {
+		{
+			$('#loadingImage').show();
+		}
+	};
+	function hideLoad() {
+		{
+			$('#loadingImage').hide();
+		}
+	};
+</script>
 </head>
 <body id="site-container">
 	<div style="height: 400px;">
@@ -25,16 +37,26 @@
 
 			<form:form method="post" action="insertData" class="inline-form">
 				<div class="row" style="margin-left: 10%;">
-					<div class="col-xs-12 col-sm-12 col-md-3" style="margin-left: 1%;">
+					<div class="col-xs-12 col-sm-12 col-md-6">
 						<div class="form-group">
 							<input type="submit" class="btn btn-primary btn-sm"
-								value="Inserer les datas" style="height: 42px;" />
+								value="Inserer les datas" style="height: 42px;"
+								onclick="displayLoad()" />
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-3" style="margin-left: 1%;">
+						<div class="form-group">
+							<c:if test="${not empty resultatInsertionData}">
+								<p style="color: green;">${resultatInsertionData}.</p>
+								<script>
+									hideLoad();
+								</script>
+							</c:if>
+							<img src="images/loading.gif" id="loadingImage"
+								style="display: none;" />
 						</div>
 					</div>
 				</div>
-				<c:if test="${not empty resultatInsertionData}">
-					<p style="color: green;">${resultatInsertionData}.</p>
-				</c:if>
 			</form:form>
 
 		</div>

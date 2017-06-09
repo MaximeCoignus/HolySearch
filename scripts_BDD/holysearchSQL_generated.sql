@@ -47,25 +47,6 @@ CREATE TABLE Country(
 
 
 #------------------------------------------------------------
-# Table: City
-#------------------------------------------------------------
-
-CREATE TABLE City(
-        cityid          int (11) Auto_increment  NOT NULL ,
-        englishname     Text   ,
-        frenchname      Text   ,
-        longitude       FLOAT ,
-        latitude        FLOAT ,
-        population      FLOAT NOT NULL ,
-        wikidescription Text  ,
-        wikipicture    Text   ,
-        iscapital       Bool ,
-        countryid       Int ,
-        PRIMARY KEY (cityid )
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
 # Table: Destination
 #------------------------------------------------------------
 
@@ -79,6 +60,5 @@ CREATE TABLE Destination(
         wikipicture     Text   ,
         type            Text   NOT NULL ,
         countryid       Int ,
-        cityid          Int ,
         PRIMARY KEY (destinationid )
 )ENGINE=InnoDB;

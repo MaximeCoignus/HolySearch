@@ -1,9 +1,7 @@
 package com.holySearch.controller;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,7 +41,6 @@ import com.holySearch.lucene.DestinationSearcher;
 import com.holySearch.mapper.MapperUtils;
 import com.holySearch.reinitialiserPassword.EnvoiMail;
 import com.holySearch.services.AvatarService;
-import com.holySearch.services.CityService;
 import com.holySearch.services.ContinentService;
 import com.holySearch.services.CountryService;
 import com.holySearch.services.DestinationService;
@@ -69,9 +66,6 @@ public class MainController implements HandlerExceptionResolver {
 
 	@Resource
 	CountryService mCountryService;
-
-	@Resource
-	CityService mCityService;
 
 	@Autowired
 	private MapperUtils mMapperUtils;
@@ -470,8 +464,6 @@ public class MainController implements HandlerExceptionResolver {
 
 		mDestinationService.deleteAllBeaches();
 
-		mCityService.deleteAllCity();
-
 		mCountryService.deleteAllCountry();
 
 		mContinentService.deleteAllContinent();
@@ -479,8 +471,6 @@ public class MainController implements HandlerExceptionResolver {
 		mContinentService.insertContinents();
 
 		mCountryService.insertCountries();
-
-		mCityService.insertCities();
 
 		mDestinationService.insertDestinations();
 
