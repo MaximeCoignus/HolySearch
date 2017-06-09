@@ -27,9 +27,9 @@
 
 	<div class="container">
 		<p class="text-center">HolySearch est le fruit d'un an de travail
-			rÃ©alisÃ© dans le cadre d'un projet Ã©tudiant.
+			réalisé dans le cadre d'un projet étudiant.
 			<br>
-		Il vient clÃ´turer 2 annÃ©es d'alternance consacrÃ©es Ã  l'obtention tu titre d'Expert en systÃ¨me informatique.</p>
+		Il vient clôturer 2 années d'alternance consacrées à l'obtention tu titre d'Expert en système informatique.</p>
 	</div>
 
 	<br>
@@ -38,7 +38,7 @@
 
 	<div class="container marketing">
 	
-	<h2 class="text-center">L'Ã©quipe</h2>
+	<h2 class="text-center">L'équipe</h2>
 	
 	<br>
 	<br>
@@ -49,7 +49,7 @@
 				<img class="img-circle" src="images/samad.jpg"
 					alt="Generic placeholder image" width="140" height="140">
 				<h3>Abdel Samad Chitou</h3>
-				<p>Responsable technique, dÃ©veloppeur.</p>
+				<p>Responsable technique, développeur.</p>
 			</div>
 			<!-- /.col-lg-4 -->
 			<div class="col-lg-4 text-center">
@@ -63,7 +63,7 @@
 				<img class="img-circle" src="images/maxime.jpg"
 					alt="Generic placeholder image" width="140" height="140">
 				<h3>Maxime Coignus</h3>
-				<p>Responsable fonctionnel, dÃ©veloppeur.</p>
+				<p>Responsable fonctionnel, développeur.</p>
 			</div>
 			<!-- /.col-lg-4 -->
 		</div>
