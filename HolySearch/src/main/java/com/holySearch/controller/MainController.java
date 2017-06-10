@@ -45,6 +45,7 @@ import com.holySearch.services.ContinentService;
 import com.holySearch.services.CountryService;
 import com.holySearch.services.DestinationService;
 import com.holySearch.services.UserService;
+import com.holySearch.transfert.object.DestinationItemTO;
 import com.holySearch.transfert.object.DestinationTO;
 
 @Controller
@@ -80,9 +81,22 @@ public class MainController implements HandlerExceptionResolver {
 	public String afficher(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel,
 			HttpSession session) throws FileNotFoundException {
 		if (session.getAttribute(ATT_SESSION_USER) != null) {
+			try {
+				insertIndex();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return "search";
-		} else
+		} else {
+			try {
+				insertIndex();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return "index";
+		}
 
 	}
 
@@ -256,9 +270,22 @@ public class MainController implements HandlerExceptionResolver {
 	public String afficherAccueil(@ModelAttribute(value = "userForm") final UserForm puserForm, final ModelMap pModel,
 			HttpSession session) {
 		if (session.getAttribute(ATT_SESSION_USER) != null) {
+			try {
+				insertIndex();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return "search";
-		} else
+		} else {
+			try {
+				insertIndex();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return "index";
+		}
 	}
 
 	private void contactezNous(String nom, String prenom, String email, String objet, String message) {
@@ -351,7 +378,6 @@ public class MainController implements HandlerExceptionResolver {
 		String redirect = "index";
 		if (mUserService.userBeanExist(pConnexionForm.getLogin(), pConnexionForm.getPassword())) {
 			session.setAttribute(ATT_SESSION_USER, pConnexionForm.getLogin());
-			insertIndex();
 			log.info("Identifiant : " + pConnexionForm.getLogin());
 			redirect = "search";
 		}
@@ -372,14 +398,14 @@ public class MainController implements HandlerExceptionResolver {
 
 	private void insertIndex() throws Exception {
 		// the items to be indexed
-		List<DestinationTO> vListeDestinations = mMapperUtils
-				.mapListDestinationBeanToDestinationTO(mDestinationService.getAllDestinations());
+		List<DestinationItemTO> vListeDestinations = mMapperUtils
+				.mapListDestinationBeanToDestinationItemTO(mDestinationService.getAllDestinations());
 		List<DestinationIndexItem> vListeDestinationsIndexItem = null;
 		if (vListeDestinations != null) {
 			vListeDestinationsIndexItem = new ArrayList<DestinationIndexItem>();
-			for (DestinationTO vDestinationBeanTO : vListeDestinations) {
-				log.info(" Destnation " + vListeDestinations.indexOf(vDestinationBeanTO));
-				DestinationIndexItem vDestinationIndexItem = new DestinationIndexItem(vDestinationBeanTO);
+			for (DestinationItemTO vDestinationItemTO : vListeDestinations) {
+				log.info(" Destnation " + vListeDestinations.indexOf(vDestinationItemTO));
+				DestinationIndexItem vDestinationIndexItem = new DestinationIndexItem(vDestinationItemTO);
 
 				vListeDestinationsIndexItem.add(vDestinationIndexItem);
 			}

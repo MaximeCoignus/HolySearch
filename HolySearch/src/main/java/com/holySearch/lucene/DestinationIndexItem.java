@@ -1,7 +1,7 @@
 package com.holySearch.lucene;
 
 import com.google.gson.Gson;
-import com.holySearch.transfert.object.DestinationTO;
+import com.holySearch.transfert.object.DestinationItemTO;
 
 public class DestinationIndexItem {
 	private int destinationId;
@@ -9,7 +9,7 @@ public class DestinationIndexItem {
 	public static final String DESTINATIONID = "destinationId";
 	public static final String DESTINATIONJSON = "destinationJSON";
 
-	public DestinationIndexItem(DestinationTO pDestinationTO) {
+	public DestinationIndexItem(DestinationItemTO pDestinationTO) {
 		this.destinationId = pDestinationTO.getDestinationId();
 		Gson gson = new Gson();
 		this.destinationJSON = gson.toJson(pDestinationTO);
