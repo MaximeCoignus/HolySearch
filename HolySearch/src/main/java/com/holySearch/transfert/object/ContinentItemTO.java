@@ -17,6 +17,21 @@ public class ContinentItemTO {
 	private float continentSizeKilometer;
 
 	/**
+	 * @return the continentId
+	 */
+	public int getContinentId() {
+		return continentId;
+	}
+
+	/**
+	 * @param continentId
+	 *            the continentId to set
+	 */
+	public void setContinentId(int continentId) {
+		this.continentId = continentId;
+	}
+
+	/**
 	 * @return the continentEnglishName
 	 */
 	public String getContinentEnglishName() {
@@ -104,21 +119,6 @@ public class ContinentItemTO {
 	 */
 	public void setContinentSizeKilometer(float continentSizeKilometer) {
 		this.continentSizeKilometer = continentSizeKilometer;
-	}
-
-	/**
-	 * @return the continentId
-	 */
-	public int getContinentId() {
-		return continentId;
-	}
-
-	/**
-	 * @param continentId
-	 *            the continentId to set
-	 */
-	public void setContinentId(int continentId) {
-		this.continentId = continentId;
 	}
 
 }

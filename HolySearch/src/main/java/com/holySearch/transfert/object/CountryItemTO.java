@@ -31,6 +31,21 @@ public class CountryItemTO {
 	private ContinentItemTO continent;
 
 	/**
+	 * @return the countryId
+	 */
+	public int getCountryId() {
+		return countryId;
+	}
+
+	/**
+	 * @param countryId
+	 *            the countryId to set
+	 */
+	public void setCountryId(int countryId) {
+		this.countryId = countryId;
+	}
+
+	/**
 	 * @return the countryEnglishName
 	 */
 	public String getCountryEnglishName() {
@@ -208,21 +223,6 @@ public class CountryItemTO {
 	 */
 	public void setCountryCriminalityLevel(String countryCriminalityLevel) {
 		this.countryCriminalityLevel = countryCriminalityLevel;
-	}
-
-	/**
-	 * @return the countryId
-	 */
-	public int getCountryId() {
-		return countryId;
-	}
-
-	/**
-	 * @param countryId
-	 *            the countryId to set
-	 */
-	public void setCountryId(int countryId) {
-		this.countryId = countryId;
 	}
 
 	/**

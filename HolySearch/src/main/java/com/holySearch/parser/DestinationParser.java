@@ -267,7 +267,7 @@ public class DestinationParser {
 				capital.setDestinationLongitude(lon);
 				capital.setDestinationWikiDescription(wikiDescription);
 				capital.setDestinationWikiPicture(wikiPictureUrl);
-				capital.setDestinationType("capital");
+				capital.setDestinationType("capitale");
 				destinations.add(capital);
 				System.out.println(capital);
 				System.out.println(capital + " country = " + countriesNameList.get(countriesNameList.size() - 1));

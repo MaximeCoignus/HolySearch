@@ -24,8 +24,7 @@ public class DestinationItemTO {
 	}
 
 	/**
-	 * @param destinationId
-	 *            the destinationId to set
+	 * @param destinationId the destinationId to set
 	 */
 	public void setDestinationId(int destinationId) {
 		this.destinationId = destinationId;
@@ -39,8 +38,7 @@ public class DestinationItemTO {
 	}
 
 	/**
-	 * @param destinationEnglishName
-	 *            the destinationEnglishName to set
+	 * @param destinationEnglishName the destinationEnglishName to set
 	 */
 	public void setDestinationEnglishName(String destinationEnglishName) {
 		this.destinationEnglishName = destinationEnglishName;
@@ -54,8 +52,7 @@ public class DestinationItemTO {
 	}
 
 	/**
-	 * @param destinationFrenchName
-	 *            the destinationFrenchName to set
+	 * @param destinationFrenchName the destinationFrenchName to set
 	 */
 	public void setDestinationFrenchName(String destinationFrenchName) {
 		this.destinationFrenchName = destinationFrenchName;
@@ -69,8 +66,7 @@ public class DestinationItemTO {
 	}
 
 	/**
-	 * @param destinationLongitude
-	 *            the destinationLongitude to set
+	 * @param destinationLongitude the destinationLongitude to set
 	 */
 	public void setDestinationLongitude(float destinationLongitude) {
 		this.destinationLongitude = destinationLongitude;
@@ -84,8 +80,7 @@ public class DestinationItemTO {
 	}
 
 	/**
-	 * @param destinationLatitude
-	 *            the destinationLatitude to set
+	 * @param destinationLatitude the destinationLatitude to set
 	 */
 	public void setDestinationLatitude(float destinationLatitude) {
 		this.destinationLatitude = destinationLatitude;
@@ -99,8 +94,7 @@ public class DestinationItemTO {
 	}
 
 	/**
-	 * @param destinationType
-	 *            the destinationType to set
+	 * @param destinationType the destinationType to set
 	 */
 	public void setDestinationType(String destinationType) {
 		this.destinationType = destinationType;
@@ -114,11 +108,12 @@ public class DestinationItemTO {
 	}
 
 	/**
-	 * @param country
-	 *            the country to set
+	 * @param country the country to set
 	 */
 	public void setCountry(CountryItemTO country) {
 		this.country = country;
 	}
+	
+	
 
 }

@@ -9,10 +9,10 @@ public class DestinationIndexItem {
 	public static final String DESTINATIONID = "destinationId";
 	public static final String DESTINATIONJSON = "destinationJSON";
 
-	public DestinationIndexItem(DestinationItemTO pDestinationTO) {
-		this.destinationId = pDestinationTO.getDestinationId();
+	public DestinationIndexItem(DestinationItemTO pDestinationItemTO) {
+		this.destinationId = pDestinationItemTO.getDestinationId();
 		Gson gson = new Gson();
-		this.destinationJSON = gson.toJson(pDestinationTO);
+		this.destinationJSON = gson.toJson(pDestinationItemTO);
 	}
 
 	public DestinationIndexItem(int destinationId, String destinationJSON) {
